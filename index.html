@@ -18,7 +18,8 @@
             Selecciona una opción
         </p>
 
-        <div class="botones-principales">
+        <!-- BOTONES PRINCIPALES -->
+        <div id="menuPrincipal" class="botones-principales">
 
             <button id="btnEntrada" class="boton entrada">
                 ENTRADA
@@ -30,9 +31,68 @@
 
         </div>
 
+
+        <!-- FORMULARIO -->
+        <div id="formulario" class="formulario oculto">
+
+            <h2 id="tituloFormulario"></h2>
+
+            <label for="folio">Folio</label>
+
+            <input
+                type="text"
+                id="folio"
+                placeholder="Ingresa tu folio"
+                autocomplete="off"
+            >
+
+            <div id="campoNombre" class="campo oculto">
+
+                <label for="nombre">
+                    Nombre
+                </label>
+
+                <input
+                    type="text"
+                    id="nombre"
+                    readonly
+                >
+
+            </div>
+
+
+            <div id="campoActividad" class="campo oculto">
+
+                <label for="actividad">
+                    Actividad
+                </label>
+
+                <input
+                    type="text"
+                    id="actividad"
+                    placeholder="Escribe la actividad"
+                >
+
+            </div>
+
+
+            <p id="mensaje" class="mensaje"></p>
+
+
+            <button id="btnRegistrar" class="boton registrar">
+                REGISTRAR
+            </button>
+
+            <button id="btnCancelar" class="boton cancelar">
+                CANCELAR
+            </button>
+
+        </div>
+
     </main>
 
     <script src="app.js"></script>
 
 </body>
 </html>
+
