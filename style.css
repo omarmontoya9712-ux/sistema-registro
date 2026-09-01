@@ -17,9 +17,11 @@ body {
 .contenedor {
     width: 90%;
     max-width: 500px;
+
     background: white;
 
     padding: 40px 30px;
+
     border-radius: 20px;
 
     text-align: center;
@@ -44,12 +46,15 @@ h1 {
 
 .boton {
     width: 100%;
-    padding: 22px;
+
+    padding: 18px;
 
     border: none;
+
     border-radius: 12px;
 
-    font-size: 22px;
+    font-size: 20px;
+
     font-weight: bold;
 
     cursor: pointer;
@@ -68,3 +73,105 @@ h1 {
     background: #c62828;
     color: white;
 }
+
+
+/* FORMULARIO */
+
+.formulario {
+    margin-top: 10px;
+}
+
+.formulario h2 {
+    margin-bottom: 25px;
+}
+
+.formulario label {
+    display: block;
+
+    text-align: left;
+
+    font-weight: bold;
+
+    margin-bottom: 8px;
+
+    color: #333;
+}
+
+.formulario input {
+    width: 100%;
+
+    padding: 14px;
+
+    margin-bottom: 20px;
+
+    border: 1px solid #ccc;
+
+    border-radius: 10px;
+
+    font-size: 17px;
+}
+
+.formulario input:focus {
+    outline: none;
+
+    border-color: #1976d2;
+
+    box-shadow: 0 0 0 2px rgba(25,118,210,0.15);
+}
+
+.campo {
+    margin-top: 5px;
+}
+
+
+/* BOTON REGISTRAR */
+
+.registrar {
+    background: #1976d2;
+
+    color: white;
+
+    margin-top: 10px;
+}
+
+
+/* BOTON CANCELAR */
+
+.cancelar {
+    background: #777;
+
+    color: white;
+
+    margin-top: 10px;
+}
+
+
+/* MENSAJES */
+
+.mensaje {
+    min-height: 25px;
+
+    margin: 5px 0 10px;
+
+    font-weight: bold;
+}
+
+.mensaje.exito {
+    color: #2e7d32;
+}
+
+.mensaje.error {
+    color: #c62828;
+}
+
+.mensaje.info {
+    color: #1976d2;
+}
+
+
+/* OCULTAR */
+
+.oculto {
+    display: none;
+}
+
