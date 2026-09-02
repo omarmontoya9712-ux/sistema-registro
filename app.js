@@ -1,541 +1,1380 @@
-<!DOCTYPE html>
-<html lang="es">
+// =====================================================
+// CONFIGURACIÓN
+// =====================================================
 
-<head>
+const URL_GOOGLE =
+"https://script.google.com/macros/s/AKfycby8wUcojpvdzRwuydG2NC1KQBF_WCZggVEDwImcjZyjjUMgWRQFIPKPbrFfg6DLe5cbKQ/exec";
 
-    <meta charset="UTF-8">
 
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
+// =====================================================
+// VARIABLES
+// =====================================================
 
-    <title>Registro PILARES</title>
+let modoActual = "";
 
-    <!-- ESTILOS -->
-    <link rel="stylesheet" href="style.css">
+let folioActual = "";
 
-    <!-- LECTOR QR -->
-    <script
-        src="https://unpkg.com/html5-qrcode"
-        type="text/javascript">
-    </script>
+let nombreActual = "";
 
-</head>
+let lectorQR = null;
 
 
-<body>
+// =====================================================
+// ELEMENTOS
+// =====================================================
 
-<main class="contenedor">
+const menuPrincipal =
+    document.getElementById(
+        "menuPrincipal"
+    );
 
+const opcionesFolio =
+    document.getElementById(
+        "opcionesFolio"
+    );
 
-    <!-- ===================================== -->
-    <!-- ENCABEZADO -->
-    <!-- ===================================== -->
+const pantallaManual =
+    document.getElementById(
+        "pantallaManual"
+    );
 
-    <header class="encabezado">
+const pantallaQR =
+    document.getElementById(
+        "pantallaQR"
+    );
 
-        <div class="icono-encabezado">
-            🚎
-        </div>
+const formularioEntrada =
+    document.getElementById(
+        "formularioEntrada"
+    );
 
-        <div class="titulo-principal">
+const pantallaActividades =
+    document.getElementById(
+        "pantallaActividades"
+    );
 
-            <h1>
-                REGISTRO PILARES
-            </h1>
+const pantallaSubmenu =
+    document.getElementById(
+        "pantallaSubmenu"
+    );
 
-            <p class="subtitulo">
-                Registro de actividades
-            </p>
+const folioInput =
+    document.getElementById(
+        "folio"
+    );
 
-        </div>
+const nombreInput =
+    document.getElementById(
+        "nombre"
+    );
 
-        <div class="icono-encabezado flor">
-            🪻
-        </div>
+const mensajeEntrada =
+    document.getElementById(
+        "mensajeEntrada"
+    );
 
-    </header>
 
+// =====================================================
+// MOSTRAR UNA PANTALLA
+// =====================================================
 
-    <!-- ===================================== -->
-    <!-- INICIO -->
-    <!-- ===================================== -->
+function mostrarPantalla(pantalla) {
 
-    <section
-        id="menuPrincipal"
-        class="pantalla">
+    const pantallas = [
 
-        <h2>
-            Selecciona una opción
-        </h2>
+        menuPrincipal,
 
+        opcionesFolio,
 
-        <button
-            id="btnEntrada"
-            class="boton entrada"
-            type="button">
+        pantallaManual,
 
-            🟢 ENTRADA
+        pantallaQR,
 
-        </button>
+        formularioEntrada,
 
+        pantallaActividades,
 
-        <button
-            id="btnSalida"
-            class="boton salida"
-            type="button">
+        pantallaSubmenu
 
-            🔴 SALIDA
+    ];
 
-        </button>
 
-    </section>
+    pantallas.forEach(
+        function(p) {
 
+            p.classList.add(
+                "oculto"
+            );
 
-    <!-- ===================================== -->
-    <!-- OPCIONES DE FOLIO -->
-    <!-- ===================================== -->
+        }
+    );
 
-    <section
-        id="opcionesFolio"
-        class="pantalla oculto">
 
-        <h2 id="tituloFolio">
-            Folio
-        </h2>
+    pantalla.classList.remove(
+        "oculto"
+    );
 
-        <p class="subtitulo">
-            Selecciona cómo deseas ingresar el folio
-        </p>
+}
 
 
-        <button
-            id="btnManual"
-            class="boton boton-manual"
-            type="button">
+// =====================================================
+// VOLVER AL INICIO
+// =====================================================
 
-            ✏️ INTRODUCIR FOLIO
+function volverInicio() {
 
-        </button>
+    detenerQR();
 
 
-        <button
-            id="btnQR"
-            class="boton boton-qr"
-            type="button">
+    modoActual = "";
 
-            📷 ESCANEAR CÓDIGO QR
+    folioActual = "";
 
-        </button>
+    nombreActual = "";
 
 
-        <button
-            id="btnCancelarFolio"
-            class="boton cancelar"
-            type="button">
+    folioInput.value = "";
 
-            ↩️ CANCELAR
+    nombreInput.value = "";
 
-        </button>
 
-    </section>
+    mensajeEntrada.textContent =
+        "";
 
 
-    <!-- ===================================== -->
-    <!-- FOLIO MANUAL -->
-    <!-- ===================================== -->
+    document
+        .getElementById(
+            "qrFolio"
+        )
+        .textContent =
+        "";
 
-    <section
-        id="pantallaManual"
-        class="pantalla oculto">
 
-        <h2>
-            Introduce el folio
-        </h2>
+    document
+        .getElementById(
+            "qrExito"
+        )
+        .classList.add(
+            "oculto"
+        );
 
 
-        <label for="folio">
-            Folio
-        </label>
+    mostrarPantalla(
+        menuPrincipal
+    );
 
+}
 
-        <input
-            type="text"
-            id="folio"
-            placeholder="Escribe el folio"
-            autocomplete="off"
-        >
 
+// =====================================================
+// ENTRADA
+// =====================================================
 
-        <button
-            id="btnContinuarFolio"
-            class="boton registrar"
-            type="button">
+document
+    .getElementById(
+        "btnEntrada"
+    )
+    .addEventListener(
+        "click",
+        function() {
 
-            CONTINUAR
+            modoActual =
+                "ENTRADA";
 
-        </button>
 
+            document
+                .getElementById(
+                    "tituloFolio"
+                )
+                .textContent =
+                "Registro de Entrada";
 
-        <button
-            id="btnCancelarManual"
-            class="boton cancelar"
-            type="button">
 
-            ↩️ CANCELAR
+            mostrarPantalla(
+                opcionesFolio
+            );
 
-        </button>
+        }
+    );
 
-    </section>
 
+// =====================================================
+// SALIDA
+// =====================================================
 
-    <!-- ===================================== -->
-    <!-- ESCANEAR QR -->
-    <!-- ===================================== -->
+document
+    .getElementById(
+        "btnSalida"
+    )
+    .addEventListener(
+        "click",
+        function() {
 
-    <section
-        id="pantallaQR"
-        class="pantalla oculto">
+            modoActual =
+                "SALIDA";
 
-        <h2>
-            📷 Escanear código QR
-        </h2>
 
+            document
+                .getElementById(
+                    "tituloFolio"
+                )
+                .textContent =
+                "Registro de Salida";
 
-        <p class="instruccion">
-            Apunta la cámara hacia el código QR
-        </p>
 
+            mostrarPantalla(
+                opcionesFolio
+            );
 
-        <div id="reader"></div>
+        }
+    );
 
 
-        <div
-            id="qrExito"
-            class="qr-exito oculto">
+// =====================================================
+// FOLIO MANUAL
+// =====================================================
 
-            ✓ QR ESCANEADO
+document
+    .getElementById(
+        "btnManual"
+    )
+    .addEventListener(
+        "click",
+        function() {
 
-        </div>
+            folioInput.value =
+                "";
 
 
-        <p
-            id="qrFolio"
-            class="qr-folio">
-        </p>
+            mostrarPantalla(
+                pantallaManual
+            );
 
 
-        <button
-            id="btnCancelarQR"
-            class="boton cancelar"
-            type="button">
+            setTimeout(
+                function() {
 
-            ↩️ CANCELAR
+                    folioInput.focus();
 
-        </button>
+                },
+                100
+            );
 
-    </section>
+        }
+    );
 
 
-    <!-- ===================================== -->
-    <!-- NUEVO USUARIO -->
-    <!-- ===================================== -->
+// =====================================================
+// CONTINUAR FOLIO
+// =====================================================
 
-    <section
-        id="formularioEntrada"
-        class="pantalla oculto">
+document
+    .getElementById(
+        "btnContinuarFolio"
+    )
+    .addEventListener(
+        "click",
+        function() {
 
-        <h2>
-            👤 Nuevo registro
-        </h2>
+            procesarFolio(
+                folioInput.value.trim()
+            );
 
+        }
+    );
 
-        <p
-            id="mensajeEntrada"
-            class="mensaje">
-        </p>
 
+// =====================================================
+// ENTER EN FOLIO
+// =====================================================
 
-        <div id="campoNombre">
+folioInput.addEventListener(
+    "keypress",
+    function(e) {
 
-            <label for="nombre">
-                Nombre completo
-            </label>
+        if (
+            e.key === "Enter"
+        ) {
 
+            procesarFolio(
+                folioInput.value.trim()
+            );
 
-            <input
-                type="text"
-                id="nombre"
-                placeholder="Nombre completo"
-                autocomplete="off"
-            >
+        }
 
-        </div>
+    }
+);
 
 
-        <button
-            id="btnNombre"
-            class="boton registrar"
-            type="button">
+// =====================================================
+// INICIAR QR
+// =====================================================
 
-            CONTINUAR
+document
+    .getElementById(
+        "btnQR"
+    )
+    .addEventListener(
+        "click",
+        function() {
 
-        </button>
+            iniciarQR();
 
+        }
+    );
 
-        <button
-            id="btnCancelarEntrada"
-            class="boton cancelar"
-            type="button">
 
-            ↩️ CANCELAR
+function iniciarQR() {
 
-        </button>
+    mostrarPantalla(
+        pantallaQR
+    );
 
-    </section>
 
+    document
+        .getElementById(
+            "qrExito"
+        )
+        .classList.add(
+            "oculto"
+        );
 
-    <!-- ===================================== -->
-    <!-- ACTIVIDADES -->
-    <!-- ===================================== -->
 
-    <section
-        id="pantallaActividades"
-        class="pantalla oculto">
+    document
+        .getElementById(
+            "qrFolio"
+        )
+        .textContent =
+        "";
 
-        <h2>
-            📚 Selecciona la actividad
-        </h2>
 
+    document
+        .getElementById(
+            "reader"
+        )
+        .innerHTML =
+        "";
 
-        <!-- ALFABETIZACIÓN -->
 
-        <button
-            class="boton actividad"
-            data-actividad="Alfabetización"
-            type="button">
+    lectorQR =
+        new Html5Qrcode(
+            "reader"
+        );
 
-            <span class="actividad-icono">
-                👓
-            </span>
 
-            <span>
-                Alfabetización
-            </span>
+    lectorQR.start(
 
-        </button>
+        {
+            facingMode:
+                "environment"
+        },
 
+        {
+            fps: 10,
 
-        <!-- PRIMARIA -->
+            qrbox: {
 
-        <button
-            class="boton actividad"
-            data-actividad="Primaria INEA"
-            type="button">
+                width: 250,
 
-            <span class="actividad-icono">
-                📘
-            </span>
+                height: 250
 
-            <span>
-                Primaria INEA
-            </span>
+            }
 
-        </button>
+        },
 
+        function(decodedText) {
 
-        <!-- SECUNDARIA -->
+            // =====================================
+            // QR ENCONTRADO
+            // =====================================
 
-        <button
-            class="boton actividad"
-            data-actividad="Secundaria INEA"
-            type="button">
+            folioActual =
+                decodedText.trim();
 
-            <span class="actividad-icono">
-                📕
-            </span>
 
-            <span>
-                Secundaria INEA
-            </span>
+            document
+                .getElementById(
+                    "qrExito"
+                )
+                .classList.remove(
+                    "oculto"
+                );
 
-        </button>
 
+            document
+                .getElementById(
+                    "qrFolio"
+                )
+                .textContent =
+                "Folio: " +
+                folioActual;
 
-        <!-- PREPA ABIERTA -->
 
-        <button
-            id="btnPrepaAbierta"
-            class="boton actividad"
-            type="button">
+            detenerQR();
 
-            <span class="actividad-icono">
-                🎓
-            </span>
 
-            <span>
-                Prepa Abierta
-            </span>
+            setTimeout(
+                function() {
 
-        </button>
+                    procesarFolio(
+                        folioActual
+                    );
 
+                },
+                700
+            );
 
-        <!-- PREPA EN LÍNEA -->
+        },
 
-        <button
-            id="btnPrepaLinea"
-            class="boton actividad"
-            type="button">
+        function(errorMessage) {
 
-            <span class="actividad-icono">
-                🧑‍🎓
-            </span>
+            // Los errores de lectura
+            // son normales mientras busca.
+            // No mostramos nada.
 
-            <span>
-                Prepa en Línea
-            </span>
+        }
 
-        </button>
+    )
+    .catch(
+        function(error) {
 
+            console.error(
+                error
+            );
 
-        <!-- ASESORÍAS -->
 
-        <button
-            id="btnAsesoria"
-            class="boton actividad"
-            type="button">
+            alert(
+                "No se pudo acceder a la cámara. " +
+                "Revisa los permisos del navegador."
+            );
 
-            <span class="actividad-icono">
-                👨‍🏫
-            </span>
+        }
+    );
 
-            <span>
-                Asesorías
-            </span>
+}
 
-        </button>
 
+// =====================================================
+// DETENER QR
+// =====================================================
 
-        <!-- COMPUTACIÓN -->
+function detenerQR() {
 
-        <button
-            class="boton actividad"
-            data-actividad="Computación"
-            type="button">
+    if (!lectorQR) {
 
-            <span class="actividad-icono">
-                🖥️
-            </span>
+        return;
 
-            <span>
-                Computación
-            </span>
+    }
 
-        </button>
 
+    lectorQR
+        .stop()
+        .then(
+            function() {
 
-        <!-- USO DE COMPUTADORA -->
+                lectorQR.clear();
 
-        <button
-            class="boton actividad"
-            data-actividad="Uso de computadora"
-            type="button">
+                lectorQR = null;
 
-            <span class="actividad-icono">
-                🖱️
-            </span>
+            }
+        )
+        .catch(
+            function() {
 
-            <span>
-                Uso de computadora
-            </span>
+                lectorQR = null;
 
-        </button>
+            }
+        );
 
+}
 
-        <!-- SERVICIO SOCIAL -->
 
-        <button
-            class="boton actividad"
-            data-actividad="Servicio social"
-            type="button">
+// =====================================================
+// PROCESAR FOLIO
+// =====================================================
 
-            <span class="actividad-icono">
-                🤝
-            </span>
+function procesarFolio(
+    folio
+) {
 
-            <span>
-                Servicio social
-            </span>
+    if (!folio) {
 
-        </button>
+        alert(
+            "Debes ingresar o escanear un folio."
+        );
 
+        return;
 
-        <!-- BENEFICIARIOS -->
+    }
 
-        <button
-            class="boton actividad"
-            data-actividad="Beneficiarios"
-            type="button">
 
-            <span class="actividad-icono">
-                👥
-            </span>
+    folioActual =
+        folio;
 
-            <span>
-                Beneficiarios
-            </span>
 
-        </button>
+    // =====================================
+    // SALIDA
+    // =====================================
 
+    if (
+        modoActual ===
+        "SALIDA"
+    ) {
 
-        <button
-            id="btnCancelarActividad"
-            class="boton cancelar"
-            type="button">
+        registrarSalida();
 
-            ↩️ CANCELAR
+        return;
 
-        </button>
+    }
 
-    </section>
 
+    // =====================================
+    // ENTRADA
+    // =====================================
 
-    <!-- ===================================== -->
-    <!-- SUBMENÚ -->
-    <!-- ===================================== -->
+    if (
+        modoActual ===
+        "ENTRADA"
+    ) {
 
-    <section
-        id="pantallaSubmenu"
-        class="pantalla oculto">
+        buscarFolio();
 
-        <h2 id="tituloSubmenu">
-        </h2>
+    }
 
+}
 
-        <div id="botonesSubmenu">
-        </div>
 
+// =====================================================
+// BUSCAR FOLIO
+// =====================================================
 
-        <button
-            id="btnVolverActividades"
-            class="boton cancelar"
-            type="button">
+function buscarFolio() {
 
-            ↩️ VOLVER
+    mostrarPantalla(
+        formularioEntrada
+    );
 
-        </button>
 
-    </section>
+    mensajeEntrada.className =
+        "mensaje info";
 
 
-</main>
+    mensajeEntrada.textContent =
+        "Buscando folio...";
 
 
-<!-- JAVASCRIPT -->
+    fetch(
 
-<script src="app.js"></script>
+        URL_GOOGLE +
+        "?accion=buscar&folio=" +
+        encodeURIComponent(
+            folioActual
+        )
 
-</body>
+    )
 
-</html>
+    .then(
+        function(response) {
+
+            return response.json();
+
+        }
+    )
+
+    .then(
+        function(data) {
+
+            console.log(
+                "Respuesta búsqueda:",
+                data
+            );
+
+
+            // =================================
+            // FOLIO ENCONTRADO
+            // =================================
+
+            if (
+                data.encontrado ===
+                true
+            ) {
+
+                nombreActual =
+                    data.nombre;
+
+
+                mensajeEntrada.className =
+                    "mensaje exito";
+
+
+                mensajeEntrada.textContent =
+                    "✓ Folio encontrado";
+
+
+                setTimeout(
+                    function() {
+
+                        mostrarPantalla(
+                            pantallaActividades
+                        );
+
+                    },
+                    400
+                );
+
+
+                return;
+
+            }
+
+
+            // =================================
+            // FOLIO NO ENCONTRADO
+            // =================================
+
+            nombreInput.value =
+                "";
+
+
+            mensajeEntrada.className =
+                "mensaje info";
+
+
+            mensajeEntrada.textContent =
+                "Folio nuevo. Ingresa el nombre.";
+
+
+            document
+                .getElementById(
+                    "campoNombre"
+                )
+                .classList.remove(
+                    "oculto"
+                );
+
+
+            document
+                .getElementById(
+                    "btnNombre"
+                )
+                .classList.remove(
+                    "oculto"
+                );
+
+
+            setTimeout(
+                function() {
+
+                    nombreInput.focus();
+
+                },
+                100
+            );
+
+        }
+    )
+
+    .catch(
+        function(error) {
+
+            console.error(
+                error
+            );
+
+
+            mensajeEntrada.className =
+                "mensaje error";
+
+
+            mensajeEntrada.textContent =
+                "No se pudo conectar con Google Sheets.";
+
+        }
+    );
+
+}
+
+
+// =====================================================
+// REGISTRAR NOMBRE DEL FOLIO NUEVO
+// =====================================================
+
+document
+    .getElementById(
+        "btnNombre"
+    )
+    .addEventListener(
+        "click",
+        function() {
+
+            const nombre =
+                nombreInput.value.trim();
+
+
+            if (!nombre) {
+
+                mensajeEntrada.className =
+                    "mensaje error";
+
+
+                mensajeEntrada.textContent =
+                    "Escribe el nombre.";
+
+                return;
+
+            }
+
+
+            nombreActual =
+                nombre;
+
+
+            guardarNuevoUsuario();
+
+        }
+    );
+
+
+// =====================================================
+// GUARDAR USUARIO NUEVO
+// =====================================================
+
+function guardarNuevoUsuario() {
+
+    mensajeEntrada.className =
+        "mensaje info";
+
+
+    mensajeEntrada.textContent =
+        "Registrando folio...";
+
+
+    fetch(
+
+        URL_GOOGLE,
+
+        {
+
+            method:
+                "POST",
+
+            body:
+                JSON.stringify({
+
+                    modo:
+                        "REGISTRAR_USUARIO",
+
+                    folio:
+                        folioActual,
+
+                    nombre:
+                        nombreActual
+
+                })
+
+        }
+
+    )
+
+    .then(
+        function(response) {
+
+            return response.json();
+
+        }
+    )
+
+    .then(
+        function(data) {
+
+            console.log(
+                "Registro usuario:",
+                data
+            );
+
+
+            if (data.error) {
+
+                mensajeEntrada.className =
+                    "mensaje error";
+
+
+                mensajeEntrada.textContent =
+                    data.error;
+
+                return;
+
+            }
+
+
+            mostrarPantalla(
+                pantallaActividades
+            );
+
+        }
+    )
+
+    .catch(
+        function(error) {
+
+            console.error(
+                error
+            );
+
+
+            mensajeEntrada.className =
+                "mensaje error";
+
+
+            mensajeEntrada.textContent =
+                "Error al registrar el folio.";
+
+        }
+    );
+
+}
+
+
+// =====================================================
+// ACTIVIDADES DIRECTAS
+// =====================================================
+
+document
+    .querySelectorAll(
+        ".actividad[data-actividad]"
+    )
+    .forEach(
+        function(boton) {
+
+            boton.addEventListener(
+                "click",
+                function() {
+
+                    const actividad =
+                        boton.dataset.actividad;
+
+
+                    registrarEntrada(
+                        actividad
+                    );
+
+                }
+            );
+
+        }
+    );
+
+
+// =====================================================
+// PREPA ABIERTA
+// =====================================================
+
+document
+    .getElementById(
+        "btnPrepaAbierta"
+    )
+    .addEventListener(
+        "click",
+        function() {
+
+            const opciones =
+                crearNumeros(
+                    1,
+                    21
+                );
+
+
+            crearSubmenu(
+                "🎓 Prepa Abierta",
+                opciones
+            );
+
+        }
+    );
+
+
+// =====================================================
+// PREPA EN LÍNEA
+// =====================================================
+
+document
+    .getElementById(
+        "btnPrepaLinea"
+    )
+    .addEventListener(
+        "click",
+        function() {
+
+            const opciones = [
+
+                "Propedéutico"
+
+            ];
+
+
+            for (
+                let i = 1;
+                i <= 23;
+                i++
+            ) {
+
+                opciones.push(
+                    String(i)
+                );
+
+            }
+
+
+            crearSubmenu(
+                "🧑‍🎓 Prepa en Línea",
+                opciones
+            );
+
+        }
+    );
+
+
+// =====================================================
+// ASESORÍAS
+// =====================================================
+
+document
+    .getElementById(
+        "btnAsesoria"
+    )
+    .addEventListener(
+        "click",
+        function() {
+
+            crearSubmenu(
+
+                "👨‍🏫 Asesorías",
+
+                [
+
+                    "Matemáticas",
+
+                    "Español",
+
+                    "Historia",
+
+                    "Química",
+
+                    "Biología"
+
+                ]
+
+            );
+
+        }
+    );
+
+
+// =====================================================
+// CREAR NÚMEROS
+// =====================================================
+
+function crearNumeros(
+    inicio,
+    fin
+) {
+
+    const resultado = [];
+
+
+    for (
+        let i = inicio;
+        i <= fin;
+        i++
+    ) {
+
+        resultado.push(
+            String(i)
+        );
+
+    }
+
+
+    return resultado;
+
+}
+
+
+// =====================================================
+// CREAR SUBMENÚ
+// =====================================================
+
+function crearSubmenu(
+    titulo,
+    opciones
+) {
+
+    document
+        .getElementById(
+            "tituloSubmenu"
+        )
+        .textContent =
+        titulo;
+
+
+    const contenedor =
+        document.getElementById(
+            "botonesSubmenu"
+        );
+
+
+    contenedor.innerHTML =
+        "";
+
+
+    opciones.forEach(
+        function(opcion) {
+
+            const boton =
+                document.createElement(
+                    "button"
+                );
+
+
+            boton.type =
+                "button";
+
+
+            boton.className =
+                "boton actividad";
+
+
+            boton.textContent =
+                opcion;
+
+
+            // =================================
+            // AL TOCAR REGISTRA DIRECTAMENTE
+            // =================================
+
+            boton.addEventListener(
+                "click",
+                function() {
+
+                    const actividad =
+                        titulo +
+                        " - " +
+                        opcion;
+
+
+                    registrarEntrada(
+                        actividad
+                    );
+
+                }
+            );
+
+
+            contenedor.appendChild(
+                boton
+            );
+
+        }
+    );
+
+
+    mostrarPantalla(
+        pantallaSubmenu
+    );
+
+}
+
+
+// =====================================================
+// REGISTRAR ENTRADA
+// =====================================================
+
+function registrarEntrada(
+    actividad
+) {
+
+    // Evitar doble clic
+    const botones =
+        document.querySelectorAll(
+            ".actividad"
+        );
+
+
+    botones.forEach(
+        function(boton) {
+
+            boton.disabled =
+                true;
+
+        }
+    );
+
+
+    fetch(
+
+        URL_GOOGLE,
+
+        {
+
+            method:
+                "POST",
+
+            body:
+                JSON.stringify({
+
+                    modo:
+                        "ENTRADA",
+
+                    folio:
+                        folioActual,
+
+                    nombre:
+                        nombreActual,
+
+                    actividad:
+                        actividad
+
+                })
+
+        }
+
+    )
+
+    .then(
+        function(response) {
+
+            return response.json();
+
+        }
+    )
+
+    .then(
+        function(data) {
+
+            console.log(
+                "Entrada:",
+                data
+            );
+
+
+            if (data.error) {
+
+                alert(
+                    data.error
+                );
+
+                botones.forEach(
+                    function(boton) {
+
+                        boton.disabled =
+                            false;
+
+                    }
+                );
+
+                return;
+
+            }
+
+
+            alert(
+
+                "✓ ENTRADA REGISTRADA\n\n" +
+                actividad
+
+            );
+
+
+            volverInicio();
+
+        }
+    )
+
+    .catch(
+        function(error) {
+
+            console.error(
+                error
+            );
+
+
+            alert(
+                "No se pudo registrar la entrada."
+            );
+
+
+            botones.forEach(
+                function(boton) {
+
+                    boton.disabled =
+                        false;
+
+                }
+            );
+
+        }
+    );
+
+}
+
+
+// =====================================================
+// REGISTRAR SALIDA
+// =====================================================
+
+function registrarSalida() {
+
+    fetch(
+
+        URL_GOOGLE,
+
+        {
+
+            method:
+                "POST",
+
+            body:
+                JSON.stringify({
+
+                    modo:
+                        "SALIDA",
+
+                    folio:
+                        folioActual,
+
+                    nombre:
+                        "",
+
+                    actividad:
+                        ""
+
+                })
+
+        }
+
+    )
+
+    .then(
+        function(response) {
+
+            return response.json();
+
+        }
+    )
+
+    .then(
+        function(data) {
+
+            console.log(
+                "Salida:",
+                data
+            );
+
+
+            if (data.error) {
+
+                alert(
+                    data.error
+                );
+
+                return;
+
+            }
+
+
+            alert(
+                "✓ SALIDA REGISTRADA"
+            );
+
+
+            volverInicio();
+
+        }
+    )
+
+    .catch(
+        function(error) {
+
+            console.error(
+                error
+            );
+
+
+            alert(
+                "No se pudo registrar la salida."
+            );
+
+        }
+    );
+
+}
+
+
+// =====================================================
+// BOTONES CANCELAR
+// =====================================================
+
+document
+    .getElementById(
+        "btnCancelarFolio"
+    )
+    .addEventListener(
+        "click",
+        volverInicio
+    );
+
+
+document
+    .getElementById(
+        "btnCancelarManual"
+    )
+    .addEventListener(
+        "click",
+        volverInicio
+    );
+
+
+document
+    .getElementById(
+        "btnCancelarQR"
+    )
+    .addEventListener(
+        "click",
+        volverInicio
+    );
+
+
+document
+    .getElementById(
+        "btnCancelarEntrada"
+    )
+    .addEventListener(
+        "click",
+        volverInicio
+    );
+
+
+document
+    .getElementById(
+        "btnCancelarActividad"
+    )
+    .addEventListener(
+        "click",
+        volverInicio
+    );
+
+
+document
+    .getElementById(
+        "btnVolverActividades"
+    )
+    .addEventListener(
+        "click",
+        function() {
+
+            mostrarPantalla(
+                pantallaActividades
+            );
+
+        }
+    );
