@@ -31,7 +31,7 @@ body {
 
     background: white;
 
-    padding: 40px 30px;
+    padding: 35px 25px;
 
     border-radius: 20px;
 
@@ -45,7 +45,7 @@ body {
 
 h1 {
 
-    margin-bottom: 10px;
+    margin-bottom: 8px;
 
 }
 
@@ -54,36 +54,51 @@ h1 {
 
     color: #666;
 
-    margin-bottom: 35px;
+    margin-bottom: 25px;
+
+}
+
+
+h2 {
+
+    margin-bottom: 25px;
 
 }
 
 
 /* ========================================= */
-/* BOTONES PRINCIPALES */
+/* PANTALLAS */
 /* ========================================= */
 
-.botones-principales {
+.pantalla {
 
-    display: flex;
+    width: 100%;
 
-    flex-direction: column;
-
-    gap: 20px;
 }
 
+
+.oculto {
+
+    display: none !important;
+
+}
+
+
+/* ========================================= */
+/* BOTONES */
+/* ========================================= */
 
 .boton {
 
     width: 100%;
 
-    padding: 18px;
+    padding: 17px;
 
     border: none;
 
     border-radius: 12px;
 
-    font-size: 20px;
+    font-size: 18px;
 
     font-weight: bold;
 
@@ -92,6 +107,8 @@ h1 {
     transition:
         opacity 0.2s,
         transform 0.1s;
+
+    margin-bottom: 12px;
 }
 
 
@@ -111,7 +128,7 @@ h1 {
 
 .boton:disabled {
 
-    opacity: 0.6;
+    opacity: 0.5;
 
     cursor: not-allowed;
 
@@ -128,6 +145,10 @@ h1 {
 
     color: white;
 
+    font-size: 22px;
+
+    padding: 22px;
+
 }
 
 
@@ -141,87 +162,15 @@ h1 {
 
     color: white;
 
-}
+    font-size: 22px;
 
-
-/* ========================================= */
-/* FORMULARIO */
-/* ========================================= */
-
-.formulario {
-
-    margin-top: 10px;
-
-}
-
-
-.formulario h2 {
-
-    margin-bottom: 25px;
-
-}
-
-
-.formulario label {
-
-    display: block;
-
-    text-align: left;
-
-    font-weight: bold;
-
-    margin-bottom: 8px;
-
-    color: #333;
-
-}
-
-
-.formulario input {
-
-    width: 100%;
-
-    padding: 14px;
-
-    margin-bottom: 15px;
-
-    border: 1px solid #ccc;
-
-    border-radius: 10px;
-
-    font-size: 17px;
-}
-
-
-.formulario input:focus {
-
-    outline: none;
-
-    border-color: #1976d2;
-
-    box-shadow:
-        0 0 0 2px
-        rgba(25, 118, 210, 0.15);
-}
-
-
-.formulario input[readonly] {
-
-    background: #f1f1f1;
-
-    color: #555;
-}
-
-
-.campo {
-
-    margin-top: 10px;
+    padding: 22px;
 
 }
 
 
 /* ========================================= */
-/* BUSCAR FOLIO */
+/* BUSCAR */
 /* ========================================= */
 
 .buscar {
@@ -230,11 +179,6 @@ h1 {
 
     color: white;
 
-    font-size: 16px;
-
-    padding: 14px;
-
-    margin-bottom: 15px;
 }
 
 
@@ -248,7 +192,6 @@ h1 {
 
     color: white;
 
-    margin-top: 10px;
 }
 
 
@@ -262,7 +205,206 @@ h1 {
 
     color: white;
 
-    margin-top: 10px;
+}
+
+
+/* ========================================= */
+/* INPUTS */
+/* ========================================= */
+
+label {
+
+    display: block;
+
+    text-align: left;
+
+    font-weight: bold;
+
+    margin-bottom: 8px;
+
+}
+
+
+input {
+
+    width: 100%;
+
+    padding: 15px;
+
+    margin-bottom: 15px;
+
+    border: 1px solid #ccc;
+
+    border-radius: 10px;
+
+    font-size: 18px;
+}
+
+
+input:focus {
+
+    outline: none;
+
+    border-color: #1976d2;
+
+    box-shadow:
+        0 0 0 2px
+        rgba(25, 118, 210, 0.15);
+}
+
+
+/* ========================================= */
+/* TEXTO */
+/* ========================================= */
+
+.texto-ayuda {
+
+    color: #666;
+
+    margin-bottom: 15px;
+
+}
+
+
+.folio-mostrado {
+
+    background: #f1f1f1;
+
+    padding: 12px;
+
+    border-radius: 10px;
+
+    margin-bottom: 20px;
+}
+
+
+.nombre-grande {
+
+    font-size: 24px;
+
+    font-weight: bold;
+
+    color: #1976d2;
+
+    background: #f1f7ff;
+
+    padding: 18px;
+
+    border-radius: 12px;
+
+    margin-bottom: 20px;
+}
+
+
+/* ========================================= */
+/* ACTIVIDADES */
+/* ========================================= */
+
+.lista-opciones {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 10px;
+
+    margin-bottom: 15px;
+}
+
+
+.opcion {
+
+    width: 100%;
+
+    padding: 16px;
+
+    border: 1px solid #ddd;
+
+    border-radius: 12px;
+
+    background: #fafafa;
+
+    color: #222;
+
+    font-size: 17px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    text-align: left;
+
+    transition:
+        background 0.2s,
+        transform 0.1s;
+}
+
+
+.opcion:hover {
+
+    background: #eaf3ff;
+
+}
+
+
+.opcion:active {
+
+    transform: scale(0.98);
+
+}
+
+
+.opcion.submenu {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    background: #eef5ff;
+
+    color: #145ca8;
+}
+
+
+.opcion.submenu span {
+
+    font-size: 28px;
+
+    line-height: 18px;
+}
+
+
+/* ========================================= */
+/* RESUMEN */
+/* ========================================= */
+
+.resumen {
+
+    text-align: left;
+
+    background: #f5f5f5;
+
+    border-radius: 12px;
+
+    padding: 18px;
+
+    margin-bottom: 20px;
+}
+
+
+.resumen p {
+
+    margin-bottom: 10px;
+
+}
+
+
+.resumen p:last-child {
+
+    margin-bottom: 0;
+
 }
 
 
@@ -274,9 +416,10 @@ h1 {
 
     min-height: 25px;
 
-    margin: 8px 0 10px;
+    margin-top: 15px;
 
     font-weight: bold;
+
 }
 
 
@@ -302,17 +445,6 @@ h1 {
 
 
 /* ========================================= */
-/* OCULTAR */
-/* ========================================= */
-
-.oculto {
-
-    display: none !important;
-
-}
-
-
-/* ========================================= */
 /* CELULAR */
 /* ========================================= */
 
@@ -324,19 +456,23 @@ h1 {
 
     }
 
-
     h1 {
 
-        font-size: 26px;
+        font-size: 25px;
 
     }
 
+    h2 {
 
-    .boton {
+        font-size: 22px;
 
-        font-size: 18px;
+    }
 
-        padding: 16px;
+    .opcion {
+
+        padding: 15px;
+
+        font-size: 16px;
 
     }
 
