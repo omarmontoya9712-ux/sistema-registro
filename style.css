@@ -1,845 +1,763 @@
-{
-box-sizing: border-box;
-margin: 0;
-padding: 0;
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
+
 
 :root {
 
---guinda: #7B1E3A;
+    --guinda: #7B1E3A;
 
---guinda-oscuro: #5B1429;
+    --guinda-oscuro: #5B1429;
 
---guinda-claro: #96324F;
+    --guinda-claro: #96324F;
 
---verde: #2E7D32;
+    --verde: #2E7D32;
 
---rojo: #C62828;
+    --rojo: #C62828;
 
---azul: #1976D2;
+    --azul: #1976D2;
 
---morado: #7B1FA2;
+    --morado: #7B1FA2;
 
---gris-fondo: #F4F1F3;
+    --gris-fondo: #F4F1F3;
 
---gris: #777;
+    --gris: #777;
 
---blanco: #FFFFFF;
+    --blanco: #FFFFFF;
 
---texto: #333333;
-
+    --texto: #333333;
 
 }
+
+
+/* ===================================== */
+/* CUERPO */
+/* ===================================== */
 
 body {
 
-font-family:
-    Arial,
-    Helvetica,
-    sans-serif;
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
 
-background:
-    linear-gradient(
-        135deg,
-        #f5eff2,
-        #ece5e8
-    );
+    background:
+        linear-gradient(
+            135deg,
+            #f5eff2,
+            #ece5e8
+        );
 
-min-height: 100vh;
+    min-height: 100vh;
 
-display: flex;
+    display: flex;
 
-justify-content: center;
+    justify-content: center;
 
-align-items: center;
+    align-items: center;
 
-padding: 20px;
+    padding: 20px;
 
-color: var(--texto);
-
+    color: var(--texto);
 
 }
+
+
+/* ===================================== */
+/* CONTENEDOR PRINCIPAL */
+/* ===================================== */
 
 .contenedor {
 
-width: 100%;
+    width: 100%;
 
-max-width: 520px;
+    max-width: 520px;
 
-background:
-    var(--blanco);
+    background:
+        var(--blanco);
 
-padding:
-    30px 25px;
+    padding:
+        30px 25px;
 
-border-radius:
-    22px;
+    border-radius:
+        22px;
 
-text-align:
-    center;
+    text-align:
+        center;
 
-box-shadow:
-    0 8px 30px
-    rgba(80, 20, 40, 0.15);
+    box-shadow:
+        0 8px 30px
+        rgba(80, 20, 40, 0.15);
 
-border-top:
-    7px solid
-    var(--guinda);
-
+    border-top:
+        7px solid
+        var(--guinda);
 
 }
+
+
+/* ===================================== */
+/* ENCABEZADO */
+/* ===================================== */
 
 .encabezado {
 
-display: flex;
+    display: flex;
 
-align-items: center;
+    align-items: center;
 
-justify-content: center;
+    justify-content: center;
 
-gap: 12px;
+    gap: 12px;
 
-margin-bottom: 20px;
-
+    margin-bottom: 20px;
 
 }
+
 
 .titulo-principal {
 
-flex: 1;
-
-
-}
-
-.encabezado h1 {
-
-color:
-    var(--guinda);
-
-font-size:
-    30px;
-
-font-weight:
-    800;
-
-letter-spacing:
-    0.5px;
-
-
-}
-
-.icono-encabezado {
-
-font-size:
-    38px;
-
-
-}
-
-.flor {
-
-font-size:
-    38px;
-
-
-}
-
-.subtitulo {
-
-color:
-    #666;
-
-margin-top:
-    7px;
-
-margin-bottom:
-    25px;
-
-font-size:
-    15px;
-
-
-}
-
-.pantalla {
-
-width:
-    100%;
-
-
-}
-
-.oculto {
-
-display:
-    none !important;
-
-
-}
-
-h2 {
-
-color:
-    var(--guinda);
-
-margin-bottom:
-    22px;
-
-
-}
-
-.boton {
-
-width:
-    100%;
-
-min-height:
-    58px;
-
-padding:
-    15px;
-
-border:
-    none;
-
-border-radius:
-    13px;
-
-font-size:
-    18px;
-
-font-weight:
-    bold;
-
-cursor:
-    pointer;
-
-margin-bottom:
-    12px;
-
-transition:
-    transform 0.1s,
-    box-shadow 0.2s,
-    opacity 0.2s;
-
-
-}
-
-.boton:hover {
-
-opacity:
-    0.93;
-
-box-shadow:
-    0 4px 10px
-    rgba(0,0,0,0.12);
-
-
-}
-
-.boton:active {
-
-transform:
-    scale(0.98);
-
-
-}
-
-.boton:disabled {
-
-opacity:
-    0.6;
-
-cursor:
-    not-allowed;
-
-
-}
-
-.entrada {
-
-background:
-    var(--verde);
-
-color:
-    white;
-
-
-}
-
-.salida {
-
-background:
-    var(--rojo);
-
-color:
-    white;
-
-
-}
-
-.boton-manual {
-
-background:
-    var(--azul);
-
-color:
-    white;
-
-
-}
-
-.boton-qr {
-
-background:
-    var(--morado);
-
-color:
-    white;
-
-
-}
-
-/* ===================================== /
-/ BOTÓN CAMBIAR CÁMARA /
-/ ===================================== */
-
-.cambiar-camara {
-
-background:
-    var(--azul);
-
-color:
-    white;
-
-
-}
-
-label {
-
-display:
-    block;
-
-text-align:
-    left;
-
-font-weight:
-    bold;
-
-margin-bottom:
-    8px;
-
-color:
-    var(--guinda);
-
-
-}
-
-input {
-
-width:
-    100%;
-
-padding:
-    15px;
-
-margin-bottom:
-    18px;
-
-border:
-    2px solid #ddd;
-
-border-radius:
-    11px;
-
-font-size:
-    18px;
-
-
-}
-
-input:focus {
-
-outline:
-    none;
-
-border-color:
-    var(--guinda);
-
-box-shadow:
-    0 0 0 3px
-    rgba(123,30,58,0.12);
-
-
-}
-
-.registrar {
-
-background:
-    var(--guinda);
-
-color:
-    white;
-
-
-}
-
-.cancelar {
-
-background:
-    var(--gris);
-
-color:
-    white;
-
-
-}
-
-.actividad {
-
-background:
-    var(--guinda);
-
-color:
-    white;
-
-display:
-    flex;
-
-align-items:
-    center;
-
-justify-content:
-    flex-start;
-
-text-align:
-    left;
-
-gap:
-    15px;
-
-padding-left:
-    18px;
-
-
-}
-
-.actividad:hover {
-
-background:
-    var(--guinda-claro);
-
-
-}
-
-.actividad-icono {
-
-width:
-    42px;
-
-min-width:
-    42px;
-
-font-size:
-    28px;
-
-text-align:
-    center;
-
-
-}
-
-#botonesSubmenu {
-
-display:
-    flex;
-
-flex-direction:
-    column;
-
-
-}
-
-#reader {
-
-width:
-    100%;
-
-max-width:
-    400px;
-
-margin:
-    20px auto;
-
-border-radius:
-    12px;
-
-overflow:
-    hidden;
-
-
-}
-
-.instruccion {
-
-color:
-    #666;
-
-margin-bottom:
-    15px;
-
-
-}
-
-.qr-exito {
-
-background:
-    var(--verde);
-
-color:
-    white;
-
-padding:
-    16px;
-
-border-radius:
-    12px;
-
-font-size:
-    20px;
-
-font-weight:
-    bold;
-
-margin:
-    15px 0;
-
-animation:
-    brillo 0.5s ease-in-out;
-
-
-}
-
-.qr-folio {
-
-color:
-    var(--guinda);
-
-font-weight:
-    bold;
-
-margin:
-    10px 0;
-
-min-height:
-    20px;
-
-
-}
-
-@keyframes brillo {
-
-0% {
-
-    transform:
-        scale(0.8);
-
-    opacity:
-        0;
-
-}
-
-50% {
-
-    transform:
-        scale(1.08);
-
-}
-
-100% {
-
-    transform:
-        scale(1);
-
-    opacity:
-        1;
-
-}
-
-
-}
-
-.mensaje {
-
-min-height:
-    25px;
-
-margin:
-    10px 0;
-
-font-weight:
-    bold;
-
-
-}
-
-.mensaje.exito {
-
-color:
-    var(--verde);
-
-
-}
-
-.mensaje.error {
-
-color:
-    var(--rojo);
-
-
-}
-
-.mensaje.info {
-
-color:
-    var(--azul);
-
-
-}
-
-/* ===================================== /
-/ CONFIRMACIÓN FINAL /
-/ ===================================== */
-
-.confirmacion {
-
-display:
-    flex;
-
-flex-direction:
-    column;
-
-align-items:
-    center;
-
-justify-content:
-    center;
-
-min-height:
-    300px;
-
-animation:
-    aparecerConfirmacion
-    0.35s
-    ease-out;
-
-
-}
-
-.check-confirmacion {
-
-width:
-    105px;
-
-height:
-    105px;
-
-border-radius:
-    50%;
-
-background:
-    var(--verde);
-
-color:
-    white;
-
-display:
-    flex;
-
-align-items:
-    center;
-
-justify-content:
-    center;
-
-font-size:
-    70px;
-
-font-weight:
-    bold;
-
-margin-bottom:
-    25px;
-
-box-shadow:
-    0 8px 25px
-    rgba(46,125,50,0.30);
-
-animation:
-    aparecerCheck
-    0.6s
-    ease-out;
-
-
-}
-
-.confirmacion h2 {
-
-font-size:
-    30px;
-
-color:
-    var(--guinda);
-
-margin-bottom:
-    10px;
-
-
-}
-
-#mensajeConfirmacion {
-
-color:
-    var(--verde);
-
-font-size:
-    22px;
-
-font-weight:
-    bold;
-
-margin-bottom:
-    12px;
-
-
-}
-
-.actividad-confirmacion {
-
-color:
-    #666;
-
-font-size:
-    16px;
-
-font-weight:
-    bold;
-
-
-}
-
-@keyframes aparecerCheck {
-
-0% {
-
-    transform:
-        scale(0);
-
-    opacity:
-        0;
-
-}
-
-60% {
-
-    transform:
-        scale(1.15);
-
-    opacity:
-        1;
-
-}
-
-100% {
-
-    transform:
-        scale(1);
-
-}
-
-
-}
-
-@keyframes aparecerConfirmacion {
-
-from {
-
-    opacity:
-        0;
-
-    transform:
-        translateY(15px);
-
-}
-
-to {
-
-    opacity:
-        1;
-
-    transform:
-        translateY(0);
-
-}
-
-
-}
-
-@media (max-width: 500px) {
-
-body {
-
-    padding:
-        10px;
-
-    align-items:
-        flex-start;
-
-}
-
-
-.contenedor {
-
-    margin-top:
-        10px;
-
-    padding:
-        25px 18px;
+    flex: 1;
 
 }
 
 
 .encabezado h1 {
 
-    font-size:
-        23px;
-
-}
-
-
-.icono-encabezado {
+    color:
+        var(--guinda);
 
     font-size:
         30px;
 
+    font-weight:
+        800;
+
+    letter-spacing:
+        0.5px;
+
 }
 
 
-.boton {
+.icono-encabezado {
 
     font-size:
-        17px;
+        38px;
+
+}
+
+
+.flor {
+
+    font-size:
+        38px;
+
+}
+
+
+/* ===================================== */
+/* SUBTÍTULOS */
+/* ===================================== */
+
+.subtitulo {
+
+    color:
+        #666;
+
+    margin-top:
+        7px;
+
+    margin-bottom:
+        25px;
+
+    font-size:
+        15px;
+
+}
+
+
+/* ===================================== */
+/* PANTALLAS */
+/* ===================================== */
+
+.pantalla {
+
+    width:
+        100%;
+
+}
+
+
+.oculto {
+
+    display:
+        none !important;
+
+}
+
+
+h2 {
+
+    color:
+        var(--guinda);
+
+    margin-bottom:
+        22px;
+
+}
+
+
+/* ===================================== */
+/* BOTONES GENERALES */
+/* ===================================== */
+
+.boton {
+
+    width:
+        100%;
 
     min-height:
-        55px;
+        58px;
+
+    padding:
+        15px;
+
+    border:
+        none;
+
+    border-radius:
+        13px;
+
+    font-size:
+        18px;
+
+    font-weight:
+        bold;
+
+    cursor:
+        pointer;
+
+    margin-bottom:
+        12px;
+
+    transition:
+        transform 0.1s,
+        box-shadow 0.2s,
+        opacity 0.2s;
+
+}
+
+
+.boton:hover {
+
+    opacity:
+        0.93;
+
+    box-shadow:
+        0 4px 10px
+        rgba(0,0,0,0.12);
+
+}
+
+
+.boton:active {
+
+    transform:
+        scale(0.98);
+
+}
+
+
+.boton:disabled {
+
+    opacity:
+        0.6;
+
+    cursor:
+        not-allowed;
+
+}
+
+
+/* ===================================== */
+/* ENTRADA Y SALIDA */
+/* ===================================== */
+
+.entrada {
+
+    background:
+        var(--verde);
+
+    color:
+        white;
+
+}
+
+
+.salida {
+
+    background:
+        var(--rojo);
+
+    color:
+        white;
+
+}
+
+
+/* ===================================== */
+/* BOTONES DE FOLIO */
+/* ===================================== */
+
+.boton-manual {
+
+    background:
+        var(--azul);
+
+    color:
+        white;
+
+}
+
+
+.boton-qr {
+
+    background:
+        var(--morado);
+
+    color:
+        white;
+
+}
+
+
+/* ===================================== */
+/* BOTÓN CAMBIAR CÁMARA */
+/* ===================================== */
+
+#btnCambiarCamara {
+
+    background:
+        var(--azul);
+
+    color:
+        white;
+
+    margin-top:
+        8px;
+
+    margin-bottom:
+        15px;
+
+}
+
+
+#btnCambiarCamara:hover {
+
+    background:
+        #1565C0;
+
+}
+
+
+/* ===================================== */
+/* CAMPOS */
+/* ===================================== */
+
+label {
+
+    display:
+        block;
+
+    text-align:
+        left;
+
+    font-weight:
+        bold;
+
+    margin-bottom:
+        8px;
+
+    color:
+        var(--guinda);
+
+}
+
+
+input {
+
+    width:
+        100%;
+
+    padding:
+        15px;
+
+    margin-bottom:
+        18px;
+
+    border:
+        2px solid #ddd;
+
+    border-radius:
+        11px;
+
+    font-size:
+        18px;
+
+}
+
+
+input:focus {
+
+    outline:
+        none;
+
+    border-color:
+        var(--guinda);
+
+    box-shadow:
+        0 0 0 3px
+        rgba(123,30,58,0.12);
+
+}
+
+
+/* ===================================== */
+/* BOTONES REGISTRAR / CANCELAR */
+/* ===================================== */
+
+.registrar {
+
+    background:
+        var(--guinda);
+
+    color:
+        white;
+
+}
+
+
+.cancelar {
+
+    background:
+        var(--gris);
+
+    color:
+        white;
+
+}
+
+
+/* ===================================== */
+/* ACTIVIDADES */
+/* ===================================== */
+
+.actividad {
+
+    background:
+        var(--guinda);
+
+    color:
+        white;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        flex-start;
+
+    text-align:
+        left;
+
+    gap:
+        15px;
+
+    padding-left:
+        18px;
+
+}
+
+
+.actividad:hover {
+
+    background:
+        var(--guinda-claro);
 
 }
 
 
 .actividad-icono {
 
+    width:
+        42px;
+
+    min-width:
+        42px;
+
     font-size:
+        28px;
+
+    text-align:
+        center;
+
+}
+
+
+/* ===================================== */
+/* SUBMENÚ */
+/* ===================================== */
+
+#botonesSubmenu {
+
+    display:
+        flex;
+
+    flex-direction:
+        column;
+
+}
+
+
+/* ===================================== */
+/* LECTOR QR */
+/* ===================================== */
+
+#reader {
+
+    width:
+        100%;
+
+    max-width:
+        400px;
+
+    margin:
+        20px auto;
+
+    border-radius:
+        12px;
+
+    overflow:
+        hidden;
+
+}
+
+
+/* Ajustes internos del lector QR */
+
+#reader video {
+
+    width:
+        100% !important;
+
+    max-width:
+        100%;
+
+    border-radius:
+        12px;
+
+}
+
+
+#reader__scan_region {
+
+    border-radius:
+        12px;
+
+    overflow:
+        hidden;
+
+}
+
+
+#reader__dashboard {
+
+    padding:
+        10px 0 !important;
+
+}
+
+
+#reader__dashboard_section {
+
+    margin:
+        0 auto;
+
+}
+
+
+/* ===================================== */
+/* INSTRUCCIONES QR */
+/* ===================================== */
+
+.instruccion {
+
+    color:
+        #666;
+
+    margin-bottom:
+        15px;
+
+}
+
+
+/* ===================================== */
+/* QR ESCANEADO */
+/* ===================================== */
+
+.qr-exito {
+
+    background:
+        var(--verde);
+
+    color:
+        white;
+
+    padding:
+        16px;
+
+    border-radius:
+        12px;
+
+    font-size:
+        20px;
+
+    font-weight:
+        bold;
+
+    margin:
+        15px 0;
+
+    animation:
+        brillo 0.5s ease-in-out;
+
+}
+
+
+.qr-folio {
+
+    color:
+        var(--guinda);
+
+    font-weight:
+        bold;
+
+    margin:
+        10px 0;
+
+    min-height:
+        20px;
+
+}
+
+
+/* ===================================== */
+/* ANIMACIÓN QR */
+/* ===================================== */
+
+@keyframes brillo {
+
+    0% {
+
+        transform:
+            scale(0.8);
+
+        opacity:
+            0;
+
+    }
+
+    50% {
+
+        transform:
+            scale(1.08);
+
+    }
+
+    100% {
+
+        transform:
+            scale(1);
+
+        opacity:
+            1;
+
+    }
+
+}
+
+
+/* ===================================== */
+/* MENSAJES */
+/* ===================================== */
+
+.mensaje {
+
+    min-height:
         25px;
+
+    margin:
+        10px 0;
+
+    font-weight:
+        bold;
+
+}
+
+
+.mensaje.exito {
+
+    color:
+        var(--verde);
+
+}
+
+
+.mensaje.error {
+
+    color:
+        var(--rojo);
+
+}
+
+
+.mensaje.info {
+
+    color:
+        var(--azul);
+
+}
+
+
+/* ===================================== */
+/* CONFIRMACIÓN FINAL */
+/* ===================================== */
+
+.confirmacion {
+
+    display:
+        flex;
+
+    flex-direction:
+        column;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    min-height:
+        300px;
+
+    animation:
+        aparecerConfirmacion
+        0.35s
+        ease-out;
 
 }
 
@@ -847,13 +765,46 @@ body {
 .check-confirmacion {
 
     width:
-        90px;
+        105px;
 
     height:
-        90px;
+        105px;
+
+    border-radius:
+        50%;
+
+    background:
+        var(--verde);
+
+    color:
+        white;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
 
     font-size:
-        60px;
+        70px;
+
+    font-weight:
+        bold;
+
+    margin-bottom:
+        25px;
+
+    box-shadow:
+        0 8px 25px
+        rgba(46,125,50,0.30);
+
+    animation:
+        aparecerCheck
+        0.6s
+        ease-out;
 
 }
 
@@ -861,17 +812,221 @@ body {
 .confirmacion h2 {
 
     font-size:
-        26px;
+        30px;
+
+    color:
+        var(--guinda);
+
+    margin-bottom:
+        10px;
 
 }
 
 
 #mensajeConfirmacion {
 
+    color:
+        var(--verde);
+
     font-size:
-        20px;
+        22px;
+
+    font-weight:
+        bold;
+
+    margin-bottom:
+        12px;
 
 }
 
+
+.actividad-confirmacion {
+
+    color:
+        #666;
+
+    font-size:
+        16px;
+
+    font-weight:
+        bold;
+
+}
+
+
+/* ===================================== */
+/* ANIMACIONES CONFIRMACIÓN */
+/* ===================================== */
+
+@keyframes aparecerCheck {
+
+    0% {
+
+        transform:
+            scale(0);
+
+        opacity:
+            0;
+
+    }
+
+    60% {
+
+        transform:
+            scale(1.15);
+
+        opacity:
+            1;
+
+    }
+
+    100% {
+
+        transform:
+            scale(1);
+
+    }
+
+}
+
+
+@keyframes aparecerConfirmacion {
+
+    from {
+
+        opacity:
+            0;
+
+        transform:
+            translateY(15px);
+
+    }
+
+    to {
+
+        opacity:
+            1;
+
+        transform:
+            translateY(0);
+
+    }
+
+}
+
+
+/* ===================================== */
+/* MÓVILES */
+/* ===================================== */
+
+@media (max-width: 500px) {
+
+    body {
+
+        padding:
+            10px;
+
+        align-items:
+            flex-start;
+
+    }
+
+
+    .contenedor {
+
+        margin-top:
+            10px;
+
+        padding:
+            25px 18px;
+
+    }
+
+
+    .encabezado h1 {
+
+        font-size:
+            23px;
+
+    }
+
+
+    .icono-encabezado {
+
+        font-size:
+            30px;
+
+    }
+
+
+    .boton {
+
+        font-size:
+            17px;
+
+        min-height:
+            55px;
+
+    }
+
+
+    .actividad-icono {
+
+        font-size:
+            25px;
+
+    }
+
+
+    #reader {
+
+        max-width:
+            100%;
+
+        margin:
+            15px auto;
+
+    }
+
+
+    #btnCambiarCamara {
+
+        min-height:
+            52px;
+
+        font-size:
+            16px;
+
+    }
+
+
+    .check-confirmacion {
+
+        width:
+            90px;
+
+        height:
+            90px;
+
+        font-size:
+            60px;
+
+    }
+
+
+    .confirmacion h2 {
+
+        font-size:
+            26px;
+
+    }
+
+
+    #mensajeConfirmacion {
+
+        font-size:
+            20px;
+
+    }
 
 }
