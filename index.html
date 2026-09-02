@@ -9,323 +9,237 @@
     <title>Sistema de Registro</title>
 
     <link rel="stylesheet" href="style.css">
+
+    <!-- Lector QR -->
+    <script src="https://unpkg.com/html5-qrcode" type="text/javascript"></script>
 </head>
 
 <body>
 
-<main class="contenedor">
+    <main class="contenedor">
 
-    <h1>Sistema de Registro</h1>
+        <h1>Sistema de Registro</h1>
 
-    <p id="subtitulo" class="subtitulo">
-        Selecciona una opción
-    </p>
+        <p class="subtitulo" id="subtitulo">
+            Selecciona una opción
+        </p>
 
 
-    <!-- ================================================= -->
-    <!-- INICIO -->
-    <!-- ================================================= -->
+        <!-- ============================= -->
+        <!-- MENU PRINCIPAL -->
+        <!-- ============================= -->
 
-    <section id="pantallaInicio">
+        <div id="menuPrincipal" class="pantalla">
 
-        <div class="botones-principales">
+            <div class="botones-principales">
 
-            <button
-                id="btnEntrada"
-                class="boton entrada"
-                type="button">
-                ENTRADA
+                <button id="btnEntrada" class="boton entrada">
+                    ENTRADA
+                </button>
+
+                <button id="btnSalida" class="boton salida">
+                    SALIDA
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- ============================= -->
+        <!-- OPCIONES DE FOLIO -->
+        <!-- ============================= -->
+
+        <div id="opcionesFolio" class="pantalla oculto">
+
+            <h2 id="tituloFolio">
+                Folio
+            </h2>
+
+            <p class="subtitulo">
+                ¿Cómo deseas ingresar el folio?
+            </p>
+
+            <button id="btnManual" class="boton boton-secundario">
+                ✏️ INTRODUCIR FOLIO
             </button>
 
-            <button
-                id="btnSalida"
-                class="boton salida"
-                type="button">
-                SALIDA
+            <button id="btnQR" class="boton boton-qr">
+                📷 ESCANEAR QR
+            </button>
+
+            <button id="btnCancelarFolio" class="boton cancelar">
+                CANCELAR
             </button>
 
         </div>
 
-    </section>
+
+        <!-- ============================= -->
+        <!-- FOLIO MANUAL -->
+        <!-- ============================= -->
+
+        <div id="pantallaManual" class="pantalla oculto">
+
+            <h2>Introduce el folio</h2>
+
+            <input
+                type="text"
+                id="folio"
+                placeholder="Ingresa tu folio"
+                autocomplete="off"
+            >
+
+            <button id="btnContinuarFolio" class="boton registrar">
+                CONTINUAR
+            </button>
+
+            <button id="btnCancelarManual" class="boton cancelar">
+                CANCELAR
+            </button>
+
+        </div>
 
 
-    <!-- ================================================= -->
-    <!-- FOLIO -->
-    <!-- ================================================= -->
+        <!-- ============================= -->
+        <!-- ESCANEAR QR -->
+        <!-- ============================= -->
 
-    <section
-        id="pantallaFolio"
-        class="oculto">
+        <div id="pantallaQR" class="pantalla oculto">
 
-        <h2 id="tituloFolio">
-            Folio
-        </h2>
+            <h2>Escanear código QR</h2>
 
-        <label for="folio">
-            Folio
-        </label>
+            <p class="instruccion">
+                Apunta la cámara hacia el código QR
+            </p>
 
-        <input
-            type="text"
-            id="folio"
-            placeholder="Escribe o escanea el folio"
-            autocomplete="off">
+            <div id="reader"></div>
 
-        <p
-            id="mensajeFolio"
-            class="mensaje">
-        </p>
+            <div id="qrExito" class="qr-exito oculto">
+                ✓ QR ESCANEADO
+            </div>
 
-        <button
-            id="btnBuscar"
-            class="boton registrar"
-            type="button">
-            BUSCAR FOLIO
-        </button>
+            <button id="btnCancelarQR" class="boton cancelar">
+                CANCELAR
+            </button>
 
-        <button
-            id="btnCancelarFolio"
-            class="boton cancelar"
-            type="button">
-            CANCELAR
-        </button>
-
-    </section>
+        </div>
 
 
-    <!-- ================================================= -->
-    <!-- NUEVO USUARIO -->
-    <!-- ================================================= -->
+        <!-- ============================= -->
+        <!-- FORMULARIO ENTRADA -->
+        <!-- ============================= -->
 
-    <section
-        id="pantallaNuevoUsuario"
-        class="oculto">
+        <div id="formularioEntrada" class="pantalla oculto">
 
-        <h2>Nuevo folio</h2>
+            <h2>Registro de Entrada</h2>
 
-        <p class="texto-info">
-            Este folio no está registrado.
-        </p>
+            <div id="campoNombre">
 
-        <p>
-            Folio:
-            <strong id="folioNuevo"></strong>
-        </p>
+                <label for="nombre">
+                    Nombre
+                </label>
 
-        <label for="nombreNuevo">
-            Nombre
-        </label>
+                <input
+                    type="text"
+                    id="nombre"
+                    placeholder="Nombre completo"
+                    autocomplete="off"
+                >
 
-        <input
-            type="text"
-            id="nombreNuevo"
-            placeholder="Nombre completo"
-            autocomplete="off">
-
-        <p
-            id="mensajeNuevo"
-            class="mensaje">
-        </p>
-
-        <button
-            id="btnGuardarUsuario"
-            class="boton registrar"
-            type="button">
-            GUARDAR Y CONTINUAR
-        </button>
-
-        <button
-            id="btnCancelarNuevo"
-            class="boton cancelar"
-            type="button">
-            CANCELAR
-        </button>
-
-    </section>
+            </div>
 
 
-    <!-- ================================================= -->
-    <!-- ACTIVIDADES -->
-    <!-- ================================================= -->
+            <p id="mensajeEntrada" class="mensaje"></p>
 
-    <section
-        id="pantallaActividades"
-        class="oculto">
+            <button id="btnNombre" class="boton registrar">
+                CONTINUAR
+            </button>
 
-        <h2>
-            Selecciona una actividad
-        </h2>
+            <button id="btnCancelarEntrada" class="boton cancelar">
+                CANCELAR
+            </button>
 
-        <div
-            id="listaActividades"
-            class="lista-opciones">
+        </div>
 
-            <button
-                class="opcion"
-                data-actividad="Alfabetización"
-                type="button">
+
+        <!-- ============================= -->
+        <!-- ACTIVIDADES -->
+        <!-- ============================= -->
+
+        <div id="pantallaActividades" class="pantalla oculto">
+
+            <h2>Selecciona la actividad</h2>
+
+            <button class="boton actividad" data-actividad="Alfabetización">
                 Alfabetización
             </button>
 
-            <button
-                class="opcion"
-                data-actividad="Primaria INEA"
-                type="button">
+            <button class="boton actividad" data-actividad="Primaria INEA">
                 Primaria INEA
             </button>
 
-            <button
-                class="opcion"
-                data-actividad="Secundaria INEA"
-                type="button">
+            <button class="boton actividad" data-actividad="Secundaria INEA">
                 Secundaria INEA
             </button>
 
-            <button
-                class="opcion"
-                data-menu="prepaAbierta"
-                type="button">
+            <button id="btnPrepaAbierta" class="boton actividad">
                 Prepa Abierta
             </button>
 
-            <button
-                class="opcion"
-                data-menu="prepaLinea"
-                type="button">
+            <button id="btnPrepaLinea" class="boton actividad">
                 Prepa en Línea
             </button>
 
-            <button
-                class="opcion"
-                data-menu="asesorias"
-                type="button">
+            <button id="btnAsesoria" class="boton actividad">
                 Asesorías
             </button>
 
-            <button
-                class="opcion"
-                data-actividad="Computación"
-                type="button">
+            <button class="boton actividad" data-actividad="Computación">
                 Computación
             </button>
 
-            <button
-                class="opcion"
-                data-actividad="Uso de computadora"
-                type="button">
+            <button class="boton actividad" data-actividad="Uso de computadora">
                 Uso de computadora
             </button>
 
-            <button
-                class="opcion"
-                data-actividad="Servicio social"
-                type="button">
+            <button class="boton actividad" data-actividad="Servicio social">
                 Servicio social
             </button>
 
-            <button
-                class="opcion"
-                data-actividad="Beneficiarios"
-                type="button">
+            <button class="boton actividad" data-actividad="Beneficiarios">
                 Beneficiarios
+            </button>
+
+            <button id="btnCancelarActividad" class="boton cancelar">
+                CANCELAR
             </button>
 
         </div>
 
-        <button
-            id="btnCancelarActividades"
-            class="boton cancelar"
-            type="button">
-            CANCELAR
-        </button>
 
-    </section>
+        <!-- ============================= -->
+        <!-- SUBMENU -->
+        <!-- ============================= -->
 
+        <div id="pantallaSubmenu" class="pantalla oculto">
 
-    <!-- ================================================= -->
-    <!-- SUBMENÚ -->
-    <!-- ================================================= -->
+            <h2 id="tituloSubmenu"></h2>
 
-    <section
-        id="pantallaSubmenu"
-        class="oculto">
+            <div id="botonesSubmenu"></div>
 
-        <h2 id="tituloSubmenu">
-            Selecciona una opción
-        </h2>
-
-        <div
-            id="listaSubmenu"
-            class="lista-opciones">
-        </div>
-
-        <button
-            id="btnRegresarActividades"
-            class="boton cancelar"
-            type="button">
-            REGRESAR
-        </button>
-
-    </section>
-
-
-    <!-- ================================================= -->
-    <!-- CONFIRMACIÓN -->
-    <!-- ================================================= -->
-
-    <section
-        id="pantallaConfirmacion"
-        class="oculto">
-
-        <h2>
-            Confirmar entrada
-        </h2>
-
-        <div class="resumen">
-
-            <p>
-                <strong>Folio:</strong>
-                <span id="resumenFolio"></span>
-            </p>
-
-            <p>
-                <strong>Nombre:</strong>
-                <span id="resumenNombre"></span>
-            </p>
-
-            <p>
-                <strong>Actividad:</strong>
-                <span id="resumenActividad"></span>
-            </p>
+            <button id="btnVolverActividades" class="boton cancelar">
+                VOLVER
+            </button>
 
         </div>
 
-        <p
-            id="mensajeRegistro"
-            class="mensaje">
-        </p>
 
-        <button
-            id="btnConfirmarRegistro"
-            class="boton registrar"
-            type="button">
-            REGISTRAR ENTRADA
-        </button>
-
-        <button
-            id="btnRegresarConfirmacion"
-            class="boton cancelar"
-            type="button">
-            REGRESAR
-        </button>
-
-    </section>
+    </main>
 
 
-</main>
-
-
-<script src="app.js"></script>
+    <script src="app.js"></script>
 
 </body>
+
 </html>
