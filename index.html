@@ -1,547 +1,541 @@
-<!DOCTYPE html>
-<html lang="es">
+<!DOCTYPE html> <html lang="es"> <head>
+<meta charset="UTF-8">
 
-<head>
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
 
-    <meta charset="UTF-8">
+<title>Registro PILARES</title>
 
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
+<link rel="stylesheet" href="style.css">
 
-    <title>Registro PILARES</title>
+<script
+    src="https://unpkg.com/html5-qrcode"
+    type="text/javascript">
+</script>
 
-    <link rel="stylesheet" href="style.css">
+</head> <body> <main class="contenedor">
+<!-- ===================================== -->
+<!-- ENCABEZADO -->
+<!-- ===================================== -->
 
-    <script
-        src="https://unpkg.com/html5-qrcode"
-        type="text/javascript">
-    </script>
+<header class="encabezado">
 
-</head>
+    <div class="icono-encabezado">
+        🚎
+    </div>
 
+    <div class="titulo-principal">
 
-<body>
-
-<main class="contenedor">
-
-
-    <!-- ===================================== -->
-    <!-- ENCABEZADO -->
-    <!-- ===================================== -->
-
-    <header class="encabezado">
-
-        <div class="icono-encabezado">
-            🚎
-        </div>
-
-        <div class="titulo-principal">
-
-            <h1>
-                REGISTRO PILARES
-            </h1>
-
-            <p class="subtitulo">
-                Registro de actividades
-            </p>
-
-        </div>
-
-        <div class="icono-encabezado flor">
-            🪻
-        </div>
-
-    </header>
-
-
-    <!-- ===================================== -->
-    <!-- INICIO -->
-    <!-- ===================================== -->
-
-    <section
-        id="menuPrincipal"
-        class="pantalla">
-
-        <h2>
-            Selecciona una opción
-        </h2>
-
-
-        <button
-            id="btnEntrada"
-            class="boton entrada"
-            type="button">
-
-            🟢 ENTRADA
-
-        </button>
-
-
-        <button
-            id="btnSalida"
-            class="boton salida"
-            type="button">
-
-            🔴 SALIDA
-
-        </button>
-
-    </section>
-
-
-    <!-- ===================================== -->
-    <!-- OPCIONES DE FOLIO -->
-    <!-- ===================================== -->
-
-    <section
-        id="opcionesFolio"
-        class="pantalla oculto">
-
-        <h2 id="tituloFolio">
-            Folio
-        </h2>
+        <h1>
+            REGISTRO PILARES
+        </h1>
 
         <p class="subtitulo">
-            Selecciona cómo deseas ingresar el folio
+            Registro de actividades
         </p>
 
+    </div>
 
-        <button
-            id="btnManual"
-            class="boton boton-manual"
-            type="button">
+    <div class="icono-encabezado flor">
+        🪻
+    </div>
 
-            ✏️ INTRODUCIR FOLIO
-
-        </button>
+</header>
 
 
-        <button
-            id="btnQR"
-            class="boton boton-qr"
-            type="button">
+<!-- ===================================== -->
+<!-- INICIO -->
+<!-- ===================================== -->
 
-            📷 ESCANEAR CÓDIGO QR
+<section
+    id="menuPrincipal"
+    class="pantalla">
 
-        </button>
-
-
-        <button
-            id="btnCancelarFolio"
-            class="boton cancelar"
-            type="button">
-
-            ↩️ CANCELAR
-
-        </button>
-
-    </section>
+    <h2>
+        Selecciona una opción
+    </h2>
 
 
-    <!-- ===================================== -->
-    <!-- FOLIO MANUAL -->
-    <!-- ===================================== -->
+    <button
+        id="btnEntrada"
+        class="boton entrada"
+        type="button">
 
-    <section
-        id="pantallaManual"
-        class="pantalla oculto">
+        🟢 ENTRADA
 
-        <h2>
-            Introduce el folio
-        </h2>
+    </button>
 
 
-        <label for="folio">
-            Folio
+    <button
+        id="btnSalida"
+        class="boton salida"
+        type="button">
+
+        🔴 SALIDA
+
+    </button>
+
+</section>
+
+
+<!-- ===================================== -->
+<!-- OPCIONES DE FOLIO -->
+<!-- ===================================== -->
+
+<section
+    id="opcionesFolio"
+    class="pantalla oculto">
+
+    <h2 id="tituloFolio">
+        Folio
+    </h2>
+
+    <p class="subtitulo">
+        Selecciona cómo deseas ingresar el folio
+    </p>
+
+
+    <button
+        id="btnManual"
+        class="boton boton-manual"
+        type="button">
+
+        ✏️ INTRODUCIR FOLIO
+
+    </button>
+
+
+    <button
+        id="btnQR"
+        class="boton boton-qr"
+        type="button">
+
+        📷 ESCANEAR CÓDIGO QR
+
+    </button>
+
+
+    <button
+        id="btnCancelarFolio"
+        class="boton cancelar"
+        type="button">
+
+        ↩️ CANCELAR
+
+    </button>
+
+</section>
+
+
+<!-- ===================================== -->
+<!-- FOLIO MANUAL -->
+<!-- ===================================== -->
+
+<section
+    id="pantallaManual"
+    class="pantalla oculto">
+
+    <h2>
+        Introduce el folio
+    </h2>
+
+
+    <label for="folio">
+        Folio
+    </label>
+
+
+    <input
+        type="text"
+        id="folio"
+        placeholder="Escribe el folio"
+        autocomplete="off"
+    >
+
+
+    <button
+        id="btnContinuarFolio"
+        class="boton registrar"
+        type="button">
+
+        CONTINUAR
+
+    </button>
+
+
+    <button
+        id="btnCancelarManual"
+        class="boton cancelar"
+        type="button">
+
+        ↩️ CANCELAR
+
+    </button>
+
+</section>
+
+
+<!-- ===================================== -->
+<!-- ESCANEAR QR -->
+<!-- ===================================== -->
+
+<section
+    id="pantallaQR"
+    class="pantalla oculto">
+
+    <h2>
+        📷 Escanear código QR
+    </h2>
+
+
+    <p class="instruccion">
+        Apunta la cámara hacia el código QR
+    </p>
+
+
+    <div id="reader"></div>
+
+
+    <!-- BOTÓN CAMBIAR CÁMARA -->
+
+    <button
+        id="btnCambiarCamara"
+        class="boton cambiar-camara"
+        type="button">
+
+        🔄 CAMBIAR CÁMARA
+
+    </button>
+
+
+    <div
+        id="qrExito"
+        class="qr-exito oculto">
+
+        ✓ QR ESCANEADO
+
+    </div>
+
+
+    <p
+        id="qrFolio"
+        class="qr-folio">
+    </p>
+
+
+    <button
+        id="btnCancelarQR"
+        class="boton cancelar"
+        type="button">
+
+        ↩️ CANCELAR
+
+    </button>
+
+</section>
+
+
+<!-- ===================================== -->
+<!-- NUEVO USUARIO -->
+<!-- ===================================== -->
+
+<section
+    id="formularioEntrada"
+    class="pantalla oculto">
+
+    <h2>
+        👤 Nuevo registro
+    </h2>
+
+
+    <p
+        id="mensajeEntrada"
+        class="mensaje">
+    </p>
+
+
+    <div id="campoNombre">
+
+        <label for="nombre">
+            Nombre completo
         </label>
 
 
         <input
             type="text"
-            id="folio"
-            placeholder="Escribe el folio"
+            id="nombre"
+            placeholder="Nombre completo"
             autocomplete="off"
         >
 
+    </div>
 
-        <button
-            id="btnContinuarFolio"
-            class="boton registrar"
-            type="button">
 
-            CONTINUAR
+    <button
+        id="btnNombre"
+        class="boton registrar"
+        type="button">
 
-        </button>
+        CONTINUAR
 
+    </button>
 
-        <button
-            id="btnCancelarManual"
-            class="boton cancelar"
-            type="button">
 
-            ↩️ CANCELAR
+    <button
+        id="btnCancelarEntrada"
+        class="boton cancelar"
+        type="button">
 
-        </button>
+        ↩️ CANCELAR
 
-    </section>
+    </button>
 
+</section>
 
-    <!-- ===================================== -->
-    <!-- ESCANEAR QR -->
-    <!-- ===================================== -->
 
-    <section
-        id="pantallaQR"
-        class="pantalla oculto">
+<!-- ===================================== -->
+<!-- ACTIVIDADES -->
+<!-- ===================================== -->
 
-        <h2>
-            📷 Escanear código QR
-        </h2>
+<section
+    id="pantallaActividades"
+    class="pantalla oculto">
 
+    <h2>
+        📚 Selecciona la actividad
+    </h2>
 
-        <p class="instruccion">
-            Apunta la cámara hacia el código QR
-        </p>
 
+    <button
+        class="boton actividad"
+        data-actividad="Alfabetización"
+        type="button">
 
-        <div id="reader"></div>
+        <span class="actividad-icono">
+            👓
+        </span>
 
+        <span>
+            Alfabetización
+        </span>
 
-        <div
-            id="qrExito"
-            class="qr-exito oculto">
+    </button>
 
-            ✓ QR ESCANEADO
 
-        </div>
+    <button
+        class="boton actividad"
+        data-actividad="Primaria INEA"
+        type="button">
 
+        <span class="actividad-icono">
+            📘
+        </span>
 
-        <p
-            id="qrFolio"
-            class="qr-folio">
-        </p>
+        <span>
+            Primaria INEA
+        </span>
 
+    </button>
 
-        <button
-            id="btnCancelarQR"
-            class="boton cancelar"
-            type="button">
 
-            ↩️ CANCELAR
+    <button
+        class="boton actividad"
+        data-actividad="Secundaria INEA"
+        type="button">
 
-        </button>
+        <span class="actividad-icono">
+            📕
+        </span>
 
-    </section>
+        <span>
+            Secundaria INEA
+        </span>
 
+    </button>
 
-    <!-- ===================================== -->
-    <!-- NUEVO USUARIO -->
-    <!-- ===================================== -->
 
-    <section
-        id="formularioEntrada"
-        class="pantalla oculto">
+    <button
+        id="btnPrepaAbierta"
+        class="boton actividad"
+        type="button">
 
-        <h2>
-            👤 Nuevo registro
-        </h2>
+        <span class="actividad-icono">
+            🎓
+        </span>
 
+        <span>
+            Prepa Abierta
+        </span>
 
-        <p
-            id="mensajeEntrada"
-            class="mensaje">
-        </p>
+    </button>
 
 
-        <div id="campoNombre">
+    <button
+        id="btnPrepaLinea"
+        class="boton actividad"
+        type="button">
 
-            <label for="nombre">
-                Nombre completo
-            </label>
+        <span class="actividad-icono">
+            🧑‍🎓
+        </span>
 
+        <span>
+            Prepa en Línea
+        </span>
 
-            <input
-                type="text"
-                id="nombre"
-                placeholder="Nombre completo"
-                autocomplete="off"
-            >
+    </button>
 
-        </div>
 
+    <button
+        id="btnAsesoria"
+        class="boton actividad"
+        type="button">
 
-        <button
-            id="btnNombre"
-            class="boton registrar"
-            type="button">
+        <span class="actividad-icono">
+            👨‍🏫
+        </span>
 
-            CONTINUAR
+        <span>
+            Asesorías
+        </span>
 
-        </button>
+    </button>
 
 
-        <button
-            id="btnCancelarEntrada"
-            class="boton cancelar"
-            type="button">
+    <button
+        class="boton actividad"
+        data-actividad="Computación"
+        type="button">
 
-            ↩️ CANCELAR
+        <span class="actividad-icono">
+            🖥️
+        </span>
 
-        </button>
+        <span>
+            Computación
+        </span>
 
-    </section>
+    </button>
 
 
-    <!-- ===================================== -->
-    <!-- ACTIVIDADES -->
-    <!-- ===================================== -->
+    <button
+        class="boton actividad"
+        data-actividad="Uso de computadora"
+        type="button">
 
-    <section
-        id="pantallaActividades"
-        class="pantalla oculto">
+        <span class="actividad-icono">
+            🖱️
+        </span>
 
-        <h2>
-            📚 Selecciona la actividad
-        </h2>
+        <span>
+            Uso de computadora
+        </span>
 
+    </button>
 
-        <button
-            class="boton actividad"
-            data-actividad="Alfabetización"
-            type="button">
 
-            <span class="actividad-icono">
-                👓
-            </span>
+    <button
+        class="boton actividad"
+        data-actividad="Servicio social"
+        type="button">
 
-            <span>
-                Alfabetización
-            </span>
+        <span class="actividad-icono">
+            🤝
+        </span>
 
-        </button>
+        <span>
+            Servicio social
+        </span>
 
+    </button>
 
-        <button
-            class="boton actividad"
-            data-actividad="Primaria INEA"
-            type="button">
 
-            <span class="actividad-icono">
-                📘
-            </span>
+    <button
+        class="boton actividad"
+        data-actividad="Beneficiarios"
+        type="button">
 
-            <span>
-                Primaria INEA
-            </span>
+        <span class="actividad-icono">
+            👥
+        </span>
 
-        </button>
+        <span>
+            Beneficiarios
+        </span>
 
+    </button>
 
-        <button
-            class="boton actividad"
-            data-actividad="Secundaria INEA"
-            type="button">
 
-            <span class="actividad-icono">
-                📕
-            </span>
+    <button
+        id="btnCancelarActividad"
+        class="boton cancelar"
+        type="button">
 
-            <span>
-                Secundaria INEA
-            </span>
+        ↩️ CANCELAR
 
-        </button>
+    </button>
 
+</section>
 
-        <button
-            id="btnPrepaAbierta"
-            class="boton actividad"
-            type="button">
 
-            <span class="actividad-icono">
-                🎓
-            </span>
+<!-- ===================================== -->
+<!-- SUBMENÚ -->
+<!-- ===================================== -->
 
-            <span>
-                Prepa Abierta
-            </span>
+<section
+    id="pantallaSubmenu"
+    class="pantalla oculto">
 
-        </button>
+    <h2 id="tituloSubmenu">
+    </h2>
 
 
-        <button
-            id="btnPrepaLinea"
-            class="boton actividad"
-            type="button">
+    <div id="botonesSubmenu">
+    </div>
 
-            <span class="actividad-icono">
-                🧑‍🎓
-            </span>
 
-            <span>
-                Prepa en Línea
-            </span>
+    <button
+        id="btnVolverActividades"
+        class="boton cancelar"
+        type="button">
 
-        </button>
+        ↩️ VOLVER
 
+    </button>
 
-        <button
-            id="btnAsesoria"
-            class="boton actividad"
-            type="button">
+</section>
 
-            <span class="actividad-icono">
-                👨‍🏫
-            </span>
 
-            <span>
-                Asesorías
-            </span>
+<!-- ===================================== -->
+<!-- CONFIRMACIÓN FINAL -->
+<!-- ===================================== -->
 
-        </button>
+<section
+    id="pantallaConfirmacion"
+    class="pantalla confirmacion oculto">
 
+    <div class="check-confirmacion">
+        ✓
+    </div>
 
-        <button
-            class="boton actividad"
-            data-actividad="Computación"
-            type="button">
 
-            <span class="actividad-icono">
-                🖥️
-            </span>
+    <h2 id="tituloConfirmacion">
+        ¡Bienvenido!
+    </h2>
 
-            <span>
-                Computación
-            </span>
 
-        </button>
+    <p id="mensajeConfirmacion">
+        ¡Vuelve pronto!
+    </p>
 
 
-        <button
-            class="boton actividad"
-            data-actividad="Uso de computadora"
-            type="button">
+    <p
+        id="actividadConfirmacion"
+        class="actividad-confirmacion">
+    </p>
 
-            <span class="actividad-icono">
-                🖱️
-            </span>
+</section>
 
-            <span>
-                Uso de computadora
-            </span>
-
-        </button>
-
-
-        <button
-            class="boton actividad"
-            data-actividad="Servicio social"
-            type="button">
-
-            <span class="actividad-icono">
-                🤝
-            </span>
-
-            <span>
-                Servicio social
-            </span>
-
-        </button>
-
-
-        <button
-            class="boton actividad"
-            data-actividad="Beneficiarios"
-            type="button">
-
-            <span class="actividad-icono">
-                👥
-            </span>
-
-            <span>
-                Beneficiarios
-            </span>
-
-        </button>
-
-
-        <button
-            id="btnCancelarActividad"
-            class="boton cancelar"
-            type="button">
-
-            ↩️ CANCELAR
-
-        </button>
-
-    </section>
-
-
-    <!-- ===================================== -->
-    <!-- SUBMENÚ -->
-    <!-- ===================================== -->
-
-    <section
-        id="pantallaSubmenu"
-        class="pantalla oculto">
-
-        <h2 id="tituloSubmenu">
-        </h2>
-
-
-        <div id="botonesSubmenu">
-        </div>
-
-
-        <button
-            id="btnVolverActividades"
-            class="boton cancelar"
-            type="button">
-
-            ↩️ VOLVER
-
-        </button>
-
-    </section>
-
-
-    <!-- ===================================== -->
-    <!-- CONFIRMACIÓN FINAL -->
-    <!-- ===================================== -->
-
-    <section
-        id="pantallaConfirmacion"
-        class="pantalla confirmacion oculto">
-
-        <div class="check-confirmacion">
-            ✓
-        </div>
-
-
-        <h2 id="tituloConfirmacion">
-            ¡Bienvenido!
-        </h2>
-
-
-        <p id="mensajeConfirmacion">
-            ¡Vuelve pronto!
-        </p>
-
-
-        <p id="actividadConfirmacion"
-           class="actividad-confirmacion">
-        </p>
-
-    </section>
-
-
-</main>
-
-
-<script src="app.js"></script>
-
-</body>
-
-</html>
+</main> <script src="app.js"></script> </body> </html>
