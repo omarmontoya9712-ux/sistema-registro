@@ -40,7 +40,6 @@ body {
     box-shadow:
         0 5px 20px
         rgba(0, 0, 0, 0.10);
-
 }
 
 
@@ -60,6 +59,10 @@ h1 {
 }
 
 
+/* ========================================= */
+/* BOTONES PRINCIPALES */
+/* ========================================= */
+
 .botones-principales {
 
     display: flex;
@@ -67,7 +70,6 @@ h1 {
     flex-direction: column;
 
     gap: 20px;
-
 }
 
 
@@ -90,7 +92,6 @@ h1 {
     transition:
         opacity 0.2s,
         transform 0.1s;
-
 }
 
 
@@ -117,6 +118,10 @@ h1 {
 }
 
 
+/* ========================================= */
+/* ENTRADA */
+/* ========================================= */
+
 .entrada {
 
     background: #2e7d32;
@@ -125,6 +130,10 @@ h1 {
 
 }
 
+
+/* ========================================= */
+/* SALIDA */
+/* ========================================= */
 
 .salida {
 
@@ -174,14 +183,13 @@ h1 {
 
     padding: 14px;
 
-    margin-bottom: 20px;
+    margin-bottom: 15px;
 
     border: 1px solid #ccc;
 
     border-radius: 10px;
 
     font-size: 17px;
-
 }
 
 
@@ -194,7 +202,6 @@ h1 {
     box-shadow:
         0 0 0 2px
         rgba(25, 118, 210, 0.15);
-
 }
 
 
@@ -203,14 +210,31 @@ h1 {
     background: #f1f1f1;
 
     color: #555;
-
 }
 
 
 .campo {
 
-    margin-top: 5px;
+    margin-top: 10px;
 
+}
+
+
+/* ========================================= */
+/* BUSCAR FOLIO */
+/* ========================================= */
+
+.buscar {
+
+    background: #455a64;
+
+    color: white;
+
+    font-size: 16px;
+
+    padding: 14px;
+
+    margin-bottom: 15px;
 }
 
 
@@ -225,7 +249,6 @@ h1 {
     color: white;
 
     margin-top: 10px;
-
 }
 
 
@@ -240,7 +263,6 @@ h1 {
     color: white;
 
     margin-top: 10px;
-
 }
 
 
@@ -252,10 +274,9 @@ h1 {
 
     min-height: 25px;
 
-    margin: 5px 0 10px;
+    margin: 8px 0 10px;
 
     font-weight: bold;
-
 }
 
 
