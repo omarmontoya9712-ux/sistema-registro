@@ -11,11 +11,8 @@ const URL_APPS_SCRIPT =
 // ======================================================
 
 let modoActual = "";
-
 let folioActual = "";
-
 let nombreActual = "";
-
 let actividadActual = "";
 
 
@@ -85,95 +82,58 @@ const btnConfirmarRegistro =
 
 
 // ======================================================
-// ACTIVIDADES
-// ======================================================
-
-const actividadesDirectas = [
-
-    "Alfabetización",
-
-    "Primaria INEA",
-
-    "Secundaria INEA",
-
-    "Computación",
-
-    "Uso de computadora",
-
-    "Servicio social",
-
-    "Beneficiarios"
-
-];
-
-
-// ======================================================
 // SUBMENÚS
 // ======================================================
 
 const prepaAbierta = [];
 
 for (let i = 1; i <= 21; i++) {
-
     prepaAbierta.push(String(i));
-
 }
 
 
 const prepaLinea = [
-
     "Propedéutico"
-
 ];
 
 for (let i = 1; i <= 23; i++) {
-
     prepaLinea.push(String(i));
-
 }
 
 
 const materiasAsesoria = [
-
     "Matemáticas",
-
     "Español",
-
     "Historia",
-
     "Química",
-
     "Biología"
-
 ];
 
 
 // ======================================================
-// BOTONES INICIO
+// INICIO - ENTRADA
 // ======================================================
 
 document
     .getElementById("btnEntrada")
-    .addEventListener(
-        "click",
-        function () {
+    .addEventListener("click", function () {
 
-            iniciarProceso("ENTRADA");
+        iniciarProceso("ENTRADA");
 
-        }
-    );
+    });
 
+
+// ======================================================
+// INICIO - SALIDA
+// ======================================================
 
 document
     .getElementById("btnSalida")
-    .addEventListener(
-        "click",
-        function () {
+    .addEventListener("click", function () {
 
-            iniciarProceso("SALIDA");
+        iniciarProceso("SALIDA");
 
-        }
-    );
+    });
 
 
 // ======================================================
@@ -196,7 +156,6 @@ function iniciarProceso(modo) {
             : "Registrar salida";
 
     folio.focus();
-
 }
 
 
@@ -204,12 +163,10 @@ function iniciarProceso(modo) {
 // BUSCAR FOLIO
 // ======================================================
 
-document
-    .getElementById("btnBuscar")
-    .addEventListener(
-        "click",
-        buscarFolio
-    );
+btnBuscar.addEventListener(
+    "click",
+    buscarFolio
+);
 
 
 folio.addEventListener(
@@ -244,7 +201,6 @@ async function buscarFolio() {
         folio.focus();
 
         return;
-
     }
 
 
@@ -289,94 +245,95 @@ async function buscarFolio() {
 
 
         console.log(
-            "Respuesta:",
+            "Respuesta de Google:",
             datos
         );
 
 
-        if (datos.error) {
+        // ==================================================
+        // SALIDA
+        // ==================================================
 
-            throw new Error(
-                datos.error
-            );
+        if (modoActual === "SALIDA") {
 
-        }
+            if (!datos.encontrado) {
 
+                mostrarMensaje(
+                    "El folio no está registrado.",
+                    "error"
+                );
 
-        // ==============================================
-        // FOLIO ENCONTRADO
-        // ==============================================
+                return;
+            }
 
-        if (datos.encontrado) {
 
             nombreActual =
                 datos.nombre || "";
 
 
-            // SALIDA
+            // DIRECTAMENTE REGISTRAR SALIDA
 
-            if (modoActual === "SALIDA") {
+            await registrarSalida();
 
-                mostrarMensaje(
-                    "Folio encontrado. Registrando salida...",
-                    "info"
-                );
-
-                registrarSalida();
-
-                return;
-
-            }
-
-
-            // ENTRADA
-
-            nombreEncontrado.textContent =
-                nombreActual;
-
-            mostrarPantalla(
-                pantallaNombre
-            );
-
+            return;
         }
 
 
-        // ==============================================
-        // FOLIO NO ENCONTRADO
-        // ==============================================
+        // ==================================================
+        // ENTRADA
+        // ==================================================
 
-        else {
+        if (modoActual === "ENTRADA") {
 
-            if (modoActual === "ENTRADA") {
 
-                folioNuevo.textContent =
-                    folioActual;
+            // ----------------------------------------------
+            // FOLIO EXISTE
+            // ----------------------------------------------
 
-                nombreNuevo.value = "";
+            if (datos.encontrado) {
 
-                mostrarPantalla(
-                    pantallaNuevoUsuario
+                nombreActual =
+                    datos.nombre || "";
+
+
+                console.log(
+                    "Usuario encontrado:",
+                    nombreActual
                 );
 
-                setTimeout(
-                    function () {
 
-                        nombreNuevo.focus();
+                // DIRECTAMENTE A ACTIVIDADES
 
-                    },
-                    100
-                );
+                mostrarActividades();
 
+                return;
             }
 
-            else {
 
-                mostrarMensaje(
-                    "El folio no está registrado. No se puede registrar una salida.",
-                    "error"
-                );
+            // ----------------------------------------------
+            // FOLIO NO EXISTE
+            // ----------------------------------------------
 
-            }
+            folioNuevo.textContent =
+                folioActual;
+
+
+            nombreNuevo.value = "";
+
+
+            mostrarPantalla(
+                pantallaNuevoUsuario
+            );
+
+
+            setTimeout(
+                function () {
+
+                    nombreNuevo.focus();
+
+                },
+                100
+            );
 
         }
 
@@ -388,6 +345,7 @@ async function buscarFolio() {
             "Error buscando folio:",
             error
         );
+
 
         mostrarMensaje(
             "No se pudo conectar con Google Sheets.",
@@ -447,14 +405,15 @@ async function guardarNuevoUsuario() {
         nombreNuevo.focus();
 
         return;
-
     }
 
 
-    nombreActual = nombre;
+    nombreActual =
+        nombre;
 
 
-    btnGuardarUsuario.disabled = true;
+    btnGuardarUsuario.disabled =
+        true;
 
 
     mostrarMensaje(
@@ -463,76 +422,92 @@ async function guardarNuevoUsuario() {
     );
 
 
-    /*
-     * Enviamos ENTRADA.
-     *
-     * Tu Apps Script:
-     *
-     * 1. Guarda el folio y nombre
-     *    en BD_USUARIOS.
-     *
-     * 2. Registra la entrada
-     *    en la hoja del día.
-     */
-
     const datos = {
 
-        modo: "ENTRADA",
+        accion: "registrarUsuario",
 
         folio: folioActual,
 
-        nombre: nombreActual,
-
-        actividad: "-"
+        nombre: nombreActual
 
     };
 
 
     try {
 
-        await fetch(
-            URL_APPS_SCRIPT,
-            {
+        const respuesta =
+            await fetch(
+                URL_APPS_SCRIPT,
+                {
 
-                method: "POST",
+                    method: "POST",
 
-                mode: "no-cors",
+                    headers: {
 
-                headers: {
+                        "Content-Type":
+                            "text/plain;charset=utf-8"
 
-                    "Content-Type":
-                        "text/plain;charset=utf-8"
+                    },
 
-                },
+                    body:
+                        JSON.stringify(datos)
 
-                body:
-                    JSON.stringify(datos)
+                }
+            );
 
-            }
+
+        const resultado =
+            await respuesta.json();
+
+
+        console.log(
+            "Registro usuario:",
+            resultado
         );
 
 
-        /*
-         * El usuario ya quedó guardado.
-         *
-         * Ahora continuamos con la actividad.
-         */
+        if (
+            resultado.status !== "ok"
+        ) {
+
+            throw new Error(
+                resultado.mensaje ||
+                resultado.error ||
+                "No se pudo guardar el usuario."
+            );
+
+        }
+
+
+        // ==============================================
+        // YA GUARDÓ EL FOLIO Y NOMBRE
+        // AHORA VA DIRECTAMENTE A ACTIVIDADES
+        // ==============================================
 
         mostrarActividades();
-
 
     }
 
     catch (error) {
 
-        console.error(error);
+        console.error(
+            "Error guardando usuario:",
+            error
+        );
+
 
         mostrarMensaje(
+            error.message ||
             "No se pudo guardar el usuario.",
             "error"
         );
 
-        btnGuardarUsuario.disabled = false;
+    }
+
+    finally {
+
+        btnGuardarUsuario.disabled =
+            false;
 
     }
 
@@ -540,31 +515,10 @@ async function guardarNuevoUsuario() {
 
 
 // ======================================================
-// CONTINUAR CON USUARIO EXISTENTE
-// ======================================================
-
-document
-    .getElementById("btnContinuarActividad")
-    .addEventListener(
-        "click",
-        function () {
-
-            mostrarActividades();
-
-        }
-    );
-
-
-// ======================================================
 // MOSTRAR ACTIVIDADES
 // ======================================================
 
 function mostrarActividades() {
-
-    mostrarMensaje(
-        "",
-        ""
-    );
 
     mostrarPantalla(
         pantallaActividades
@@ -574,7 +528,7 @@ function mostrarActividades() {
 
 
 // ======================================================
-// ACTIVIDADES DIRECTAS
+// ACTIVIDADES
 // ======================================================
 
 document
@@ -595,7 +549,7 @@ document
                         boton.dataset.menu;
 
 
-                    // ACTIVIDAD DIRECTA
+                    // ACTIVIDAD NORMAL
 
                     if (actividad) {
 
@@ -604,13 +558,15 @@ document
                         );
 
                         return;
-
                     }
 
 
-                    // SUBMENÚ
+                    // PREPA ABIERTA
 
-                    if (menu === "prepaAbierta") {
+                    if (
+                        menu ===
+                        "prepaAbierta"
+                    ) {
 
                         abrirSubmenu(
                             "Prepa Abierta",
@@ -621,7 +577,12 @@ document
                     }
 
 
-                    if (menu === "prepaLinea") {
+                    // PREPA EN LÍNEA
+
+                    if (
+                        menu ===
+                        "prepaLinea"
+                    ) {
 
                         abrirSubmenu(
                             "Prepa en Línea",
@@ -632,7 +593,12 @@ document
                     }
 
 
-                    if (menu === "asesorias") {
+                    // ASESORÍAS
+
+                    if (
+                        menu ===
+                        "asesorias"
+                    ) {
 
                         abrirSubmenu(
                             "Asesorías",
@@ -746,7 +712,7 @@ function seleccionarActividad(
 
 
 // ======================================================
-// CONFIRMAR ENTRADA
+// REGISTRAR ENTRADA
 // ======================================================
 
 btnConfirmarRegistro.addEventListener(
@@ -758,6 +724,8 @@ btnConfirmarRegistro.addEventListener(
 async function registrarEntrada() {
 
     const datos = {
+
+        accion: "registrarEntrada",
 
         modo: "ENTRADA",
 
@@ -782,26 +750,48 @@ async function registrarEntrada() {
 
     try {
 
-        await fetch(
-            URL_APPS_SCRIPT,
-            {
+        const respuesta =
+            await fetch(
+                URL_APPS_SCRIPT,
+                {
 
-                method: "POST",
+                    method: "POST",
 
-                mode: "no-cors",
+                    headers: {
 
-                headers: {
+                        "Content-Type":
+                            "text/plain;charset=utf-8"
 
-                    "Content-Type":
-                        "text/plain;charset=utf-8"
+                    },
 
-                },
+                    body:
+                        JSON.stringify(datos)
 
-                body:
-                    JSON.stringify(datos)
+                }
+            );
 
-            }
+
+        const resultado =
+            await respuesta.json();
+
+
+        console.log(
+            "Entrada:",
+            resultado
         );
+
+
+        if (
+            resultado.status !== "ok"
+        ) {
+
+            throw new Error(
+                resultado.mensaje ||
+                resultado.error ||
+                "No se pudo registrar la entrada."
+            );
+
+        }
 
 
         mostrarMensaje(
@@ -819,12 +809,18 @@ async function registrarEntrada() {
 
     catch (error) {
 
-        console.error(error);
+        console.error(
+            "Error registrando entrada:",
+            error
+        );
+
 
         mostrarMensaje(
+            error.message ||
             "No se pudo registrar la entrada.",
             "error"
         );
+
 
         btnConfirmarRegistro.disabled =
             false;
@@ -842,6 +838,8 @@ async function registrarSalida() {
 
     const datos = {
 
+        accion: "registrarSalida",
+
         modo: "SALIDA",
 
         folio: folioActual,
@@ -853,6 +851,12 @@ async function registrarSalida() {
     };
 
 
+    mostrarMensaje(
+        "Registrando salida...",
+        "info"
+    );
+
+
     try {
 
         const respuesta =
@@ -861,8 +865,6 @@ async function registrarSalida() {
                 {
 
                     method: "POST",
-
-                    mode: "no-cors",
 
                     headers: {
 
@@ -876,6 +878,29 @@ async function registrarSalida() {
 
                 }
             );
+
+
+        const resultado =
+            await respuesta.json();
+
+
+        console.log(
+            "Salida:",
+            resultado
+        );
+
+
+        if (
+            resultado.status !== "ok"
+        ) {
+
+            throw new Error(
+                resultado.mensaje ||
+                resultado.error ||
+                "No se pudo registrar la salida."
+            );
+
+        }
 
 
         mostrarMensaje(
@@ -893,9 +918,14 @@ async function registrarSalida() {
 
     catch (error) {
 
-        console.error(error);
+        console.error(
+            "Error registrando salida:",
+            error
+        );
+
 
         mostrarMensaje(
+            error.message ||
             "No se pudo registrar la salida.",
             "error"
         );
@@ -906,7 +936,7 @@ async function registrarSalida() {
 
 
 // ======================================================
-// REGRESAR DESDE ACTIVIDADES
+// REGRESAR
 // ======================================================
 
 document
@@ -925,10 +955,6 @@ document
     );
 
 
-// ======================================================
-// REGRESAR DESDE SUBMENÚ
-// ======================================================
-
 document
     .getElementById(
         "btnRegresarSubmenu"
@@ -944,10 +970,6 @@ document
         }
     );
 
-
-// ======================================================
-// REGRESAR DESDE CONFIRMACIÓN
-// ======================================================
 
 document
     .getElementById(
@@ -966,7 +988,7 @@ document
 
 
 // ======================================================
-// CANCELAR FOLIO
+// CANCELAR
 // ======================================================
 
 document
@@ -979,10 +1001,6 @@ document
     );
 
 
-// ======================================================
-// CANCELAR NUEVO USUARIO
-// ======================================================
-
 document
     .getElementById(
         "btnCancelarNuevo"
@@ -992,10 +1010,6 @@ document
         volverInicio
     );
 
-
-// ======================================================
-// CANCELAR NOMBRE
-// ======================================================
 
 document
     .getElementById(
@@ -1059,7 +1073,7 @@ function mostrarPantalla(
 
 
 // ======================================================
-// MENSAJES
+// MENSAJE
 // ======================================================
 
 function mostrarMensaje(
@@ -1092,7 +1106,7 @@ function volverInicio() {
 
 
 // ======================================================
-// LIMPIAR DATOS
+// LIMPIAR
 // ======================================================
 
 function limpiarDatos() {
