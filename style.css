@@ -5,11 +5,50 @@
 }
 
 
+:root {
+
+    --guinda: #7B1E3A;
+
+    --guinda-oscuro: #5B1429;
+
+    --guinda-claro: #96324F;
+
+    --verde: #2E7D32;
+
+    --rojo: #C62828;
+
+    --azul: #1976D2;
+
+    --morado: #7B1FA2;
+
+    --gris-fondo: #F4F1F3;
+
+    --gris: #777;
+
+    --blanco: #FFFFFF;
+
+    --texto: #333333;
+
+}
+
+
+/* ===================================== */
+/* CUERPO */
+/* ===================================== */
+
 body {
 
-    font-family: Arial, sans-serif;
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
 
-    background: #f2f4f7;
+    background:
+        linear-gradient(
+            135deg,
+            #f5eff2,
+            #ece5e8
+        );
 
     min-height: 100vh;
 
@@ -20,296 +59,530 @@ body {
     align-items: center;
 
     padding: 20px;
+
+    color: var(--texto);
+
 }
 
+
+/* ===================================== */
+/* CONTENEDOR */
+/* ===================================== */
 
 .contenedor {
 
     width: 100%;
 
-    max-width: 500px;
+    max-width: 520px;
 
-    background: white;
+    background:
+        var(--blanco);
 
-    padding: 35px 25px;
+    padding:
+        30px 25px;
 
-    border-radius: 20px;
+    border-radius:
+        22px;
 
-    text-align: center;
+    text-align:
+        center;
 
     box-shadow:
-        0 5px 20px rgba(0,0,0,0.10);
+        0 8px 30px
+        rgba(80, 20, 40, 0.15);
+
+    border-top:
+        7px solid
+        var(--guinda);
+
 }
 
 
-h1 {
+/* ===================================== */
+/* ENCABEZADO */
+/* ===================================== */
 
-    margin-bottom: 10px;
+.encabezado {
 
-}
+    display: flex;
 
+    align-items: center;
 
-h2 {
+    justify-content: center;
+
+    gap: 12px;
 
     margin-bottom: 20px;
 
 }
 
 
-.subtitulo {
+.titulo-principal {
 
-    color: #666;
-
-    margin-bottom: 30px;
+    flex: 1;
 
 }
 
 
-/* ================================= */
+.encabezado h1 {
+
+    color:
+        var(--guinda);
+
+    font-size:
+        30px;
+
+    font-weight:
+        800;
+
+    letter-spacing:
+        0.5px;
+
+}
+
+
+.icono-encabezado {
+
+    font-size:
+        38px;
+
+}
+
+
+.flor {
+
+    font-size:
+        38px;
+
+}
+
+
+.subtitulo {
+
+    color:
+        #666;
+
+    margin-top:
+        7px;
+
+    margin-bottom:
+        25px;
+
+    font-size:
+        15px;
+
+}
+
+
+/* ===================================== */
 /* PANTALLAS */
-/* ================================= */
+/* ===================================== */
 
 .pantalla {
 
-    width: 100%;
+    width:
+        100%;
 
 }
 
 
 .oculto {
 
-    display: none !important;
+    display:
+        none !important;
 
 }
 
 
-/* ================================= */
+/* ===================================== */
+/* TITULOS */
+/* ===================================== */
+
+h2 {
+
+    color:
+        var(--guinda);
+
+    margin-bottom:
+        22px;
+
+}
+
+
+/* ===================================== */
 /* BOTONES */
-/* ================================= */
+/* ===================================== */
 
 .boton {
 
-    width: 100%;
+    width:
+        100%;
 
-    padding: 17px;
+    min-height:
+        58px;
 
-    border: none;
+    padding:
+        15px;
 
-    border-radius: 12px;
+    border:
+        none;
 
-    font-size: 18px;
+    border-radius:
+        13px;
 
-    font-weight: bold;
+    font-size:
+        18px;
 
-    cursor: pointer;
+    font-weight:
+        bold;
 
-    margin-bottom: 12px;
+    cursor:
+        pointer;
+
+    margin-bottom:
+        12px;
 
     transition:
-        opacity 0.2s,
-        transform 0.1s;
+        transform 0.1s,
+        box-shadow 0.2s,
+        opacity 0.2s;
 
 }
 
 
 .boton:hover {
 
-    opacity: 0.9;
+    opacity:
+        0.93;
+
+    box-shadow:
+        0 4px 10px
+        rgba(0,0,0,0.12);
 
 }
 
 
 .boton:active {
 
-    transform: scale(0.98);
+    transform:
+        scale(0.98);
 
 }
 
 
-/* ================================= */
-/* MENU PRINCIPAL */
-/* ================================= */
+.boton:disabled {
 
-.botones-principales {
+    opacity:
+        0.6;
 
-    display: flex;
-
-    flex-direction: column;
-
-    gap: 15px;
+    cursor:
+        not-allowed;
 
 }
 
+
+/* ===================================== */
+/* ENTRADA */
+/* ===================================== */
 
 .entrada {
 
-    background: #2e7d32;
+    background:
+        var(--verde);
 
-    color: white;
+    color:
+        white;
 
 }
 
+
+/* ===================================== */
+/* SALIDA */
+/* ===================================== */
 
 .salida {
 
-    background: #c62828;
+    background:
+        var(--rojo);
 
-    color: white;
+    color:
+        white;
 
 }
 
 
-/* ================================= */
-/* FOLIO */
-/* ================================= */
+/* ===================================== */
+/* FOLIO MANUAL */
+/* ===================================== */
 
 .boton-manual {
 
-    background: #1976d2;
+    background:
+        var(--azul);
 
-    color: white;
+    color:
+        white;
 
 }
 
+
+/* ===================================== */
+/* QR */
+/* ===================================== */
 
 .boton-qr {
 
-    background: #6a1b9a;
+    background:
+        var(--morado);
 
-    color: white;
+    color:
+        white;
 
 }
 
 
-/* ================================= */
-/* INPUTS */
-/* ================================= */
+/* ===================================== */
+/* FORMULARIOS */
+/* ===================================== */
 
 label {
 
-    display: block;
+    display:
+        block;
 
-    text-align: left;
+    text-align:
+        left;
 
-    font-weight: bold;
+    font-weight:
+        bold;
 
-    margin-bottom: 8px;
+    margin-bottom:
+        8px;
 
-    color: #333;
+    color:
+        var(--guinda);
 
 }
 
 
 input {
 
-    width: 100%;
+    width:
+        100%;
 
-    padding: 15px;
+    padding:
+        15px;
 
-    margin-bottom: 18px;
+    margin-bottom:
+        18px;
 
-    border: 1px solid #ccc;
+    border:
+        2px solid #ddd;
 
-    border-radius: 10px;
+    border-radius:
+        11px;
 
-    font-size: 18px;
+    font-size:
+        18px;
 
 }
 
 
 input:focus {
 
-    outline: none;
+    outline:
+        none;
 
-    border-color: #1976d2;
+    border-color:
+        var(--guinda);
 
     box-shadow:
-        0 0 0 2px
-        rgba(25,118,210,0.15);
+        0 0 0 3px
+        rgba(123,30,58,0.12);
 
 }
 
 
-/* ================================= */
-/* REGISTRAR */
-/* ================================= */
+/* ===================================== */
+/* BOTON REGISTRAR */
+/* ===================================== */
 
 .registrar {
 
-    background: #1976d2;
+    background:
+        var(--guinda);
 
-    color: white;
+    color:
+        white;
 
 }
 
 
-/* ================================= */
+/* ===================================== */
 /* CANCELAR */
-/* ================================= */
+/* ===================================== */
 
 .cancelar {
 
-    background: #777;
+    background:
+        var(--gris);
 
-    color: white;
+    color:
+        white;
 
 }
 
 
-/* ================================= */
+/* ===================================== */
 /* ACTIVIDADES */
-/* ================================= */
+/* ===================================== */
 
 .actividad {
 
-    background: #1976d2;
+    background:
+        var(--guinda);
 
-    color: white;
+    color:
+        white;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        flex-start;
+
+    text-align:
+        left;
+
+    gap:
+        15px;
+
+    padding-left:
+        18px;
 
 }
 
 
-/* ================================= */
+.actividad:hover {
+
+    background:
+        var(--guinda-claro);
+
+}
+
+
+.actividad-icono {
+
+    width:
+        42px;
+
+    min-width:
+        42px;
+
+    font-size:
+        28px;
+
+    text-align:
+        center;
+
+}
+
+
+/* ===================================== */
+/* SUBMENUS */
+/* ===================================== */
+
+#botonesSubmenu {
+
+    display:
+        flex;
+
+    flex-direction:
+        column;
+
+}
+
+
+/* ===================================== */
 /* QR */
-/* ================================= */
+/* ===================================== */
 
 #reader {
 
-    width: 100%;
+    width:
+        100%;
 
-    max-width: 400px;
+    max-width:
+        400px;
 
-    margin: 20px auto;
+    margin:
+        20px auto;
+
+    border-radius:
+        12px;
+
+    overflow:
+        hidden;
 
 }
 
 
 .instruccion {
 
-    color: #666;
+    color:
+        #666;
 
-    margin-bottom: 15px;
+    margin-bottom:
+        15px;
 
 }
 
 
 .qr-exito {
 
-    background: #2e7d32;
+    background:
+        var(--verde);
 
-    color: white;
+    color:
+        white;
 
-    padding: 15px;
+    padding:
+        16px;
 
-    border-radius: 10px;
+    border-radius:
+        12px;
 
-    font-size: 20px;
+    font-size:
+        20px;
 
-    font-weight: bold;
+    font-weight:
+        bold;
 
-    margin: 15px 0;
+    margin:
+        15px 0;
 
-    animation: brillo 0.5s ease-in-out;
+    animation:
+        brillo 0.5s ease-in-out;
+
+}
+
+
+.qr-folio {
+
+    color:
+        var(--guinda);
+
+    font-weight:
+        bold;
+
+    margin:
+        10px 0;
+
+    min-height:
+        20px;
 
 }
 
@@ -317,103 +590,136 @@ input:focus {
 @keyframes brillo {
 
     0% {
-        transform: scale(0.8);
-        opacity: 0;
+
+        transform:
+            scale(0.8);
+
+        opacity:
+            0;
+
     }
 
     50% {
-        transform: scale(1.1);
+
+        transform:
+            scale(1.08);
+
     }
 
     100% {
-        transform: scale(1);
-        opacity: 1;
+
+        transform:
+            scale(1);
+
+        opacity:
+            1;
+
     }
 
 }
 
 
-/* ================================= */
+/* ===================================== */
 /* MENSAJES */
-/* ================================= */
+/* ===================================== */
 
 .mensaje {
 
-    min-height: 25px;
+    min-height:
+        25px;
 
-    margin: 10px 0;
+    margin:
+        10px 0;
 
-    font-weight: bold;
+    font-weight:
+        bold;
 
 }
 
 
 .mensaje.exito {
 
-    color: #2e7d32;
+    color:
+        var(--verde);
 
 }
 
 
 .mensaje.error {
 
-    color: #c62828;
+    color:
+        var(--rojo);
 
 }
 
 
 .mensaje.info {
 
-    color: #1976d2;
+    color:
+        var(--azul);
 
 }
 
 
-/* ================================= */
-/* SUBMENU */
-/* ================================= */
-
-#botonesSubmenu {
-
-    display: flex;
-
-    flex-direction: column;
-
-}
-
-
-/* ================================= */
+/* ===================================== */
 /* CELULAR */
-/* ================================= */
+/* ===================================== */
 
 @media (max-width: 500px) {
 
+    body {
+
+        padding:
+            10px;
+
+        align-items:
+            flex-start;
+
+    }
+
+
     .contenedor {
 
-        padding: 30px 20px;
+        margin-top:
+            10px;
+
+        padding:
+            25px 18px;
 
     }
 
 
-    h1 {
+    .encabezado h1 {
 
-        font-size: 26px;
+        font-size:
+            23px;
 
     }
 
 
-    h2 {
+    .icono-encabezado {
 
-        font-size: 22px;
+        font-size:
+            30px;
 
     }
 
 
     .boton {
 
-        font-size: 17px;
+        font-size:
+            17px;
 
-        padding: 16px;
+        min-height:
+            55px;
+
+    }
+
+
+    .actividad-icono {
+
+        font-size:
+            25px;
 
     }
 
