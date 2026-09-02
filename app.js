@@ -18,6 +18,13 @@ let nombreActual = "";
 
 let lectorQR = null;
 
+// Cámara actual:
+// 0 = frontal
+// 1 = trasera
+let camaraActual = 0;
+
+let camarasDisponibles = [];
+
 
 // =====================================================
 // ELEMENTOS
@@ -384,7 +391,11 @@ document
     );
 
 
-function iniciarQR() {
+// =====================================================
+// INICIAR CÁMARA QR
+// =====================================================
+
+async function iniciarQR() {
 
     mostrarPantalla(
         pantallaQR
@@ -406,18 +417,132 @@ function iniciarQR() {
         .innerHTML = "";
 
 
+    try {
+
+        // =============================================
+        // OBTENER CÁMARAS DISPONIBLES
+        // =============================================
+
+        camarasDisponibles =
+            await Html5Qrcode.getCameras();
+
+
+        if (
+            !camarasDisponibles ||
+            camarasDisponibles.length === 0
+        ) {
+
+            iniciarQRConModo(
+                "user"
+            );
+
+            return;
+
+        }
+
+
+        // =============================================
+        // BUSCAR CÁMARA FRONTAL
+        // =============================================
+
+        let indiceFrontal = 0;
+
+
+        for (
+            let i = 0;
+            i < camarasDisponibles.length;
+            i++
+        ) {
+
+            const nombre =
+                (
+                    camarasDisponibles[i].label ||
+                    ""
+                ).toLowerCase();
+
+
+            if (
+
+                nombre.includes("front") ||
+
+                nombre.includes("frontal") ||
+
+                nombre.includes("user") ||
+
+                nombre.includes("facetime")
+
+            ) {
+
+                indiceFrontal = i;
+
+                break;
+
+            }
+
+        }
+
+
+        camaraActual =
+            indiceFrontal;
+
+
+        actualizarTextoBotonCamara();
+
+
+        iniciarQRConCamara(
+            camarasDisponibles[
+                camaraActual
+            ].id
+        );
+
+    }
+
+    catch (error) {
+
+        console.error(
+            "Error obteniendo cámaras:",
+            error
+        );
+
+
+        // Intentar directamente con cámara frontal
+
+        iniciarQRConModo(
+            "user"
+        );
+
+    }
+
+}
+
+
+// =====================================================
+// INICIAR QR CON CAMERA ID
+// =====================================================
+
+function iniciarQRConCamara(
+    cameraId
+) {
+
+    if (lectorQR) {
+
+        detenerQR();
+
+    }
+
+
     lectorQR =
-        new Html5Qrcode("reader");
+        new Html5Qrcode(
+            "reader"
+        );
 
 
     lectorQR.start(
 
-        {
-            facingMode:
-                "environment"
-        },
+        cameraId,
 
         {
+
             fps: 10,
 
             qrbox: {
@@ -473,10 +598,14 @@ function iniciarQR() {
         }
 
     )
+
     .catch(
         function(error) {
 
-            console.error(error);
+            console.error(
+                "Error iniciando cámara:",
+                error
+            );
 
 
             alert(
@@ -491,10 +620,248 @@ function iniciarQR() {
 
 
 // =====================================================
+// INICIAR QR CON FACING MODE
+// =====================================================
+
+function iniciarQRConModo(
+    modoCamara
+) {
+
+    if (lectorQR) {
+
+        detenerQR();
+
+    }
+
+
+    lectorQR =
+        new Html5Qrcode(
+            "reader"
+        );
+
+
+    lectorQR.start(
+
+        {
+            facingMode:
+                modoCamara
+        },
+
+        {
+
+            fps: 10,
+
+            qrbox: {
+
+                width: 250,
+
+                height: 250
+
+            }
+
+        },
+
+        function(decodedText) {
+
+            folioActual =
+                decodedText
+                    .trim()
+                    .toUpperCase();
+
+
+            document
+                .getElementById("qrExito")
+                .classList.remove("oculto");
+
+
+            document
+                .getElementById("qrFolio")
+                .textContent =
+                "Folio: " +
+                folioActual;
+
+
+            detenerQR();
+
+
+            setTimeout(
+                function() {
+
+                    procesarFolio(
+                        folioActual
+                    );
+
+                },
+                700
+            );
+
+        },
+
+        function(errorMessage) {
+
+            // Error normal mientras busca el QR.
+
+        }
+
+    )
+
+    .catch(
+        function(error) {
+
+            console.error(
+                error
+            );
+
+
+            alert(
+                "No se pudo acceder a la cámara. " +
+                "Revisa los permisos del navegador."
+            );
+
+        }
+    );
+
+}
+
+
+// =====================================================
+// CAMBIAR CÁMARA
+// =====================================================
+
+async function cambiarCamara() {
+
+    if (
+        !camarasDisponibles ||
+        camarasDisponibles.length < 2
+    ) {
+
+        alert(
+            "Este dispositivo no tiene otra cámara disponible."
+        );
+
+        return;
+
+    }
+
+
+    try {
+
+        await detenerQR();
+
+
+        camaraActual =
+            (
+                camaraActual + 1
+            ) %
+            camarasDisponibles.length;
+
+
+        actualizarTextoBotonCamara();
+
+
+        document
+            .getElementById("reader")
+            .innerHTML = "";
+
+
+        iniciarQRConCamara(
+
+            camarasDisponibles[
+                camaraActual
+            ].id
+
+        );
+
+    }
+
+    catch (error) {
+
+        console.error(
+            "Error cambiando cámara:",
+            error
+        );
+
+    }
+
+}
+
+
+// =====================================================
+// TEXTO DEL BOTÓN DE CÁMARA
+// =====================================================
+
+function actualizarTextoBotonCamara() {
+
+    const boton =
+        document.getElementById(
+            "btnCambiarCamara"
+        );
+
+
+    if (!boton) {
+
+        return;
+
+    }
+
+
+    if (
+        camarasDisponibles.length < 2
+    ) {
+
+        boton.textContent =
+            "🔄 CAMBIAR CÁMARA";
+
+        return;
+
+    }
+
+
+    const camara =
+        camarasDisponibles[
+            camaraActual
+        ];
+
+
+    const nombre =
+        (
+            camara.label ||
+            ""
+        ).toLowerCase();
+
+
+    if (
+
+        nombre.includes("front") ||
+
+        nombre.includes("frontal") ||
+
+        nombre.includes("user") ||
+
+        nombre.includes("facetime")
+
+    ) {
+
+        boton.textContent =
+            "🔄 CÁMARA TRASERA";
+
+    }
+
+    else {
+
+        boton.textContent =
+            "🔄 CÁMARA FRONTAL";
+
+    }
+
+}
+
+
+// =====================================================
 // DETENER QR
 // =====================================================
 
-function detenerQR() {
+async function detenerQR() {
 
     if (!lectorQR) {
 
@@ -503,26 +870,57 @@ function detenerQR() {
     }
 
 
-    lectorQR
-        .stop()
-        .then(
-            function() {
+    try {
 
-                lectorQR.clear();
+        await lectorQR.stop();
 
-                lectorQR = null;
+    }
 
-            }
-        )
-        .catch(
-            function() {
+    catch (error) {
 
-                lectorQR = null;
-
-            }
+        console.warn(
+            "No fue posible detener el lector:",
+            error
         );
 
+    }
+
+
+    try {
+
+        lectorQR.clear();
+
+    }
+
+    catch (error) {
+
+        console.warn(
+            "No fue posible limpiar el lector:",
+            error
+        );
+
+    }
+
+
+    lectorQR = null;
+
 }
+
+
+// =====================================================
+// BOTÓN CAMBIAR CÁMARA
+// =====================================================
+
+document
+    .getElementById("btnCambiarCamara")
+    .addEventListener(
+        "click",
+        function() {
+
+            cambiarCamara();
+
+        }
+    );
 
 
 // =====================================================
