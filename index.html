@@ -2,243 +2,432 @@
 <html lang="es">
 
 <head>
+
     <meta charset="UTF-8">
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
     <title>Sistema de Registro</title>
 
     <link rel="stylesheet" href="style.css">
 
-    <!-- Lector QR -->
-    <script src="https://unpkg.com/html5-qrcode" type="text/javascript"></script>
+    <!-- Librería para escanear QR -->
+    <script
+        src="https://unpkg.com/html5-qrcode"
+        type="text/javascript">
+    </script>
+
 </head>
+
 
 <body>
 
-    <main class="contenedor">
+<main class="contenedor">
 
-        <h1>Sistema de Registro</h1>
 
-        <p class="subtitulo" id="subtitulo">
-            Selecciona una opción
+    <!-- ================================= -->
+    <!-- ENCABEZADO -->
+    <!-- ================================= -->
+
+    <h1>Sistema de Registro</h1>
+
+    <p
+        id="subtitulo"
+        class="subtitulo">
+        Selecciona una opción
+    </p>
+
+
+    <!-- ================================= -->
+    <!-- MENU PRINCIPAL -->
+    <!-- ================================= -->
+
+    <section
+        id="menuPrincipal"
+        class="pantalla">
+
+        <div class="botones-principales">
+
+            <button
+                id="btnEntrada"
+                class="boton entrada"
+                type="button">
+
+                ENTRADA
+
+            </button>
+
+
+            <button
+                id="btnSalida"
+                class="boton salida"
+                type="button">
+
+                SALIDA
+
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================================= -->
+    <!-- OPCIONES DEL FOLIO -->
+    <!-- ================================= -->
+
+    <section
+        id="opcionesFolio"
+        class="pantalla oculto">
+
+        <h2 id="tituloFolio">
+            Folio
+        </h2>
+
+        <p class="subtitulo">
+            Selecciona cómo deseas ingresar el folio
         </p>
 
 
-        <!-- ============================= -->
-        <!-- MENU PRINCIPAL -->
-        <!-- ============================= -->
+        <button
+            id="btnManual"
+            class="boton boton-manual"
+            type="button">
 
-        <div id="menuPrincipal" class="pantalla">
+            ✏️ INTRODUCIR FOLIO
 
-            <div class="botones-principales">
+        </button>
 
-                <button id="btnEntrada" class="boton entrada">
-                    ENTRADA
-                </button>
 
-                <button id="btnSalida" class="boton salida">
-                    SALIDA
-                </button>
+        <button
+            id="btnQR"
+            class="boton boton-qr"
+            type="button">
 
-            </div>
+            📷 ESCANEAR CÓDIGO QR
+
+        </button>
+
+
+        <button
+            id="btnCancelarFolio"
+            class="boton cancelar"
+            type="button">
+
+            CANCELAR
+
+        </button>
+
+    </section>
+
+
+    <!-- ================================= -->
+    <!-- FOLIO MANUAL -->
+    <!-- ================================= -->
+
+    <section
+        id="pantallaManual"
+        class="pantalla oculto">
+
+        <h2>
+            Introduce el folio
+        </h2>
+
+
+        <label for="folio">
+            Folio
+        </label>
+
+
+        <input
+            type="text"
+            id="folio"
+            placeholder="Escribe el folio"
+            autocomplete="off"
+        >
+
+
+        <button
+            id="btnContinuarFolio"
+            class="boton registrar"
+            type="button">
+
+            CONTINUAR
+
+        </button>
+
+
+        <button
+            id="btnCancelarManual"
+            class="boton cancelar"
+            type="button">
+
+            CANCELAR
+
+        </button>
+
+    </section>
+
+
+    <!-- ================================= -->
+    <!-- ESCANEAR QR -->
+    <!-- ================================= -->
+
+    <section
+        id="pantallaQR"
+        class="pantalla oculto">
+
+        <h2>
+            Escanear código QR
+        </h2>
+
+
+        <p class="instruccion">
+            Apunta la cámara hacia el código QR
+        </p>
+
+
+        <div id="reader"></div>
+
+
+        <div
+            id="qrExito"
+            class="qr-exito oculto">
+
+            ✓ QR ESCANEADO
 
         </div>
 
 
-        <!-- ============================= -->
-        <!-- OPCIONES DE FOLIO -->
-        <!-- ============================= -->
+        <button
+            id="btnCancelarQR"
+            class="boton cancelar"
+            type="button">
 
-        <div id="opcionesFolio" class="pantalla oculto">
+            CANCELAR
 
-            <h2 id="tituloFolio">
-                Folio
-            </h2>
+        </button>
 
-            <p class="subtitulo">
-                ¿Cómo deseas ingresar el folio?
-            </p>
-
-            <button id="btnManual" class="boton boton-secundario">
-                ✏️ INTRODUCIR FOLIO
-            </button>
-
-            <button id="btnQR" class="boton boton-qr">
-                📷 ESCANEAR QR
-            </button>
-
-            <button id="btnCancelarFolio" class="boton cancelar">
-                CANCELAR
-            </button>
-
-        </div>
+    </section>
 
 
-        <!-- ============================= -->
-        <!-- FOLIO MANUAL -->
-        <!-- ============================= -->
+    <!-- ================================= -->
+    <!-- FORMULARIO DE NUEVO USUARIO -->
+    <!-- ================================= -->
 
-        <div id="pantallaManual" class="pantalla oculto">
+    <section
+        id="formularioEntrada"
+        class="pantalla oculto">
 
-            <h2>Introduce el folio</h2>
+        <h2>
+            Nuevo registro
+        </h2>
+
+
+        <p
+            id="mensajeEntrada"
+            class="mensaje">
+        </p>
+
+
+        <div
+            id="campoNombre">
+
+            <label for="nombre">
+                Nombre completo
+            </label>
+
 
             <input
                 type="text"
-                id="folio"
-                placeholder="Ingresa tu folio"
+                id="nombre"
+                placeholder="Nombre completo"
                 autocomplete="off"
             >
 
-            <button id="btnContinuarFolio" class="boton registrar">
-                CONTINUAR
-            </button>
-
-            <button id="btnCancelarManual" class="boton cancelar">
-                CANCELAR
-            </button>
-
         </div>
 
 
-        <!-- ============================= -->
-        <!-- ESCANEAR QR -->
-        <!-- ============================= -->
+        <button
+            id="btnNombre"
+            class="boton registrar"
+            type="button">
 
-        <div id="pantallaQR" class="pantalla oculto">
+            CONTINUAR
 
-            <h2>Escanear código QR</h2>
+        </button>
 
-            <p class="instruccion">
-                Apunta la cámara hacia el código QR
-            </p>
 
-            <div id="reader"></div>
+        <button
+            id="btnCancelarEntrada"
+            class="boton cancelar"
+            type="button">
 
-            <div id="qrExito" class="qr-exito oculto">
-                ✓ QR ESCANEADO
-            </div>
+            CANCELAR
 
-            <button id="btnCancelarQR" class="boton cancelar">
-                CANCELAR
-            </button>
+        </button>
 
+    </section>
+
+
+    <!-- ================================= -->
+    <!-- ACTIVIDADES -->
+    <!-- ================================= -->
+
+    <section
+        id="pantallaActividades"
+        class="pantalla oculto">
+
+        <h2>
+            Selecciona la actividad
+        </h2>
+
+
+        <!-- ACTIVIDADES SIN SUBMENU -->
+
+        <button
+            class="boton actividad"
+            data-actividad="Alfabetización">
+
+            Alfabetización
+
+        </button>
+
+
+        <button
+            class="boton actividad"
+            data-actividad="Primaria INEA">
+
+            Primaria INEA
+
+        </button>
+
+
+        <button
+            class="boton actividad"
+            data-actividad="Secundaria INEA">
+
+            Secundaria INEA
+
+        </button>
+
+
+        <!-- PREPA ABIERTA -->
+
+        <button
+            id="btnPrepaAbierta"
+            class="boton actividad">
+
+            Prepa Abierta
+
+        </button>
+
+
+        <!-- PREPA EN LINEA -->
+
+        <button
+            id="btnPrepaLinea"
+            class="boton actividad">
+
+            Prepa en Línea
+
+        </button>
+
+
+        <!-- ASESORIAS -->
+
+        <button
+            id="btnAsesoria"
+            class="boton actividad">
+
+            Asesorías
+
+        </button>
+
+
+        <!-- RESTO -->
+
+        <button
+            class="boton actividad"
+            data-actividad="Computación">
+
+            Computación
+
+        </button>
+
+
+        <button
+            class="boton actividad"
+            data-actividad="Uso de computadora">
+
+            Uso de computadora
+
+        </button>
+
+
+        <button
+            class="boton actividad"
+            data-actividad="Servicio social">
+
+            Servicio social
+
+        </button>
+
+
+        <button
+            class="boton actividad"
+            data-actividad="Beneficiarios">
+
+            Beneficiarios
+
+        </button>
+
+
+        <button
+            id="btnCancelarActividad"
+            class="boton cancelar">
+
+            CANCELAR
+
+        </button>
+
+    </section>
+
+
+    <!-- ================================= -->
+    <!-- SUBMENU -->
+    <!-- ================================= -->
+
+    <section
+        id="pantallaSubmenu"
+        class="pantalla oculto">
+
+        <h2 id="tituloSubmenu">
+        </h2>
+
+
+        <div id="botonesSubmenu">
         </div>
 
 
-        <!-- ============================= -->
-        <!-- FORMULARIO ENTRADA -->
-        <!-- ============================= -->
+        <button
+            id="btnVolverActividades"
+            class="boton cancelar">
 
-        <div id="formularioEntrada" class="pantalla oculto">
+            VOLVER
 
-            <h2>Registro de Entrada</h2>
+        </button>
 
-            <div id="campoNombre">
-
-                <label for="nombre">
-                    Nombre
-                </label>
-
-                <input
-                    type="text"
-                    id="nombre"
-                    placeholder="Nombre completo"
-                    autocomplete="off"
-                >
-
-            </div>
+    </section>
 
 
-            <p id="mensajeEntrada" class="mensaje"></p>
-
-            <button id="btnNombre" class="boton registrar">
-                CONTINUAR
-            </button>
-
-            <button id="btnCancelarEntrada" class="boton cancelar">
-                CANCELAR
-            </button>
-
-        </div>
+</main>
 
 
-        <!-- ============================= -->
-        <!-- ACTIVIDADES -->
-        <!-- ============================= -->
-
-        <div id="pantallaActividades" class="pantalla oculto">
-
-            <h2>Selecciona la actividad</h2>
-
-            <button class="boton actividad" data-actividad="Alfabetización">
-                Alfabetización
-            </button>
-
-            <button class="boton actividad" data-actividad="Primaria INEA">
-                Primaria INEA
-            </button>
-
-            <button class="boton actividad" data-actividad="Secundaria INEA">
-                Secundaria INEA
-            </button>
-
-            <button id="btnPrepaAbierta" class="boton actividad">
-                Prepa Abierta
-            </button>
-
-            <button id="btnPrepaLinea" class="boton actividad">
-                Prepa en Línea
-            </button>
-
-            <button id="btnAsesoria" class="boton actividad">
-                Asesorías
-            </button>
-
-            <button class="boton actividad" data-actividad="Computación">
-                Computación
-            </button>
-
-            <button class="boton actividad" data-actividad="Uso de computadora">
-                Uso de computadora
-            </button>
-
-            <button class="boton actividad" data-actividad="Servicio social">
-                Servicio social
-            </button>
-
-            <button class="boton actividad" data-actividad="Beneficiarios">
-                Beneficiarios
-            </button>
-
-            <button id="btnCancelarActividad" class="boton cancelar">
-                CANCELAR
-            </button>
-
-        </div>
-
-
-        <!-- ============================= -->
-        <!-- SUBMENU -->
-        <!-- ============================= -->
-
-        <div id="pantallaSubmenu" class="pantalla oculto">
-
-            <h2 id="tituloSubmenu"></h2>
-
-            <div id="botonesSubmenu"></div>
-
-            <button id="btnVolverActividades" class="boton cancelar">
-                VOLVER
-            </button>
-
-        </div>
-
-
-    </main>
-
-
-    <script src="app.js"></script>
+<script src="app.js"></script>
 
 </body>
 
