@@ -1,8 +1,14 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
     <title>Sistema de Registro</title>
 
     <link rel="stylesheet" href="style.css">
@@ -18,26 +24,53 @@
             Selecciona una opción
         </p>
 
-        <!-- BOTONES PRINCIPALES -->
-        <div id="menuPrincipal" class="botones-principales">
 
-            <button id="btnEntrada" class="boton entrada">
+        <!-- ============================== -->
+        <!-- MENÚ PRINCIPAL -->
+        <!-- ============================== -->
+
+        <div
+            id="menuPrincipal"
+            class="botones-principales"
+        >
+
+            <button
+                id="btnEntrada"
+                class="boton entrada"
+                type="button"
+            >
                 ENTRADA
             </button>
 
-            <button id="btnSalida" class="boton salida">
+
+            <button
+                id="btnSalida"
+                class="boton salida"
+                type="button"
+            >
                 SALIDA
             </button>
 
         </div>
 
 
+        <!-- ============================== -->
         <!-- FORMULARIO -->
-        <div id="formulario" class="formulario oculto">
+        <!-- ============================== -->
+
+        <div
+            id="formulario"
+            class="formulario oculto"
+        >
 
             <h2 id="tituloFormulario"></h2>
 
-            <label for="folio">Folio</label>
+
+            <!-- FOLIO -->
+
+            <label for="folio">
+                Folio
+            </label>
 
             <input
                 type="text"
@@ -46,7 +79,13 @@
                 autocomplete="off"
             >
 
-            <div id="campoNombre" class="campo oculto">
+
+            <!-- NOMBRE -->
+
+            <div
+                id="campoNombre"
+                class="campo oculto"
+            >
 
                 <label for="nombre">
                     Nombre
@@ -55,13 +94,19 @@
                 <input
                     type="text"
                     id="nombre"
+                    placeholder="Nombre"
                     readonly
                 >
 
             </div>
 
 
-            <div id="campoActividad" class="campo oculto">
+            <!-- ACTIVIDAD -->
+
+            <div
+                id="campoActividad"
+                class="campo oculto"
+            >
 
                 <label for="actividad">
                     Actividad
@@ -71,19 +116,38 @@
                     type="text"
                     id="actividad"
                     placeholder="Escribe la actividad"
+                    autocomplete="off"
                 >
 
             </div>
 
 
-            <p id="mensaje" class="mensaje"></p>
+            <!-- MENSAJE -->
+
+            <p
+                id="mensaje"
+                class="mensaje"
+            ></p>
 
 
-            <button id="btnRegistrar" class="boton registrar">
+            <!-- REGISTRAR -->
+
+            <button
+                id="btnRegistrar"
+                class="boton registrar"
+                type="button"
+            >
                 REGISTRAR
             </button>
 
-            <button id="btnCancelar" class="boton cancelar">
+
+            <!-- CANCELAR -->
+
+            <button
+                id="btnCancelar"
+                class="boton cancelar"
+                type="button"
+            >
                 CANCELAR
             </button>
 
@@ -91,8 +155,11 @@
 
     </main>
 
+
+    <!-- JAVASCRIPT -->
+
     <script src="app.js"></script>
 
 </body>
-</html>
 
+</html>
