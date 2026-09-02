@@ -24,99 +24,60 @@ let lectorQR = null;
 // =====================================================
 
 const menuPrincipal =
-    document.getElementById(
-        "menuPrincipal"
-    );
+    document.getElementById("menuPrincipal");
 
 const opcionesFolio =
-    document.getElementById(
-        "opcionesFolio"
-    );
+    document.getElementById("opcionesFolio");
 
 const pantallaManual =
-    document.getElementById(
-        "pantallaManual"
-    );
+    document.getElementById("pantallaManual");
 
 const pantallaQR =
-    document.getElementById(
-        "pantallaQR"
-    );
+    document.getElementById("pantallaQR");
 
 const formularioEntrada =
-    document.getElementById(
-        "formularioEntrada"
-    );
+    document.getElementById("formularioEntrada");
 
 const pantallaActividades =
-    document.getElementById(
-        "pantallaActividades"
-    );
+    document.getElementById("pantallaActividades");
 
 const pantallaSubmenu =
-    document.getElementById(
-        "pantallaSubmenu"
-    );
+    document.getElementById("pantallaSubmenu");
+
+const pantallaConfirmacion =
+    document.getElementById("pantallaConfirmacion");
 
 const folioInput =
-    document.getElementById(
-        "folio"
-    );
+    document.getElementById("folio");
 
 const nombreInput =
-    document.getElementById(
-        "nombre"
-    );
+    document.getElementById("nombre");
 
 const mensajeEntrada =
-    document.getElementById(
-        "mensajeEntrada"
-    );
+    document.getElementById("mensajeEntrada");
 
 
 // =====================================================
 // CONVERTIR A MAYÚSCULAS
 // =====================================================
 
-function convertirMayusculas(
-    texto
-) {
-
-    return String(texto)
-        .toLocaleUpperCase("es-MX");
-
-}
-
-
-// =====================================================
-// MAYÚSCULAS AL ESCRIBIR FOLIO
-// =====================================================
-
 folioInput.addEventListener(
     "input",
     function() {
 
-        folioInput.value =
-            convertirMayusculas(
-                folioInput.value
-            );
+        this.value =
+            this.value.toUpperCase();
 
     }
 );
 
 
-// =====================================================
-// MAYÚSCULAS AL ESCRIBIR NOMBRE
-// =====================================================
-
 nombreInput.addEventListener(
     "input",
     function() {
 
-        nombreInput.value =
-            convertirMayusculas(
-                nombreInput.value
-            );
+        this.value =
+            this.value.toUpperCase();
 
     }
 );
@@ -142,7 +103,9 @@ function mostrarPantalla(pantalla) {
 
         pantallaActividades,
 
-        pantallaSubmenu
+        pantallaSubmenu,
+
+        pantallaConfirmacion
 
     ];
 
@@ -150,17 +113,13 @@ function mostrarPantalla(pantalla) {
     pantallas.forEach(
         function(p) {
 
-            p.classList.add(
-                "oculto"
-            );
+            p.classList.add("oculto");
 
         }
     );
 
 
-    pantalla.classList.remove(
-        "oculto"
-    );
+    pantalla.classList.remove("oculto");
 
 }
 
@@ -186,25 +145,17 @@ function volverInicio() {
     nombreInput.value = "";
 
 
-    mensajeEntrada.textContent =
-        "";
+    mensajeEntrada.textContent = "";
 
 
     document
-        .getElementById(
-            "qrFolio"
-        )
-        .textContent =
-        "";
+        .getElementById("qrFolio")
+        .textContent = "";
 
 
     document
-        .getElementById(
-            "qrExito"
-        )
-        .classList.add(
-            "oculto"
-        );
+        .getElementById("qrExito")
+        .classList.add("oculto");
 
 
     mostrarPantalla(
@@ -215,13 +166,90 @@ function volverInicio() {
 
 
 // =====================================================
+// MOSTRAR CONFIRMACIÓN
+// =====================================================
+
+function mostrarConfirmacion(
+    tipo,
+    actividad
+) {
+
+    const titulo =
+        document.getElementById(
+            "tituloConfirmacion"
+        );
+
+    const mensaje =
+        document.getElementById(
+            "mensajeConfirmacion"
+        );
+
+    const actividadTexto =
+        document.getElementById(
+            "actividadConfirmacion"
+        );
+
+
+    if (tipo === "ENTRADA") {
+
+        titulo.textContent =
+            "¡Bienvenido!";
+
+        mensaje.textContent =
+            "¡Vuelve pronto!";
+
+    }
+
+
+    else {
+
+        titulo.textContent =
+            "¡Gracias por tu visita!";
+
+        mensaje.textContent =
+            "¡Vuelve pronto!";
+
+    }
+
+
+    if (actividad) {
+
+        actividadTexto.textContent =
+            actividad;
+
+    }
+
+    else {
+
+        actividadTexto.textContent =
+            "";
+
+    }
+
+
+    mostrarPantalla(
+        pantallaConfirmacion
+    );
+
+
+    setTimeout(
+        function() {
+
+            volverInicio();
+
+        },
+        3000
+    );
+
+}
+
+
+// =====================================================
 // ENTRADA
 // =====================================================
 
 document
-    .getElementById(
-        "btnEntrada"
-    )
+    .getElementById("btnEntrada")
     .addEventListener(
         "click",
         function() {
@@ -231,9 +259,7 @@ document
 
 
             document
-                .getElementById(
-                    "tituloFolio"
-                )
+                .getElementById("tituloFolio")
                 .textContent =
                 "Registro de Entrada";
 
@@ -251,9 +277,7 @@ document
 // =====================================================
 
 document
-    .getElementById(
-        "btnSalida"
-    )
+    .getElementById("btnSalida")
     .addEventListener(
         "click",
         function() {
@@ -263,9 +287,7 @@ document
 
 
             document
-                .getElementById(
-                    "tituloFolio"
-                )
+                .getElementById("tituloFolio")
                 .textContent =
                 "Registro de Salida";
 
@@ -283,16 +305,12 @@ document
 // =====================================================
 
 document
-    .getElementById(
-        "btnManual"
-    )
+    .getElementById("btnManual")
     .addEventListener(
         "click",
         function() {
 
-            folioInput.value =
-                "";
-
+            folioInput.value = "";
 
             mostrarPantalla(
                 pantallaManual
@@ -317,17 +335,13 @@ document
 // =====================================================
 
 document
-    .getElementById(
-        "btnContinuarFolio"
-    )
+    .getElementById("btnContinuarFolio")
     .addEventListener(
         "click",
         function() {
 
             procesarFolio(
-                convertirMayusculas(
-                    folioInput.value.trim()
-                )
+                folioInput.value.trim().toUpperCase()
             );
 
         }
@@ -342,14 +356,10 @@ folioInput.addEventListener(
     "keypress",
     function(e) {
 
-        if (
-            e.key === "Enter"
-        ) {
+        if (e.key === "Enter") {
 
             procesarFolio(
-                convertirMayusculas(
-                    folioInput.value.trim()
-                )
+                folioInput.value.trim().toUpperCase()
             );
 
         }
@@ -363,9 +373,7 @@ folioInput.addEventListener(
 // =====================================================
 
 document
-    .getElementById(
-        "btnQR"
-    )
+    .getElementById("btnQR")
     .addEventListener(
         "click",
         function() {
@@ -384,34 +392,22 @@ function iniciarQR() {
 
 
     document
-        .getElementById(
-            "qrExito"
-        )
-        .classList.add(
-            "oculto"
-        );
+        .getElementById("qrExito")
+        .classList.add("oculto");
 
 
     document
-        .getElementById(
-            "qrFolio"
-        )
-        .textContent =
-        "";
+        .getElementById("qrFolio")
+        .textContent = "";
 
 
     document
-        .getElementById(
-            "reader"
-        )
-        .innerHTML =
-        "";
+        .getElementById("reader")
+        .innerHTML = "";
 
 
     lectorQR =
-        new Html5Qrcode(
-            "reader"
-        );
+        new Html5Qrcode("reader");
 
 
     lectorQR.start(
@@ -436,29 +432,19 @@ function iniciarQR() {
 
         function(decodedText) {
 
-            // =====================================
-            // QR ENCONTRADO
-            // =====================================
-
             folioActual =
-                convertirMayusculas(
-                    decodedText.trim()
-                );
+                decodedText
+                    .trim()
+                    .toUpperCase();
 
 
             document
-                .getElementById(
-                    "qrExito"
-                )
-                .classList.remove(
-                    "oculto"
-                );
+                .getElementById("qrExito")
+                .classList.remove("oculto");
 
 
             document
-                .getElementById(
-                    "qrFolio"
-                )
+                .getElementById("qrFolio")
                 .textContent =
                 "Folio: " +
                 folioActual;
@@ -482,9 +468,7 @@ function iniciarQR() {
 
         function(errorMessage) {
 
-            // Los errores de lectura
-            // son normales mientras busca.
-            // No mostramos nada.
+            // Error normal mientras busca el QR.
 
         }
 
@@ -492,9 +476,7 @@ function iniciarQR() {
     .catch(
         function(error) {
 
-            console.error(
-                error
-            );
+            console.error(error);
 
 
             alert(
@@ -547,14 +529,12 @@ function detenerQR() {
 // PROCESAR FOLIO
 // =====================================================
 
-function procesarFolio(
-    folio
-) {
+function procesarFolio(folio) {
 
     folio =
-        convertirMayusculas(
-            folio
-        );
+        folio
+            .trim()
+            .toUpperCase();
 
 
     if (!folio) {
@@ -572,14 +552,7 @@ function procesarFolio(
         folio;
 
 
-    // =====================================
-    // SALIDA
-    // =====================================
-
-    if (
-        modoActual ===
-        "SALIDA"
-    ) {
+    if (modoActual === "SALIDA") {
 
         registrarSalida();
 
@@ -588,14 +561,7 @@ function procesarFolio(
     }
 
 
-    // =====================================
-    // ENTRADA
-    // =====================================
-
-    if (
-        modoActual ===
-        "ENTRADA"
-    ) {
+    if (modoActual === "ENTRADA") {
 
         buscarFolio();
 
@@ -650,19 +616,12 @@ function buscarFolio() {
             );
 
 
-            // =================================
-            // FOLIO ENCONTRADO
-            // =================================
-
-            if (
-                data.encontrado ===
-                true
-            ) {
+            if (data.encontrado === true) {
 
                 nombreActual =
-                    convertirMayusculas(
-                        data.nombre
-                    );
+                    String(
+                        data.nombre || ""
+                    ).toUpperCase();
 
 
                 mensajeEntrada.className =
@@ -690,12 +649,7 @@ function buscarFolio() {
             }
 
 
-            // =================================
-            // FOLIO NO ENCONTRADO
-            // =================================
-
-            nombreInput.value =
-                "";
+            nombreInput.value = "";
 
 
             mensajeEntrada.className =
@@ -707,21 +661,13 @@ function buscarFolio() {
 
 
             document
-                .getElementById(
-                    "campoNombre"
-                )
-                .classList.remove(
-                    "oculto"
-                );
+                .getElementById("campoNombre")
+                .classList.remove("oculto");
 
 
             document
-                .getElementById(
-                    "btnNombre"
-                )
-                .classList.remove(
-                    "oculto"
-                );
+                .getElementById("btnNombre")
+                .classList.remove("oculto");
 
 
             setTimeout(
@@ -739,9 +685,7 @@ function buscarFolio() {
     .catch(
         function(error) {
 
-            console.error(
-                error
-            );
+            console.error(error);
 
 
             mensajeEntrada.className =
@@ -758,21 +702,19 @@ function buscarFolio() {
 
 
 // =====================================================
-// REGISTRAR NOMBRE DEL FOLIO NUEVO
+// REGISTRAR NOMBRE
 // =====================================================
 
 document
-    .getElementById(
-        "btnNombre"
-    )
+    .getElementById("btnNombre")
     .addEventListener(
         "click",
         function() {
 
             const nombre =
-                convertirMayusculas(
-                    nombreInput.value.trim()
-                );
+                nombreInput.value
+                    .trim()
+                    .toUpperCase();
 
 
             if (!nombre) {
@@ -819,26 +761,22 @@ function guardarNuevoUsuario() {
 
         {
 
-            method:
-                "POST",
+            method: "POST",
 
-            body:
-                JSON.stringify({
+            body: JSON.stringify({
 
-                    modo:
-                        "REGISTRAR_USUARIO",
+                modo:
+                    "REGISTRAR_USUARIO",
 
-                    folio:
-                        convertirMayusculas(
-                            folioActual
-                        ),
+                folio:
+                    folioActual
+                        .toUpperCase(),
 
-                    nombre:
-                        convertirMayusculas(
-                            nombreActual
-                        )
+                nombre:
+                    nombreActual
+                        .toUpperCase()
 
-                })
+            })
 
         }
 
@@ -885,9 +823,7 @@ function guardarNuevoUsuario() {
     .catch(
         function(error) {
 
-            console.error(
-                error
-            );
+            console.error(error);
 
 
             mensajeEntrada.className =
@@ -938,22 +874,17 @@ document
 // =====================================================
 
 document
-    .getElementById(
-        "btnPrepaAbierta"
-    )
+    .getElementById("btnPrepaAbierta")
     .addEventListener(
         "click",
         function() {
 
             const opciones =
-                crearNumeros(
-                    1,
-                    21
-                );
+                crearNumeros(1, 21);
 
 
             crearSubmenu(
-                "Prepa Abierta",
+                "🎓 Prepa Abierta",
                 opciones
             );
 
@@ -966,9 +897,7 @@ document
 // =====================================================
 
 document
-    .getElementById(
-        "btnPrepaLinea"
-    )
+    .getElementById("btnPrepaLinea")
     .addEventListener(
         "click",
         function() {
@@ -994,7 +923,7 @@ document
 
 
             crearSubmenu(
-                "Prepa en Línea",
+                "🧑‍🎓 Prepa en Línea",
                 opciones
             );
 
@@ -1007,16 +936,14 @@ document
 // =====================================================
 
 document
-    .getElementById(
-        "btnAsesoria"
-    )
+    .getElementById("btnAsesoria")
     .addEventListener(
         "click",
         function() {
 
             crearSubmenu(
 
-                "Asesorías",
+                "👨‍🏫 Asesorías",
 
                 [
 
@@ -1078,9 +1005,7 @@ function crearSubmenu(
 ) {
 
     document
-        .getElementById(
-            "tituloSubmenu"
-        )
+        .getElementById("tituloSubmenu")
         .textContent =
         titulo;
 
@@ -1091,8 +1016,7 @@ function crearSubmenu(
         );
 
 
-    contenedor.innerHTML =
-        "";
+    contenedor.innerHTML = "";
 
 
     opciones.forEach(
@@ -1115,10 +1039,6 @@ function crearSubmenu(
             boton.textContent =
                 opcion;
 
-
-            // =================================
-            // AL TOCAR REGISTRA DIRECTAMENTE
-            // =================================
 
             boton.addEventListener(
                 "click",
@@ -1154,6 +1074,24 @@ function crearSubmenu(
 
 
 // =====================================================
+// LIMPIAR ICONOS DE ACTIVIDAD
+// =====================================================
+
+function limpiarActividad(
+    actividad
+) {
+
+    return actividad
+        .replace(
+            /^[^\p{L}\p{N}]+/u,
+            ""
+        )
+        .trim();
+
+}
+
+
+// =====================================================
 // REGISTRAR ENTRADA
 // =====================================================
 
@@ -1161,7 +1099,12 @@ function registrarEntrada(
     actividad
 ) {
 
-    // Evitar doble clic
+    actividad =
+        limpiarActividad(
+            actividad
+        );
+
+
     const botones =
         document.querySelectorAll(
             ".actividad"
@@ -1184,29 +1127,25 @@ function registrarEntrada(
 
         {
 
-            method:
-                "POST",
+            method: "POST",
 
-            body:
-                JSON.stringify({
+            body: JSON.stringify({
 
-                    modo:
-                        "ENTRADA",
+                modo:
+                    "ENTRADA",
 
-                    folio:
-                        convertirMayusculas(
-                            folioActual
-                        ),
+                folio:
+                    folioActual
+                        .toUpperCase(),
 
-                    nombre:
-                        convertirMayusculas(
-                            nombreActual
-                        ),
+                nombre:
+                    nombreActual
+                        .toUpperCase(),
 
-                    actividad:
-                        actividad
+                actividad:
+                    actividad
 
-                })
+            })
 
         }
 
@@ -1235,6 +1174,7 @@ function registrarEntrada(
                     data.error
                 );
 
+
                 botones.forEach(
                     function(boton) {
 
@@ -1244,20 +1184,16 @@ function registrarEntrada(
                     }
                 );
 
+
                 return;
 
             }
 
 
-            alert(
-
-                "✓ ENTRADA REGISTRADA\n\n" +
+            mostrarConfirmacion(
+                "ENTRADA",
                 actividad
-
             );
-
-
-            volverInicio();
 
         }
     )
@@ -1265,9 +1201,7 @@ function registrarEntrada(
     .catch(
         function(error) {
 
-            console.error(
-                error
-            );
+            console.error(error);
 
 
             alert(
@@ -1302,27 +1236,24 @@ function registrarSalida() {
 
         {
 
-            method:
-                "POST",
+            method: "POST",
 
-            body:
-                JSON.stringify({
+            body: JSON.stringify({
 
-                    modo:
-                        "SALIDA",
+                modo:
+                    "SALIDA",
 
-                    folio:
-                        convertirMayusculas(
-                            folioActual
-                        ),
+                folio:
+                    folioActual
+                        .toUpperCase(),
 
-                    nombre:
-                        "",
+                nombre:
+                    "",
 
-                    actividad:
-                        ""
+                actividad:
+                    ""
 
-                })
+            })
 
         }
 
@@ -1356,12 +1287,10 @@ function registrarSalida() {
             }
 
 
-            alert(
-                "✓ SALIDA REGISTRADA"
+            mostrarConfirmacion(
+                "SALIDA",
+                ""
             );
-
-
-            volverInicio();
 
         }
     )
@@ -1369,9 +1298,7 @@ function registrarSalida() {
     .catch(
         function(error) {
 
-            console.error(
-                error
-            );
+            console.error(error);
 
 
             alert(
@@ -1389,9 +1316,7 @@ function registrarSalida() {
 // =====================================================
 
 document
-    .getElementById(
-        "btnCancelarFolio"
-    )
+    .getElementById("btnCancelarFolio")
     .addEventListener(
         "click",
         volverInicio
@@ -1399,9 +1324,7 @@ document
 
 
 document
-    .getElementById(
-        "btnCancelarManual"
-    )
+    .getElementById("btnCancelarManual")
     .addEventListener(
         "click",
         volverInicio
@@ -1409,9 +1332,7 @@ document
 
 
 document
-    .getElementById(
-        "btnCancelarQR"
-    )
+    .getElementById("btnCancelarQR")
     .addEventListener(
         "click",
         volverInicio
@@ -1419,9 +1340,7 @@ document
 
 
 document
-    .getElementById(
-        "btnCancelarEntrada"
-    )
+    .getElementById("btnCancelarEntrada")
     .addEventListener(
         "click",
         volverInicio
@@ -1429,9 +1348,7 @@ document
 
 
 document
-    .getElementById(
-        "btnCancelarActividad"
-    )
+    .getElementById("btnCancelarActividad")
     .addEventListener(
         "click",
         volverInicio
@@ -1439,9 +1356,7 @@ document
 
 
 document
-    .getElementById(
-        "btnVolverActividades"
-    )
+    .getElementById("btnVolverActividades")
     .addEventListener(
         "click",
         function() {
