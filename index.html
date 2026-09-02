@@ -4,10 +4,7 @@
 <head>
     <meta charset="UTF-8">
 
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Sistema de Registro</title>
 
@@ -16,378 +13,319 @@
 
 <body>
 
-    <main class="contenedor">
+<main class="contenedor">
 
-        <!-- ============================== -->
-        <!-- ENCABEZADO -->
-        <!-- ============================== -->
+    <h1>Sistema de Registro</h1>
 
-        <h1>Sistema de Registro</h1>
-
-        <p class="subtitulo">
-            Selecciona una opción
-        </p>
+    <p id="subtitulo" class="subtitulo">
+        Selecciona una opción
+    </p>
 
 
-        <!-- ============================== -->
-        <!-- INICIO -->
-        <!-- ============================== -->
+    <!-- ================================================= -->
+    <!-- INICIO -->
+    <!-- ================================================= -->
 
-        <section
-            id="pantallaInicio"
-            class="pantalla"
-        >
+    <section id="pantallaInicio">
+
+        <div class="botones-principales">
 
             <button
                 id="btnEntrada"
                 class="boton entrada"
-                type="button"
-            >
+                type="button">
                 ENTRADA
             </button>
 
             <button
                 id="btnSalida"
                 class="boton salida"
-                type="button"
-            >
+                type="button">
                 SALIDA
             </button>
 
-        </section>
+        </div>
 
+    </section>
 
-        <!-- ============================== -->
-        <!-- FOLIO -->
-        <!-- ============================== -->
 
-        <section
-            id="pantallaFolio"
-            class="pantalla oculto"
-        >
+    <!-- ================================================= -->
+    <!-- FOLIO -->
+    <!-- ================================================= -->
 
-            <h2 id="tituloFolio">
-                Folio
-            </h2>
+    <section
+        id="pantallaFolio"
+        class="oculto">
 
-            <label for="folio">
-                Folio
-            </label>
+        <h2 id="tituloFolio">
+            Folio
+        </h2>
 
-            <input
-                type="text"
-                id="folio"
-                placeholder="Escribe el folio"
-                autocomplete="off"
-                inputmode="text"
-            >
+        <label for="folio">
+            Folio
+        </label>
 
-            <button
-                id="btnBuscar"
-                class="boton buscar"
-                type="button"
-            >
-                BUSCAR FOLIO
-            </button>
-
-            <button
-                id="btnCancelarFolio"
-                class="boton cancelar"
-                type="button"
-            >
-                CANCELAR
-            </button>
-
-        </section>
-
-
-        <!-- ============================== -->
-        <!-- NUEVO USUARIO -->
-        <!-- ============================== -->
-
-        <section
-            id="pantallaNuevoUsuario"
-            class="pantalla oculto"
-        >
-
-            <h2>Nuevo registro</h2>
-
-            <p class="texto-ayuda">
-                Este folio no está registrado.
-            </p>
-
-            <p class="folio-mostrado">
-                Folio:
-                <strong id="folioNuevo"></strong>
-            </p>
-
-            <label for="nombreNuevo">
-                Nombre
-            </label>
-
-            <input
-                type="text"
-                id="nombreNuevo"
-                placeholder="Escribe el nombre"
-                autocomplete="off"
-            >
-
-            <button
-                id="btnGuardarUsuario"
-                class="boton registrar"
-                type="button"
-            >
-                GUARDAR NOMBRE
-            </button>
-
-            <button
-                id="btnCancelarNuevo"
-                class="boton cancelar"
-                type="button"
-            >
-                CANCELAR
-            </button>
-
-        </section>
-
-
-        <!-- ============================== -->
-        <!-- CONFIRMAR NOMBRE -->
-        <!-- ============================== -->
-
-        <section
-            id="pantallaNombre"
-            class="pantalla oculto"
-        >
-
-            <h2>Usuario encontrado</h2>
-
-            <p class="texto-ayuda">
-                Nombre:
-            </p>
-
-            <div
-                id="nombreEncontrado"
-                class="nombre-grande"
-            ></div>
-
-            <button
-                id="btnContinuarActividad"
-                class="boton registrar"
-                type="button"
-            >
-                CONTINUAR
-            </button>
-
-            <button
-                id="btnCancelarNombre"
-                class="boton cancelar"
-                type="button"
-            >
-                CANCELAR
-            </button>
-
-        </section>
-
-
-        <!-- ============================== -->
-        <!-- ACTIVIDADES -->
-        <!-- ============================== -->
-
-        <section
-            id="pantallaActividades"
-            class="pantalla oculto"
-        >
-
-            <h2>
-                Selecciona actividad
-            </h2>
-
-            <div
-                id="listaActividades"
-                class="lista-opciones"
-            >
-
-                <button
-                    class="opcion"
-                    data-actividad="Alfabetización"
-                >
-                    Alfabetización
-                </button>
-
-                <button
-                    class="opcion"
-                    data-actividad="Primaria INEA"
-                >
-                    Primaria INEA
-                </button>
-
-                <button
-                    class="opcion"
-                    data-actividad="Secundaria INEA"
-                >
-                    Secundaria INEA
-                </button>
-
-                <button
-                    class="opcion submenu"
-                    data-menu="prepaAbierta"
-                >
-                    Prepa Abierta
-                    <span>›</span>
-                </button>
-
-                <button
-                    class="opcion submenu"
-                    data-menu="prepaLinea"
-                >
-                    Prepa en Línea
-                    <span>›</span>
-                </button>
-
-                <button
-                    class="opcion submenu"
-                    data-menu="asesorias"
-                >
-                    Asesorías
-                    <span>›</span>
-                </button>
-
-                <button
-                    class="opcion"
-                    data-actividad="Computación"
-                >
-                    Computación
-                </button>
-
-                <button
-                    class="opcion"
-                    data-actividad="Uso de computadora"
-                >
-                    Uso de computadora
-                </button>
-
-                <button
-                    class="opcion"
-                    data-actividad="Servicio social"
-                >
-                    Servicio social
-                </button>
-
-                <button
-                    class="opcion"
-                    data-actividad="Beneficiarios"
-                >
-                    Beneficiarios
-                </button>
-
-            </div>
-
-            <button
-                id="btnRegresarActividades"
-                class="boton cancelar"
-                type="button"
-            >
-                ← REGRESAR
-            </button>
-
-        </section>
-
-
-        <!-- ============================== -->
-        <!-- SUBMENU -->
-        <!-- ============================== -->
-
-        <section
-            id="pantallaSubmenu"
-            class="pantalla oculto"
-        >
-
-            <h2 id="tituloSubmenu"></h2>
-
-            <div
-                id="listaSubmenu"
-                class="lista-opciones"
-            >
-            </div>
-
-            <button
-                id="btnRegresarSubmenu"
-                class="boton cancelar"
-                type="button"
-            >
-                ← REGRESAR
-            </button>
-
-        </section>
-
-
-        <!-- ============================== -->
-        <!-- CONFIRMAR ACTIVIDAD -->
-        <!-- ============================== -->
-
-        <section
-            id="pantallaConfirmacion"
-            class="pantalla oculto"
-        >
-
-            <h2>
-                Confirmar registro
-            </h2>
-
-            <div class="resumen">
-
-                <p>
-                    <strong>Folio:</strong>
-                    <span id="resumenFolio"></span>
-                </p>
-
-                <p>
-                    <strong>Nombre:</strong>
-                    <span id="resumenNombre"></span>
-                </p>
-
-                <p>
-                    <strong>Actividad:</strong>
-                    <span id="resumenActividad"></span>
-                </p>
-
-            </div>
-
-            <button
-                id="btnConfirmarRegistro"
-                class="boton registrar"
-                type="button"
-            >
-                REGISTRAR ENTRADA
-            </button>
-
-            <button
-                id="btnRegresarConfirmacion"
-                class="boton cancelar"
-                type="button"
-            >
-                ← CAMBIAR ACTIVIDAD
-            </button>
-
-        </section>
-
-
-        <!-- ============================== -->
-        <!-- MENSAJE -->
-        <!-- ============================== -->
+        <input
+            type="text"
+            id="folio"
+            placeholder="Escribe o escanea el folio"
+            autocomplete="off">
 
         <p
-            id="mensaje"
-            class="mensaje"
-        ></p>
+            id="mensajeFolio"
+            class="mensaje">
+        </p>
+
+        <button
+            id="btnBuscar"
+            class="boton registrar"
+            type="button">
+            BUSCAR FOLIO
+        </button>
+
+        <button
+            id="btnCancelarFolio"
+            class="boton cancelar"
+            type="button">
+            CANCELAR
+        </button>
+
+    </section>
 
 
-    </main>
+    <!-- ================================================= -->
+    <!-- NUEVO USUARIO -->
+    <!-- ================================================= -->
+
+    <section
+        id="pantallaNuevoUsuario"
+        class="oculto">
+
+        <h2>Nuevo folio</h2>
+
+        <p class="texto-info">
+            Este folio no está registrado.
+        </p>
+
+        <p>
+            Folio:
+            <strong id="folioNuevo"></strong>
+        </p>
+
+        <label for="nombreNuevo">
+            Nombre
+        </label>
+
+        <input
+            type="text"
+            id="nombreNuevo"
+            placeholder="Nombre completo"
+            autocomplete="off">
+
+        <p
+            id="mensajeNuevo"
+            class="mensaje">
+        </p>
+
+        <button
+            id="btnGuardarUsuario"
+            class="boton registrar"
+            type="button">
+            GUARDAR Y CONTINUAR
+        </button>
+
+        <button
+            id="btnCancelarNuevo"
+            class="boton cancelar"
+            type="button">
+            CANCELAR
+        </button>
+
+    </section>
 
 
-    <script src="app.js"></script>
+    <!-- ================================================= -->
+    <!-- ACTIVIDADES -->
+    <!-- ================================================= -->
+
+    <section
+        id="pantallaActividades"
+        class="oculto">
+
+        <h2>
+            Selecciona una actividad
+        </h2>
+
+        <div
+            id="listaActividades"
+            class="lista-opciones">
+
+            <button
+                class="opcion"
+                data-actividad="Alfabetización"
+                type="button">
+                Alfabetización
+            </button>
+
+            <button
+                class="opcion"
+                data-actividad="Primaria INEA"
+                type="button">
+                Primaria INEA
+            </button>
+
+            <button
+                class="opcion"
+                data-actividad="Secundaria INEA"
+                type="button">
+                Secundaria INEA
+            </button>
+
+            <button
+                class="opcion"
+                data-menu="prepaAbierta"
+                type="button">
+                Prepa Abierta
+            </button>
+
+            <button
+                class="opcion"
+                data-menu="prepaLinea"
+                type="button">
+                Prepa en Línea
+            </button>
+
+            <button
+                class="opcion"
+                data-menu="asesorias"
+                type="button">
+                Asesorías
+            </button>
+
+            <button
+                class="opcion"
+                data-actividad="Computación"
+                type="button">
+                Computación
+            </button>
+
+            <button
+                class="opcion"
+                data-actividad="Uso de computadora"
+                type="button">
+                Uso de computadora
+            </button>
+
+            <button
+                class="opcion"
+                data-actividad="Servicio social"
+                type="button">
+                Servicio social
+            </button>
+
+            <button
+                class="opcion"
+                data-actividad="Beneficiarios"
+                type="button">
+                Beneficiarios
+            </button>
+
+        </div>
+
+        <button
+            id="btnCancelarActividades"
+            class="boton cancelar"
+            type="button">
+            CANCELAR
+        </button>
+
+    </section>
+
+
+    <!-- ================================================= -->
+    <!-- SUBMENÚ -->
+    <!-- ================================================= -->
+
+    <section
+        id="pantallaSubmenu"
+        class="oculto">
+
+        <h2 id="tituloSubmenu">
+            Selecciona una opción
+        </h2>
+
+        <div
+            id="listaSubmenu"
+            class="lista-opciones">
+        </div>
+
+        <button
+            id="btnRegresarActividades"
+            class="boton cancelar"
+            type="button">
+            REGRESAR
+        </button>
+
+    </section>
+
+
+    <!-- ================================================= -->
+    <!-- CONFIRMACIÓN -->
+    <!-- ================================================= -->
+
+    <section
+        id="pantallaConfirmacion"
+        class="oculto">
+
+        <h2>
+            Confirmar entrada
+        </h2>
+
+        <div class="resumen">
+
+            <p>
+                <strong>Folio:</strong>
+                <span id="resumenFolio"></span>
+            </p>
+
+            <p>
+                <strong>Nombre:</strong>
+                <span id="resumenNombre"></span>
+            </p>
+
+            <p>
+                <strong>Actividad:</strong>
+                <span id="resumenActividad"></span>
+            </p>
+
+        </div>
+
+        <p
+            id="mensajeRegistro"
+            class="mensaje">
+        </p>
+
+        <button
+            id="btnConfirmarRegistro"
+            class="boton registrar"
+            type="button">
+            REGISTRAR ENTRADA
+        </button>
+
+        <button
+            id="btnRegresarConfirmacion"
+            class="boton cancelar"
+            type="button">
+            REGRESAR
+        </button>
+
+    </section>
+
+
+</main>
+
+
+<script src="app.js"></script>
 
 </body>
-
 </html>
