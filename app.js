@@ -58,6 +58,11 @@ const pantallaSubmenu =
         "pantallaSubmenu"
     );
 
+const pantallaBienvenida =
+    document.getElementById(
+        "pantallaBienvenida"
+    );
+
 const folioInput =
     document.getElementById(
         "folio"
@@ -72,6 +77,36 @@ const mensajeEntrada =
     document.getElementById(
         "mensajeEntrada"
     );
+
+
+// =====================================================
+// FOLIO SIEMPRE EN MAYÚSCULAS
+// =====================================================
+
+folioInput.addEventListener(
+    "input",
+    function() {
+
+        folioInput.value =
+            folioInput.value.toUpperCase();
+
+    }
+);
+
+
+// =====================================================
+// NOMBRE SIEMPRE EN MAYÚSCULAS
+// =====================================================
+
+nombreInput.addEventListener(
+    "input",
+    function() {
+
+        nombreInput.value =
+            nombreInput.value.toUpperCase();
+
+    }
+);
 
 
 // =====================================================
@@ -94,7 +129,9 @@ function mostrarPantalla(pantalla) {
 
         pantallaActividades,
 
-        pantallaSubmenu
+        pantallaSubmenu,
+
+        pantallaBienvenida
 
     ];
 
@@ -277,7 +314,9 @@ document
         function() {
 
             procesarFolio(
-                folioInput.value.trim()
+                folioInput.value
+                    .trim()
+                    .toUpperCase()
             );
 
         }
@@ -297,7 +336,9 @@ folioInput.addEventListener(
         ) {
 
             procesarFolio(
-                folioInput.value.trim()
+                folioInput.value
+                    .trim()
+                    .toUpperCase()
             );
 
         }
@@ -389,7 +430,9 @@ function iniciarQR() {
             // =====================================
 
             folioActual =
-                decodedText.trim();
+                decodedText
+                    .trim()
+                    .toUpperCase();
 
 
             document
@@ -509,7 +552,9 @@ function procesarFolio(
 
 
     folioActual =
-        folio;
+        folio
+            .trim()
+            .toUpperCase();
 
 
     // =====================================
@@ -600,7 +645,11 @@ function buscarFolio() {
             ) {
 
                 nombreActual =
-                    data.nombre;
+                    String(
+                        data.nombre || ""
+                    )
+                    .trim()
+                    .toUpperCase();
 
 
                 mensajeEntrada.className =
@@ -708,7 +757,9 @@ document
         function() {
 
             const nombre =
-                nombreInput.value.trim();
+                nombreInput.value
+                    .trim()
+                    .toUpperCase();
 
 
             if (!nombre) {
@@ -765,10 +816,12 @@ function guardarNuevoUsuario() {
                         "REGISTRAR_USUARIO",
 
                     folio:
-                        folioActual,
+                        folioActual
+                            .toUpperCase(),
 
                     nombre:
                         nombreActual
+                            .toUpperCase()
 
                 })
 
@@ -1086,6 +1139,92 @@ function crearSubmenu(
 
 
 // =====================================================
+// PANTALLA DE BIENVENIDA
+// =====================================================
+
+function mostrarBienvenida(
+    tipo,
+    actividad
+) {
+
+    const titulo =
+        document.getElementById(
+            "tituloBienvenida"
+        );
+
+    const mensaje =
+        document.getElementById(
+            "mensajeBienvenida"
+        );
+
+    const actividadTexto =
+        document.getElementById(
+            "actividadBienvenida"
+        );
+
+
+    // =====================================
+    // ENTRADA
+    // =====================================
+
+    if (
+        tipo === "ENTRADA"
+    ) {
+
+        titulo.textContent =
+            "¡BIENVENIDO!";
+
+        mensaje.textContent =
+            nombreActual;
+
+        actividadTexto.textContent =
+            actividad;
+
+    }
+
+
+    // =====================================
+    // SALIDA
+    // =====================================
+
+    if (
+        tipo === "SALIDA"
+    ) {
+
+        titulo.textContent =
+            "¡HASTA PRONTO!";
+
+        mensaje.textContent =
+            folioActual;
+
+        actividadTexto.textContent =
+            "Salida registrada";
+
+    }
+
+
+    mostrarPantalla(
+        pantallaBienvenida
+    );
+
+
+    // =====================================
+    // REGRESAR AL INICIO EN 3 SEGUNDOS
+    // =====================================
+
+    setTimeout(
+        function() {
+
+            volverInicio();
+
+        },
+        3000
+    );
+
+}
+
+
+// =====================================================
 // REGISTRAR ENTRADA
 // =====================================================
 
@@ -1126,10 +1265,12 @@ function registrarEntrada(
                         "ENTRADA",
 
                     folio:
-                        folioActual,
+                        folioActual
+                            .toUpperCase(),
 
                     nombre:
-                        nombreActual,
+                        nombreActual
+                            .toUpperCase(),
 
                     actividad:
                         actividad
@@ -1177,15 +1318,14 @@ function registrarEntrada(
             }
 
 
-            alert(
+            // =====================================
+            // MOSTRAR BIENVENIDA
+            // =====================================
 
-                "✓ ENTRADA REGISTRADA\n\n" +
+            mostrarBienvenida(
+                "ENTRADA",
                 actividad
-
             );
-
-
-            volverInicio();
 
         }
     )
@@ -1240,7 +1380,8 @@ function registrarSalida() {
                         "SALIDA",
 
                     folio:
-                        folioActual,
+                        folioActual
+                            .toUpperCase(),
 
                     nombre:
                         "",
@@ -1282,12 +1423,14 @@ function registrarSalida() {
             }
 
 
-            alert(
-                "✓ SALIDA REGISTRADA"
+            // =====================================
+            // MOSTRAR PANTALLA DE SALIDA
+            // =====================================
+
+            mostrarBienvenida(
+                "SALIDA",
+                ""
             );
-
-
-            volverInicio();
 
         }
     )
