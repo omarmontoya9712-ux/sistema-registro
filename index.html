@@ -10,11 +10,12 @@
         content="width=device-width, initial-scale=1.0"
     >
 
-    <title>Sistema de Registro</title>
+    <title>Registro PILARES</title>
 
+    <!-- ESTILOS -->
     <link rel="stylesheet" href="style.css">
 
-    <!-- Librería para escanear QR -->
+    <!-- LECTOR QR -->
     <script
         src="https://unpkg.com/html5-qrcode"
         type="text/javascript">
@@ -28,56 +29,73 @@
 <main class="contenedor">
 
 
-    <!-- ================================= -->
+    <!-- ===================================== -->
     <!-- ENCABEZADO -->
-    <!-- ================================= -->
+    <!-- ===================================== -->
 
-    <h1>Sistema de Registro</h1>
+    <header class="encabezado">
 
-    <p
-        id="subtitulo"
-        class="subtitulo">
-        Selecciona una opción
-    </p>
+        <div class="icono-encabezado">
+            🚎
+        </div>
+
+        <div class="titulo-principal">
+
+            <h1>
+                REGISTRO PILARES
+            </h1>
+
+            <p class="subtitulo">
+                Registro de actividades
+            </p>
+
+        </div>
+
+        <div class="icono-encabezado flor">
+            🪻
+        </div>
+
+    </header>
 
 
-    <!-- ================================= -->
-    <!-- MENU PRINCIPAL -->
-    <!-- ================================= -->
+    <!-- ===================================== -->
+    <!-- INICIO -->
+    <!-- ===================================== -->
 
     <section
         id="menuPrincipal"
         class="pantalla">
 
-        <div class="botones-principales">
-
-            <button
-                id="btnEntrada"
-                class="boton entrada"
-                type="button">
-
-                ENTRADA
-
-            </button>
+        <h2>
+            Selecciona una opción
+        </h2>
 
 
-            <button
-                id="btnSalida"
-                class="boton salida"
-                type="button">
+        <button
+            id="btnEntrada"
+            class="boton entrada"
+            type="button">
 
-                SALIDA
+            🟢 ENTRADA
 
-            </button>
+        </button>
 
-        </div>
+
+        <button
+            id="btnSalida"
+            class="boton salida"
+            type="button">
+
+            🔴 SALIDA
+
+        </button>
 
     </section>
 
 
-    <!-- ================================= -->
-    <!-- OPCIONES DEL FOLIO -->
-    <!-- ================================= -->
+    <!-- ===================================== -->
+    <!-- OPCIONES DE FOLIO -->
+    <!-- ===================================== -->
 
     <section
         id="opcionesFolio"
@@ -117,16 +135,16 @@
             class="boton cancelar"
             type="button">
 
-            CANCELAR
+            ↩️ CANCELAR
 
         </button>
 
     </section>
 
 
-    <!-- ================================= -->
+    <!-- ===================================== -->
     <!-- FOLIO MANUAL -->
-    <!-- ================================= -->
+    <!-- ===================================== -->
 
     <section
         id="pantallaManual"
@@ -165,23 +183,23 @@
             class="boton cancelar"
             type="button">
 
-            CANCELAR
+            ↩️ CANCELAR
 
         </button>
 
     </section>
 
 
-    <!-- ================================= -->
+    <!-- ===================================== -->
     <!-- ESCANEAR QR -->
-    <!-- ================================= -->
+    <!-- ===================================== -->
 
     <section
         id="pantallaQR"
         class="pantalla oculto">
 
         <h2>
-            Escanear código QR
+            📷 Escanear código QR
         </h2>
 
 
@@ -202,28 +220,34 @@
         </div>
 
 
+        <p
+            id="qrFolio"
+            class="qr-folio">
+        </p>
+
+
         <button
             id="btnCancelarQR"
             class="boton cancelar"
             type="button">
 
-            CANCELAR
+            ↩️ CANCELAR
 
         </button>
 
     </section>
 
 
-    <!-- ================================= -->
-    <!-- FORMULARIO DE NUEVO USUARIO -->
-    <!-- ================================= -->
+    <!-- ===================================== -->
+    <!-- NUEVO USUARIO -->
+    <!-- ===================================== -->
 
     <section
         id="formularioEntrada"
         class="pantalla oculto">
 
         <h2>
-            Nuevo registro
+            👤 Nuevo registro
         </h2>
 
 
@@ -233,8 +257,7 @@
         </p>
 
 
-        <div
-            id="campoNombre">
+        <div id="campoNombre">
 
             <label for="nombre">
                 Nombre completo
@@ -266,51 +289,76 @@
             class="boton cancelar"
             type="button">
 
-            CANCELAR
+            ↩️ CANCELAR
 
         </button>
 
     </section>
 
 
-    <!-- ================================= -->
+    <!-- ===================================== -->
     <!-- ACTIVIDADES -->
-    <!-- ================================= -->
+    <!-- ===================================== -->
 
     <section
         id="pantallaActividades"
         class="pantalla oculto">
 
         <h2>
-            Selecciona la actividad
+            📚 Selecciona la actividad
         </h2>
 
 
-        <!-- ACTIVIDADES SIN SUBMENU -->
+        <!-- ALFABETIZACIÓN -->
 
         <button
             class="boton actividad"
-            data-actividad="Alfabetización">
+            data-actividad="Alfabetización"
+            type="button">
 
-            Alfabetización
+            <span class="actividad-icono">
+                👓
+            </span>
+
+            <span>
+                Alfabetización
+            </span>
 
         </button>
 
 
+        <!-- PRIMARIA -->
+
         <button
             class="boton actividad"
-            data-actividad="Primaria INEA">
+            data-actividad="Primaria INEA"
+            type="button">
 
-            Primaria INEA
+            <span class="actividad-icono">
+                📘
+            </span>
+
+            <span>
+                Primaria INEA
+            </span>
 
         </button>
 
 
+        <!-- SECUNDARIA -->
+
         <button
             class="boton actividad"
-            data-actividad="Secundaria INEA">
+            data-actividad="Secundaria INEA"
+            type="button">
 
-            Secundaria INEA
+            <span class="actividad-icono">
+                📕
+            </span>
+
+            <span>
+                Secundaria INEA
+            </span>
 
         </button>
 
@@ -319,87 +367,143 @@
 
         <button
             id="btnPrepaAbierta"
-            class="boton actividad">
+            class="boton actividad"
+            type="button">
 
-            Prepa Abierta
+            <span class="actividad-icono">
+                🎓
+            </span>
+
+            <span>
+                Prepa Abierta
+            </span>
 
         </button>
 
 
-        <!-- PREPA EN LINEA -->
+        <!-- PREPA EN LÍNEA -->
 
         <button
             id="btnPrepaLinea"
-            class="boton actividad">
+            class="boton actividad"
+            type="button">
 
-            Prepa en Línea
+            <span class="actividad-icono">
+                🧑‍🎓
+            </span>
+
+            <span>
+                Prepa en Línea
+            </span>
 
         </button>
 
 
-        <!-- ASESORIAS -->
+        <!-- ASESORÍAS -->
 
         <button
             id="btnAsesoria"
-            class="boton actividad">
+            class="boton actividad"
+            type="button">
 
-            Asesorías
+            <span class="actividad-icono">
+                👨‍🏫
+            </span>
+
+            <span>
+                Asesorías
+            </span>
 
         </button>
 
 
-        <!-- RESTO -->
+        <!-- COMPUTACIÓN -->
 
         <button
             class="boton actividad"
-            data-actividad="Computación">
+            data-actividad="Computación"
+            type="button">
 
-            Computación
+            <span class="actividad-icono">
+                🖥️
+            </span>
+
+            <span>
+                Computación
+            </span>
 
         </button>
 
 
+        <!-- USO DE COMPUTADORA -->
+
         <button
             class="boton actividad"
-            data-actividad="Uso de computadora">
+            data-actividad="Uso de computadora"
+            type="button">
 
-            Uso de computadora
+            <span class="actividad-icono">
+                🖱️
+            </span>
+
+            <span>
+                Uso de computadora
+            </span>
 
         </button>
 
 
+        <!-- SERVICIO SOCIAL -->
+
         <button
             class="boton actividad"
-            data-actividad="Servicio social">
+            data-actividad="Servicio social"
+            type="button">
 
-            Servicio social
+            <span class="actividad-icono">
+                🤝
+            </span>
+
+            <span>
+                Servicio social
+            </span>
 
         </button>
 
 
+        <!-- BENEFICIARIOS -->
+
         <button
             class="boton actividad"
-            data-actividad="Beneficiarios">
+            data-actividad="Beneficiarios"
+            type="button">
 
-            Beneficiarios
+            <span class="actividad-icono">
+                👥
+            </span>
+
+            <span>
+                Beneficiarios
+            </span>
 
         </button>
 
 
         <button
             id="btnCancelarActividad"
-            class="boton cancelar">
+            class="boton cancelar"
+            type="button">
 
-            CANCELAR
+            ↩️ CANCELAR
 
         </button>
 
     </section>
 
 
-    <!-- ================================= -->
-    <!-- SUBMENU -->
-    <!-- ================================= -->
+    <!-- ===================================== -->
+    <!-- SUBMENÚ -->
+    <!-- ===================================== -->
 
     <section
         id="pantallaSubmenu"
@@ -415,9 +519,10 @@
 
         <button
             id="btnVolverActividades"
-            class="boton cancelar">
+            class="boton cancelar"
+            type="button">
 
-            VOLVER
+            ↩️ VOLVER
 
         </button>
 
@@ -426,6 +531,8 @@
 
 </main>
 
+
+<!-- JAVASCRIPT -->
 
 <script src="app.js"></script>
 
