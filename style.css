@@ -1,541 +1,726 @@
-<!DOCTYPE html>
-<html lang="es">
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
 
-<head>
 
-    <meta charset="UTF-8">
+:root {
 
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
+    --guinda: #7B1E3A;
 
-    <title>Registro PILARES</title>
+    --guinda-oscuro: #5B1429;
 
-    <!-- ESTILOS -->
-    <link rel="stylesheet" href="style.css">
+    --guinda-claro: #96324F;
 
-    <!-- LECTOR QR -->
-    <script
-        src="https://unpkg.com/html5-qrcode"
-        type="text/javascript">
-    </script>
+    --verde: #2E7D32;
 
-</head>
+    --rojo: #C62828;
 
+    --azul: #1976D2;
 
-<body>
+    --morado: #7B1FA2;
 
-<main class="contenedor">
+    --gris-fondo: #F4F1F3;
 
+    --gris: #777;
 
-    <!-- ===================================== -->
-    <!-- ENCABEZADO -->
-    <!-- ===================================== -->
+    --blanco: #FFFFFF;
 
-    <header class="encabezado">
+    --texto: #333333;
 
-        <div class="icono-encabezado">
-            🚎
-        </div>
+}
 
-        <div class="titulo-principal">
 
-            <h1>
-                REGISTRO PILARES
-            </h1>
+/* ===================================== */
+/* CUERPO */
+/* ===================================== */
 
-            <p class="subtitulo">
-                Registro de actividades
-            </p>
+body {
 
-        </div>
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
 
-        <div class="icono-encabezado flor">
-            🪻
-        </div>
+    background:
+        linear-gradient(
+            135deg,
+            #f5eff2,
+            #ece5e8
+        );
 
-    </header>
+    min-height: 100vh;
 
+    display: flex;
 
-    <!-- ===================================== -->
-    <!-- INICIO -->
-    <!-- ===================================== -->
+    justify-content: center;
 
-    <section
-        id="menuPrincipal"
-        class="pantalla">
+    align-items: center;
 
-        <h2>
-            Selecciona una opción
-        </h2>
+    padding: 20px;
 
+    color: var(--texto);
 
-        <button
-            id="btnEntrada"
-            class="boton entrada"
-            type="button">
+}
 
-            🟢 ENTRADA
 
-        </button>
+/* ===================================== */
+/* CONTENEDOR */
+/* ===================================== */
 
+.contenedor {
 
-        <button
-            id="btnSalida"
-            class="boton salida"
-            type="button">
+    width: 100%;
 
-            🔴 SALIDA
+    max-width: 520px;
 
-        </button>
+    background:
+        var(--blanco);
 
-    </section>
+    padding:
+        30px 25px;
 
+    border-radius:
+        22px;
 
-    <!-- ===================================== -->
-    <!-- OPCIONES DE FOLIO -->
-    <!-- ===================================== -->
+    text-align:
+        center;
 
-    <section
-        id="opcionesFolio"
-        class="pantalla oculto">
+    box-shadow:
+        0 8px 30px
+        rgba(80, 20, 40, 0.15);
 
-        <h2 id="tituloFolio">
-            Folio
-        </h2>
+    border-top:
+        7px solid
+        var(--guinda);
 
-        <p class="subtitulo">
-            Selecciona cómo deseas ingresar el folio
-        </p>
+}
 
 
-        <button
-            id="btnManual"
-            class="boton boton-manual"
-            type="button">
+/* ===================================== */
+/* ENCABEZADO */
+/* ===================================== */
 
-            ✏️ INTRODUCIR FOLIO
+.encabezado {
 
-        </button>
+    display: flex;
 
+    align-items: center;
 
-        <button
-            id="btnQR"
-            class="boton boton-qr"
-            type="button">
+    justify-content: center;
 
-            📷 ESCANEAR CÓDIGO QR
+    gap: 12px;
 
-        </button>
+    margin-bottom: 20px;
 
+}
 
-        <button
-            id="btnCancelarFolio"
-            class="boton cancelar"
-            type="button">
 
-            ↩️ CANCELAR
+.titulo-principal {
 
-        </button>
+    flex: 1;
 
-    </section>
+}
 
 
-    <!-- ===================================== -->
-    <!-- FOLIO MANUAL -->
-    <!-- ===================================== -->
+.encabezado h1 {
 
-    <section
-        id="pantallaManual"
-        class="pantalla oculto">
+    color:
+        var(--guinda);
 
-        <h2>
-            Introduce el folio
-        </h2>
+    font-size:
+        30px;
 
+    font-weight:
+        800;
 
-        <label for="folio">
-            Folio
-        </label>
+    letter-spacing:
+        0.5px;
 
+}
 
-        <input
-            type="text"
-            id="folio"
-            placeholder="Escribe el folio"
-            autocomplete="off"
-        >
 
+.icono-encabezado {
 
-        <button
-            id="btnContinuarFolio"
-            class="boton registrar"
-            type="button">
+    font-size:
+        38px;
 
-            CONTINUAR
+}
 
-        </button>
 
+.flor {
 
-        <button
-            id="btnCancelarManual"
-            class="boton cancelar"
-            type="button">
+    font-size:
+        38px;
 
-            ↩️ CANCELAR
+}
 
-        </button>
 
-    </section>
+.subtitulo {
 
+    color:
+        #666;
 
-    <!-- ===================================== -->
-    <!-- ESCANEAR QR -->
-    <!-- ===================================== -->
+    margin-top:
+        7px;
 
-    <section
-        id="pantallaQR"
-        class="pantalla oculto">
+    margin-bottom:
+        25px;
 
-        <h2>
-            📷 Escanear código QR
-        </h2>
+    font-size:
+        15px;
 
+}
 
-        <p class="instruccion">
-            Apunta la cámara hacia el código QR
-        </p>
 
+/* ===================================== */
+/* PANTALLAS */
+/* ===================================== */
 
-        <div id="reader"></div>
+.pantalla {
 
+    width:
+        100%;
 
-        <div
-            id="qrExito"
-            class="qr-exito oculto">
+}
 
-            ✓ QR ESCANEADO
 
-        </div>
+.oculto {
 
+    display:
+        none !important;
 
-        <p
-            id="qrFolio"
-            class="qr-folio">
-        </p>
+}
 
 
-        <button
-            id="btnCancelarQR"
-            class="boton cancelar"
-            type="button">
+/* ===================================== */
+/* TITULOS */
+/* ===================================== */
 
-            ↩️ CANCELAR
+h2 {
 
-        </button>
+    color:
+        var(--guinda);
 
-    </section>
+    margin-bottom:
+        22px;
 
+}
 
-    <!-- ===================================== -->
-    <!-- NUEVO USUARIO -->
-    <!-- ===================================== -->
 
-    <section
-        id="formularioEntrada"
-        class="pantalla oculto">
+/* ===================================== */
+/* BOTONES */
+/* ===================================== */
 
-        <h2>
-            👤 Nuevo registro
-        </h2>
+.boton {
 
+    width:
+        100%;
 
-        <p
-            id="mensajeEntrada"
-            class="mensaje">
-        </p>
+    min-height:
+        58px;
 
+    padding:
+        15px;
 
-        <div id="campoNombre">
+    border:
+        none;
 
-            <label for="nombre">
-                Nombre completo
-            </label>
+    border-radius:
+        13px;
 
+    font-size:
+        18px;
 
-            <input
-                type="text"
-                id="nombre"
-                placeholder="Nombre completo"
-                autocomplete="off"
-            >
+    font-weight:
+        bold;
 
-        </div>
+    cursor:
+        pointer;
 
+    margin-bottom:
+        12px;
 
-        <button
-            id="btnNombre"
-            class="boton registrar"
-            type="button">
+    transition:
+        transform 0.1s,
+        box-shadow 0.2s,
+        opacity 0.2s;
 
-            CONTINUAR
+}
 
-        </button>
 
+.boton:hover {
 
-        <button
-            id="btnCancelarEntrada"
-            class="boton cancelar"
-            type="button">
+    opacity:
+        0.93;
 
-            ↩️ CANCELAR
+    box-shadow:
+        0 4px 10px
+        rgba(0,0,0,0.12);
 
-        </button>
+}
 
-    </section>
 
+.boton:active {
 
-    <!-- ===================================== -->
-    <!-- ACTIVIDADES -->
-    <!-- ===================================== -->
+    transform:
+        scale(0.98);
 
-    <section
-        id="pantallaActividades"
-        class="pantalla oculto">
+}
 
-        <h2>
-            📚 Selecciona la actividad
-        </h2>
 
+.boton:disabled {
 
-        <!-- ALFABETIZACIÓN -->
+    opacity:
+        0.6;
 
-        <button
-            class="boton actividad"
-            data-actividad="Alfabetización"
-            type="button">
+    cursor:
+        not-allowed;
 
-            <span class="actividad-icono">
-                👓
-            </span>
+}
 
-            <span>
-                Alfabetización
-            </span>
 
-        </button>
+/* ===================================== */
+/* ENTRADA */
+/* ===================================== */
 
+.entrada {
 
-        <!-- PRIMARIA -->
+    background:
+        var(--verde);
 
-        <button
-            class="boton actividad"
-            data-actividad="Primaria INEA"
-            type="button">
+    color:
+        white;
 
-            <span class="actividad-icono">
-                📘
-            </span>
+}
 
-            <span>
-                Primaria INEA
-            </span>
 
-        </button>
+/* ===================================== */
+/* SALIDA */
+/* ===================================== */
 
+.salida {
 
-        <!-- SECUNDARIA -->
+    background:
+        var(--rojo);
 
-        <button
-            class="boton actividad"
-            data-actividad="Secundaria INEA"
-            type="button">
+    color:
+        white;
 
-            <span class="actividad-icono">
-                📕
-            </span>
+}
 
-            <span>
-                Secundaria INEA
-            </span>
 
-        </button>
+/* ===================================== */
+/* FOLIO MANUAL */
+/* ===================================== */
 
+.boton-manual {
 
-        <!-- PREPA ABIERTA -->
+    background:
+        var(--azul);
 
-        <button
-            id="btnPrepaAbierta"
-            class="boton actividad"
-            type="button">
+    color:
+        white;
 
-            <span class="actividad-icono">
-                🎓
-            </span>
+}
 
-            <span>
-                Prepa Abierta
-            </span>
 
-        </button>
+/* ===================================== */
+/* QR */
+/* ===================================== */
 
+.boton-qr {
 
-        <!-- PREPA EN LÍNEA -->
+    background:
+        var(--morado);
 
-        <button
-            id="btnPrepaLinea"
-            class="boton actividad"
-            type="button">
+    color:
+        white;
 
-            <span class="actividad-icono">
-                🧑‍🎓
-            </span>
+}
 
-            <span>
-                Prepa en Línea
-            </span>
 
-        </button>
+/* ===================================== */
+/* FORMULARIOS */
+/* ===================================== */
 
+label {
 
-        <!-- ASESORÍAS -->
+    display:
+        block;
 
-        <button
-            id="btnAsesoria"
-            class="boton actividad"
-            type="button">
+    text-align:
+        left;
 
-            <span class="actividad-icono">
-                👨‍🏫
-            </span>
+    font-weight:
+        bold;
 
-            <span>
-                Asesorías
-            </span>
+    margin-bottom:
+        8px;
 
-        </button>
+    color:
+        var(--guinda);
 
+}
 
-        <!-- COMPUTACIÓN -->
 
-        <button
-            class="boton actividad"
-            data-actividad="Computación"
-            type="button">
+input {
 
-            <span class="actividad-icono">
-                🖥️
-            </span>
+    width:
+        100%;
 
-            <span>
-                Computación
-            </span>
+    padding:
+        15px;
 
-        </button>
+    margin-bottom:
+        18px;
 
+    border:
+        2px solid #ddd;
 
-        <!-- USO DE COMPUTADORA -->
+    border-radius:
+        11px;
 
-        <button
-            class="boton actividad"
-            data-actividad="Uso de computadora"
-            type="button">
+    font-size:
+        18px;
 
-            <span class="actividad-icono">
-                🖱️
-            </span>
+}
 
-            <span>
-                Uso de computadora
-            </span>
 
-        </button>
+input:focus {
 
+    outline:
+        none;
 
-        <!-- SERVICIO SOCIAL -->
+    border-color:
+        var(--guinda);
 
-        <button
-            class="boton actividad"
-            data-actividad="Servicio social"
-            type="button">
+    box-shadow:
+        0 0 0 3px
+        rgba(123,30,58,0.12);
 
-            <span class="actividad-icono">
-                🤝
-            </span>
+}
 
-            <span>
-                Servicio social
-            </span>
 
-        </button>
+/* ===================================== */
+/* BOTON REGISTRAR */
+/* ===================================== */
 
+.registrar {
 
-        <!-- BENEFICIARIOS -->
+    background:
+        var(--guinda);
 
-        <button
-            class="boton actividad"
-            data-actividad="Beneficiarios"
-            type="button">
+    color:
+        white;
 
-            <span class="actividad-icono">
-                👥
-            </span>
+}
 
-            <span>
-                Beneficiarios
-            </span>
 
-        </button>
+/* ===================================== */
+/* CANCELAR */
+/* ===================================== */
 
+.cancelar {
 
-        <button
-            id="btnCancelarActividad"
-            class="boton cancelar"
-            type="button">
+    background:
+        var(--gris);
 
-            ↩️ CANCELAR
+    color:
+        white;
 
-        </button>
+}
 
-    </section>
 
+/* ===================================== */
+/* ACTIVIDADES */
+/* ===================================== */
 
-    <!-- ===================================== -->
-    <!-- SUBMENÚ -->
-    <!-- ===================================== -->
+.actividad {
 
-    <section
-        id="pantallaSubmenu"
-        class="pantalla oculto">
+    background:
+        var(--guinda);
 
-        <h2 id="tituloSubmenu">
-        </h2>
+    color:
+        white;
 
+    display:
+        flex;
 
-        <div id="botonesSubmenu">
-        </div>
+    align-items:
+        center;
 
+    justify-content:
+        flex-start;
 
-        <button
-            id="btnVolverActividades"
-            class="boton cancelar"
-            type="button">
+    text-align:
+        left;
 
-            ↩️ VOLVER
+    gap:
+        15px;
 
-        </button>
+    padding-left:
+        18px;
 
-    </section>
+}
 
 
-</main>
+.actividad:hover {
 
+    background:
+        var(--guinda-claro);
 
-<!-- JAVASCRIPT -->
+}
 
-<script src="app.js"></script>
 
-</body>
+.actividad-icono {
 
-</html>
+    width:
+        42px;
+
+    min-width:
+        42px;
+
+    font-size:
+        28px;
+
+    text-align:
+        center;
+
+}
+
+
+/* ===================================== */
+/* SUBMENUS */
+/* ===================================== */
+
+#botonesSubmenu {
+
+    display:
+        flex;
+
+    flex-direction:
+        column;
+
+}
+
+
+/* ===================================== */
+/* QR */
+/* ===================================== */
+
+#reader {
+
+    width:
+        100%;
+
+    max-width:
+        400px;
+
+    margin:
+        20px auto;
+
+    border-radius:
+        12px;
+
+    overflow:
+        hidden;
+
+}
+
+
+.instruccion {
+
+    color:
+        #666;
+
+    margin-bottom:
+        15px;
+
+}
+
+
+.qr-exito {
+
+    background:
+        var(--verde);
+
+    color:
+        white;
+
+    padding:
+        16px;
+
+    border-radius:
+        12px;
+
+    font-size:
+        20px;
+
+    font-weight:
+        bold;
+
+    margin:
+        15px 0;
+
+    animation:
+        brillo 0.5s ease-in-out;
+
+}
+
+
+.qr-folio {
+
+    color:
+        var(--guinda);
+
+    font-weight:
+        bold;
+
+    margin:
+        10px 0;
+
+    min-height:
+        20px;
+
+}
+
+
+@keyframes brillo {
+
+    0% {
+
+        transform:
+            scale(0.8);
+
+        opacity:
+            0;
+
+    }
+
+    50% {
+
+        transform:
+            scale(1.08);
+
+    }
+
+    100% {
+
+        transform:
+            scale(1);
+
+        opacity:
+            1;
+
+    }
+
+}
+
+
+/* ===================================== */
+/* MENSAJES */
+/* ===================================== */
+
+.mensaje {
+
+    min-height:
+        25px;
+
+    margin:
+        10px 0;
+
+    font-weight:
+        bold;
+
+}
+
+
+.mensaje.exito {
+
+    color:
+        var(--verde);
+
+}
+
+
+.mensaje.error {
+
+    color:
+        var(--rojo);
+
+}
+
+
+.mensaje.info {
+
+    color:
+        var(--azul);
+
+}
+
+
+/* ===================================== */
+/* CELULAR */
+/* ===================================== */
+
+@media (max-width: 500px) {
+
+    body {
+
+        padding:
+            10px;
+
+        align-items:
+            flex-start;
+
+    }
+
+
+    .contenedor {
+
+        margin-top:
+            10px;
+
+        padding:
+            25px 18px;
+
+    }
+
+
+    .encabezado h1 {
+
+        font-size:
+            23px;
+
+    }
+
+
+    .icono-encabezado {
+
+        font-size:
+            30px;
+
+    }
+
+
+    .boton {
+
+        font-size:
+            17px;
+
+        min-height:
+            55px;
+
+    }
+
+
+    .actividad-icono {
+
+        font-size:
+            25px;
+
+    }
+
+}
