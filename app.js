@@ -75,6 +75,54 @@ const mensajeEntrada =
 
 
 // =====================================================
+// CONVERTIR A MAYÚSCULAS
+// =====================================================
+
+function convertirMayusculas(
+    texto
+) {
+
+    return String(texto)
+        .toLocaleUpperCase("es-MX");
+
+}
+
+
+// =====================================================
+// MAYÚSCULAS AL ESCRIBIR FOLIO
+// =====================================================
+
+folioInput.addEventListener(
+    "input",
+    function() {
+
+        folioInput.value =
+            convertirMayusculas(
+                folioInput.value
+            );
+
+    }
+);
+
+
+// =====================================================
+// MAYÚSCULAS AL ESCRIBIR NOMBRE
+// =====================================================
+
+nombreInput.addEventListener(
+    "input",
+    function() {
+
+        nombreInput.value =
+            convertirMayusculas(
+                nombreInput.value
+            );
+
+    }
+);
+
+
+// =====================================================
 // MOSTRAR UNA PANTALLA
 // =====================================================
 
@@ -277,7 +325,9 @@ document
         function() {
 
             procesarFolio(
-                folioInput.value.trim()
+                convertirMayusculas(
+                    folioInput.value.trim()
+                )
             );
 
         }
@@ -297,7 +347,9 @@ folioInput.addEventListener(
         ) {
 
             procesarFolio(
-                folioInput.value.trim()
+                convertirMayusculas(
+                    folioInput.value.trim()
+                )
             );
 
         }
@@ -389,7 +441,9 @@ function iniciarQR() {
             // =====================================
 
             folioActual =
-                decodedText.trim();
+                convertirMayusculas(
+                    decodedText.trim()
+                );
 
 
             document
@@ -497,6 +551,12 @@ function procesarFolio(
     folio
 ) {
 
+    folio =
+        convertirMayusculas(
+            folio
+        );
+
+
     if (!folio) {
 
         alert(
@@ -600,7 +660,9 @@ function buscarFolio() {
             ) {
 
                 nombreActual =
-                    data.nombre;
+                    convertirMayusculas(
+                        data.nombre
+                    );
 
 
                 mensajeEntrada.className =
@@ -708,7 +770,9 @@ document
         function() {
 
             const nombre =
-                nombreInput.value.trim();
+                convertirMayusculas(
+                    nombreInput.value.trim()
+                );
 
 
             if (!nombre) {
@@ -765,10 +829,14 @@ function guardarNuevoUsuario() {
                         "REGISTRAR_USUARIO",
 
                     folio:
-                        folioActual,
+                        convertirMayusculas(
+                            folioActual
+                        ),
 
                     nombre:
-                        nombreActual
+                        convertirMayusculas(
+                            nombreActual
+                        )
 
                 })
 
@@ -885,7 +953,7 @@ document
 
 
             crearSubmenu(
-                "🎓 Prepa Abierta",
+                "Prepa Abierta",
                 opciones
             );
 
@@ -926,7 +994,7 @@ document
 
 
             crearSubmenu(
-                "🧑‍🎓 Prepa en Línea",
+                "Prepa en Línea",
                 opciones
             );
 
@@ -948,7 +1016,7 @@ document
 
             crearSubmenu(
 
-                "👨‍🏫 Asesorías",
+                "Asesorías",
 
                 [
 
@@ -1126,10 +1194,14 @@ function registrarEntrada(
                         "ENTRADA",
 
                     folio:
-                        folioActual,
+                        convertirMayusculas(
+                            folioActual
+                        ),
 
                     nombre:
-                        nombreActual,
+                        convertirMayusculas(
+                            nombreActual
+                        ),
 
                     actividad:
                         actividad
@@ -1240,7 +1312,9 @@ function registrarSalida() {
                         "SALIDA",
 
                     folio:
-                        folioActual,
+                        convertirMayusculas(
+                            folioActual
+                        ),
 
                     nombre:
                         "",
