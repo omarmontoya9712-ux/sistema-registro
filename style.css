@@ -4,18 +4,29 @@
     padding: 0;
 }
 
+
 body {
+
     font-family: Arial, sans-serif;
+
     background: #f2f4f7;
+
     min-height: 100vh;
 
     display: flex;
+
     justify-content: center;
+
     align-items: center;
+
+    padding: 20px;
 }
 
+
 .contenedor {
-    width: 90%;
+
+    width: 100%;
+
     max-width: 500px;
 
     background: white;
@@ -26,25 +37,42 @@ body {
 
     text-align: center;
 
-    box-shadow: 0 5px 20px rgba(0,0,0,0.10);
+    box-shadow:
+        0 5px 20px
+        rgba(0, 0, 0, 0.10);
+
 }
+
 
 h1 {
+
     margin-bottom: 10px;
+
 }
+
 
 .subtitulo {
+
     color: #666;
+
     margin-bottom: 35px;
+
 }
+
 
 .botones-principales {
+
     display: flex;
+
     flex-direction: column;
+
     gap: 20px;
+
 }
 
+
 .boton {
+
     width: 100%;
 
     padding: 18px;
@@ -58,34 +86,75 @@ h1 {
     font-weight: bold;
 
     cursor: pointer;
+
+    transition:
+        opacity 0.2s,
+        transform 0.1s;
+
 }
+
 
 .boton:hover {
+
     opacity: 0.9;
+
 }
+
+
+.boton:active {
+
+    transform: scale(0.98);
+
+}
+
+
+.boton:disabled {
+
+    opacity: 0.6;
+
+    cursor: not-allowed;
+
+}
+
 
 .entrada {
+
     background: #2e7d32;
+
     color: white;
+
 }
+
 
 .salida {
+
     background: #c62828;
+
     color: white;
+
 }
 
 
+/* ========================================= */
 /* FORMULARIO */
+/* ========================================= */
 
 .formulario {
+
     margin-top: 10px;
+
 }
+
 
 .formulario h2 {
+
     margin-bottom: 25px;
+
 }
 
+
 .formulario label {
+
     display: block;
 
     text-align: left;
@@ -95,9 +164,12 @@ h1 {
     margin-bottom: 8px;
 
     color: #333;
+
 }
 
+
 .formulario input {
+
     width: 100%;
 
     padding: 14px;
@@ -109,69 +181,142 @@ h1 {
     border-radius: 10px;
 
     font-size: 17px;
+
 }
 
+
 .formulario input:focus {
+
     outline: none;
 
     border-color: #1976d2;
 
-    box-shadow: 0 0 0 2px rgba(25,118,210,0.15);
+    box-shadow:
+        0 0 0 2px
+        rgba(25, 118, 210, 0.15);
+
 }
+
+
+.formulario input[readonly] {
+
+    background: #f1f1f1;
+
+    color: #555;
+
+}
+
 
 .campo {
+
     margin-top: 5px;
+
 }
 
 
-/* BOTON REGISTRAR */
+/* ========================================= */
+/* REGISTRAR */
+/* ========================================= */
 
 .registrar {
+
     background: #1976d2;
 
     color: white;
 
     margin-top: 10px;
+
 }
 
 
-/* BOTON CANCELAR */
+/* ========================================= */
+/* CANCELAR */
+/* ========================================= */
 
 .cancelar {
+
     background: #777;
 
     color: white;
 
     margin-top: 10px;
+
 }
 
 
+/* ========================================= */
 /* MENSAJES */
+/* ========================================= */
 
 .mensaje {
+
     min-height: 25px;
 
     margin: 5px 0 10px;
 
     font-weight: bold;
+
 }
+
 
 .mensaje.exito {
+
     color: #2e7d32;
+
 }
+
 
 .mensaje.error {
+
     color: #c62828;
+
 }
+
 
 .mensaje.info {
+
     color: #1976d2;
+
 }
 
 
+/* ========================================= */
 /* OCULTAR */
+/* ========================================= */
 
 .oculto {
-    display: none;
+
+    display: none !important;
+
 }
 
+
+/* ========================================= */
+/* CELULAR */
+/* ========================================= */
+
+@media (max-width: 500px) {
+
+    .contenedor {
+
+        padding: 30px 20px;
+
+    }
+
+
+    h1 {
+
+        font-size: 26px;
+
+    }
+
+
+    .boton {
+
+        font-size: 18px;
+
+        padding: 16px;
+
+    }
+
+}
