@@ -32,10 +32,6 @@
 }
 
 
-/* ===================================== */
-/* CUERPO */
-/* ===================================== */
-
 body {
 
     font-family:
@@ -65,10 +61,6 @@ body {
 }
 
 
-/* ===================================== */
-/* CONTENEDOR */
-/* ===================================== */
-
 .contenedor {
 
     width: 100%;
@@ -97,10 +89,6 @@ body {
 
 }
 
-
-/* ===================================== */
-/* ENCABEZADO */
-/* ===================================== */
 
 .encabezado {
 
@@ -174,10 +162,6 @@ body {
 }
 
 
-/* ===================================== */
-/* PANTALLAS */
-/* ===================================== */
-
 .pantalla {
 
     width:
@@ -194,10 +178,6 @@ body {
 }
 
 
-/* ===================================== */
-/* TITULOS */
-/* ===================================== */
-
 h2 {
 
     color:
@@ -208,10 +188,6 @@ h2 {
 
 }
 
-
-/* ===================================== */
-/* BOTONES */
-/* ===================================== */
 
 .boton {
 
@@ -281,10 +257,6 @@ h2 {
 }
 
 
-/* ===================================== */
-/* ENTRADA */
-/* ===================================== */
-
 .entrada {
 
     background:
@@ -295,10 +267,6 @@ h2 {
 
 }
 
-
-/* ===================================== */
-/* SALIDA */
-/* ===================================== */
 
 .salida {
 
@@ -311,10 +279,6 @@ h2 {
 }
 
 
-/* ===================================== */
-/* FOLIO MANUAL */
-/* ===================================== */
-
 .boton-manual {
 
     background:
@@ -326,10 +290,6 @@ h2 {
 }
 
 
-/* ===================================== */
-/* QR */
-/* ===================================== */
-
 .boton-qr {
 
     background:
@@ -340,10 +300,6 @@ h2 {
 
 }
 
-
-/* ===================================== */
-/* FORMULARIOS */
-/* ===================================== */
 
 label {
 
@@ -403,10 +359,6 @@ input:focus {
 }
 
 
-/* ===================================== */
-/* BOTON REGISTRAR */
-/* ===================================== */
-
 .registrar {
 
     background:
@@ -418,10 +370,6 @@ input:focus {
 }
 
 
-/* ===================================== */
-/* CANCELAR */
-/* ===================================== */
-
 .cancelar {
 
     background:
@@ -432,10 +380,6 @@ input:focus {
 
 }
 
-
-/* ===================================== */
-/* ACTIVIDADES */
-/* ===================================== */
 
 .actividad {
 
@@ -491,10 +435,6 @@ input:focus {
 }
 
 
-/* ===================================== */
-/* SUBMENUS */
-/* ===================================== */
-
 #botonesSubmenu {
 
     display:
@@ -505,10 +445,6 @@ input:focus {
 
 }
 
-
-/* ===================================== */
-/* QR */
-/* ===================================== */
 
 #reader {
 
@@ -619,10 +555,6 @@ input:focus {
 }
 
 
-/* ===================================== */
-/* MENSAJES */
-/* ===================================== */
-
 .mensaje {
 
     min-height:
@@ -662,8 +594,182 @@ input:focus {
 
 
 /* ===================================== */
-/* CELULAR */
+/* CONFIRMACIÓN FINAL */
 /* ===================================== */
+
+.confirmacion {
+
+    display:
+        flex;
+
+    flex-direction:
+        column;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    min-height:
+        300px;
+
+    animation:
+        aparecerConfirmacion
+        0.35s
+        ease-out;
+
+}
+
+
+.check-confirmacion {
+
+    width:
+        105px;
+
+    height:
+        105px;
+
+    border-radius:
+        50%;
+
+    background:
+        var(--verde);
+
+    color:
+        white;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    font-size:
+        70px;
+
+    font-weight:
+        bold;
+
+    margin-bottom:
+        25px;
+
+    box-shadow:
+        0 8px 25px
+        rgba(46,125,50,0.30);
+
+    animation:
+        aparecerCheck
+        0.6s
+        ease-out;
+
+}
+
+
+.confirmacion h2 {
+
+    font-size:
+        30px;
+
+    color:
+        var(--guinda);
+
+    margin-bottom:
+        10px;
+
+}
+
+
+#mensajeConfirmacion {
+
+    color:
+        var(--verde);
+
+    font-size:
+        22px;
+
+    font-weight:
+        bold;
+
+    margin-bottom:
+        12px;
+
+}
+
+
+.actividad-confirmacion {
+
+    color:
+        #666;
+
+    font-size:
+        16px;
+
+    font-weight:
+        bold;
+
+}
+
+
+@keyframes aparecerCheck {
+
+    0% {
+
+        transform:
+            scale(0);
+
+        opacity:
+            0;
+
+    }
+
+    60% {
+
+        transform:
+            scale(1.15);
+
+        opacity:
+            1;
+
+    }
+
+    100% {
+
+        transform:
+            scale(1);
+
+    }
+
+}
+
+
+@keyframes aparecerConfirmacion {
+
+    from {
+
+        opacity:
+            0;
+
+        transform:
+            translateY(15px);
+
+    }
+
+    to {
+
+        opacity:
+            1;
+
+        transform:
+            translateY(0);
+
+    }
+
+}
+
 
 @media (max-width: 500px) {
 
@@ -720,6 +826,36 @@ input:focus {
 
         font-size:
             25px;
+
+    }
+
+
+    .check-confirmacion {
+
+        width:
+            90px;
+
+        height:
+            90px;
+
+        font-size:
+            60px;
+
+    }
+
+
+    .confirmacion h2 {
+
+        font-size:
+            26px;
+
+    }
+
+
+    #mensajeConfirmacion {
+
+        font-size:
+            20px;
 
     }
 
