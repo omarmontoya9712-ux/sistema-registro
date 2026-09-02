@@ -1,20 +1,14 @@
-// =====================================================
+// ======================================================
 // CONFIGURACIÓN
-// =====================================================
+// ======================================================
 
-const URL_SCRIPT =
-    "https://script.google.com/macros/s/AKfycbxMUREOWwMkhq-0fxnS5lsP5XDHoz3xZLkHVxgzrpVGmx258nyc4eZBzOok0EWLTWPSOQ/exec";
+const URL_APPS_SCRIPT =
+    "https://script.google.com/macros/s/AKfycby8wUcojpvdzRwuydG2NC1KQBF_WCZggVEDwImcjZyjjUMgWRQFIPKPbrFfg6DLe5cbKQ/exec";
 
 
-// =====================================================
-// ELEMENTOS DE LA PÁGINA
-// =====================================================
-
-const btnEntrada =
-    document.getElementById("btnEntrada");
-
-const btnSalida =
-    document.getElementById("btnSalida");
+// ======================================================
+// ELEMENTOS
+// ======================================================
 
 const menuPrincipal =
     document.getElementById("menuPrincipal");
@@ -25,13 +19,13 @@ const formulario =
 const tituloFormulario =
     document.getElementById("tituloFormulario");
 
-const folioInput =
+const folio =
     document.getElementById("folio");
 
-const nombreInput =
+const nombre =
     document.getElementById("nombre");
 
-const actividadInput =
+const actividad =
     document.getElementById("actividad");
 
 const campoNombre =
@@ -43,6 +37,15 @@ const campoActividad =
 const mensaje =
     document.getElementById("mensaje");
 
+const btnEntrada =
+    document.getElementById("btnEntrada");
+
+const btnSalida =
+    document.getElementById("btnSalida");
+
+const btnBuscar =
+    document.getElementById("btnBuscar");
+
 const btnRegistrar =
     document.getElementById("btnRegistrar");
 
@@ -50,84 +53,86 @@ const btnCancelar =
     document.getElementById("btnCancelar");
 
 
-// =====================================================
-// VARIABLE DE CONTROL
-// =====================================================
+// ======================================================
+// MODO ACTUAL
+// ======================================================
 
 let modoActual = "";
 
 
-// =====================================================
-// ENTRADA
-// =====================================================
+// ======================================================
+// BOTÓN ENTRADA
+// ======================================================
 
 btnEntrada.addEventListener("click", function () {
 
     modoActual = "ENTRADA";
 
-    menuPrincipal.classList.add("oculto");
-
-    formulario.classList.remove("oculto");
-
-    tituloFormulario.textContent =
-        "Registrar Entrada";
-
-    campoNombre.classList.remove("oculto");
-
-    campoActividad.classList.remove("oculto");
-
-    folioInput.value = "";
-
-    nombreInput.value = "";
-
-    actividadInput.value = "";
-
-    nombreInput.setAttribute("readonly", true);
-
-    mostrarMensaje("", "");
-
-    folioInput.focus();
+    abrirFormulario("ENTRADA");
 
 });
 
 
-// =====================================================
-// SALIDA
-// =====================================================
+// ======================================================
+// BOTÓN SALIDA
+// ======================================================
 
 btnSalida.addEventListener("click", function () {
 
     modoActual = "SALIDA";
 
+    abrirFormulario("SALIDA");
+
+});
+
+
+// ======================================================
+// ABRIR FORMULARIO
+// ======================================================
+
+function abrirFormulario(modo) {
+
     menuPrincipal.classList.add("oculto");
 
     formulario.classList.remove("oculto");
 
     tituloFormulario.textContent =
-        "Registrar Salida";
+        "Registro de " + modo;
+
+    folio.value = "";
+
+    nombre.value = "";
+
+    actividad.value = "";
 
     campoNombre.classList.add("oculto");
 
     campoActividad.classList.add("oculto");
 
-    folioInput.value = "";
+    mensaje.textContent = "";
 
-    nombreInput.value = "";
+    mensaje.className = "mensaje";
 
-    actividadInput.value = "";
+    btnRegistrar.disabled = true;
 
-    mostrarMensaje("", "");
+    folio.focus();
 
-    folioInput.focus();
-
-});
+}
 
 
-// =====================================================
-// BUSCAR FOLIO AL PRESIONAR ENTER
-// =====================================================
+// ======================================================
+// BUSCAR FOLIO
+// ======================================================
 
-folioInput.addEventListener(
+btnBuscar.addEventListener(
+    "click",
+    buscarFolio
+);
+
+
+// ENTER EN EL CAMPO FOLIO
+
+folio.addEventListener(
     "keydown",
     function (event) {
 
@@ -143,56 +148,28 @@ folioInput.addEventListener(
 );
 
 
-// =====================================================
-// BUSCAR FOLIO AL SALIR DEL CAMPO
-// =====================================================
-
-folioInput.addEventListener(
-    "blur",
-    function () {
-
-        buscarFolio();
-
-    }
-);
-
-
-// =====================================================
-// FUNCIÓN BUSCAR FOLIO
-// =====================================================
+// ======================================================
+// FUNCIÓN BUSCAR
+// ======================================================
 
 async function buscarFolio() {
 
-    const folio =
-        folioInput.value.trim();
+    const folioIngresado =
+        folio.value.trim();
 
 
-    if (folio === "") {
-
-        return;
-
-    }
-
-
-    // ---------------------------------------------
-    // SALIDA
-    // ---------------------------------------------
-
-    if (modoActual === "SALIDA") {
+    if (!folioIngresado) {
 
         mostrarMensaje(
-            "Folio listo para registrar salida.",
-            "info"
+            "Ingresa un folio.",
+            "error"
         );
 
-        return;
+        folio.focus();
 
+        return;
     }
 
-
-    // ---------------------------------------------
-    // ENTRADA
-    // ---------------------------------------------
 
     mostrarMensaje(
         "Buscando folio...",
@@ -200,15 +177,15 @@ async function buscarFolio() {
     );
 
 
-    nombreInput.value = "";
+    btnBuscar.disabled = true;
 
 
     try {
 
         const url =
-            URL_SCRIPT +
+            URL_APPS_SCRIPT +
             "?accion=buscar&folio=" +
-            encodeURIComponent(folio);
+            encodeURIComponent(folioIngresado);
 
 
         const respuesta =
@@ -218,86 +195,147 @@ async function buscarFolio() {
         if (!respuesta.ok) {
 
             throw new Error(
-                "No se pudo conectar con Google Sheets."
+                "Error HTTP " +
+                respuesta.status
             );
 
         }
 
 
-        const resultado =
+        const datos =
             await respuesta.json();
 
 
-        // -----------------------------------------
-        // FOLIO ENCONTRADO
-        // -----------------------------------------
-
-        if (resultado.encontrado) {
-
-            nombreInput.value =
-                resultado.nombre || "";
+        console.log(
+            "Respuesta Google:",
+            datos
+        );
 
 
-            nombreInput.setAttribute(
-                "readonly",
-                true
+        if (datos.error) {
+
+            throw new Error(
+                datos.error
             );
-
-
-            mostrarMensaje(
-                "Folio encontrado.",
-                "exito"
-            );
-
-
-            actividadInput.focus();
 
         }
 
 
-        // -----------------------------------------
+        // ==========================================
+        // FOLIO ENCONTRADO
+        // ==========================================
+
+        if (datos.encontrado) {
+
+            nombre.value =
+                datos.nombre || "";
+
+
+            campoNombre.classList.remove(
+                "oculto"
+            );
+
+
+            // ENTRADA
+
+            if (modoActual === "ENTRADA") {
+
+                campoActividad.classList.remove(
+                    "oculto"
+                );
+
+                btnRegistrar.disabled = false;
+
+                mostrarMensaje(
+                    "Folio encontrado. Escribe la actividad.",
+                    "exito"
+                );
+
+                actividad.focus();
+
+            }
+
+
+            // SALIDA
+
+            else if (modoActual === "SALIDA") {
+
+                btnRegistrar.disabled = false;
+
+                mostrarMensaje(
+                    "Folio encontrado. Puedes registrar la salida.",
+                    "exito"
+                );
+
+            }
+
+        }
+
+
+        // ==========================================
         // FOLIO NO ENCONTRADO
-        // -----------------------------------------
+        // ==========================================
 
         else {
 
-            nombreInput.value = "";
-
-            nombreInput.removeAttribute(
-                "readonly"
+            campoNombre.classList.add(
+                "oculto"
             );
 
-
-            mostrarMensaje(
-                "Folio nuevo. Escribe el nombre.",
-                "info"
+            campoActividad.classList.add(
+                "oculto"
             );
 
+            btnRegistrar.disabled = true;
 
-            nombreInput.focus();
+
+            if (modoActual === "ENTRADA") {
+
+                mostrarMensaje(
+                    "El folio no está registrado en BD_USUARIOS.",
+                    "error"
+                );
+
+            }
+            else {
+
+                mostrarMensaje(
+                    "El folio no está registrado en BD_USUARIOS.",
+                    "error"
+                );
+
+            }
 
         }
 
+    }
 
-    } catch (error) {
+    catch (error) {
 
-        console.error(error);
-
+        console.error(
+            "Error al buscar:",
+            error
+        );
 
         mostrarMensaje(
-            "Error al consultar: " +
-            error.message,
+            "No se pudo conectar con Google Sheets.",
             "error"
         );
+
+    }
+
+    finally {
+
+        btnBuscar.disabled = false;
 
     }
 
 }
 
 
-// =====================================================
-// BOTÓN REGISTRAR
-// =====================================================
+// ======================================================
+// REGISTRAR
+// ======================================================
 
 btnRegistrar.addEventListener(
     "click",
@@ -305,249 +343,227 @@ btnRegistrar.addEventListener(
 );
 
 
-// =====================================================
+// ======================================================
 // FUNCIÓN REGISTRAR
-// =====================================================
+// ======================================================
 
 async function registrar() {
 
-    const folio =
-        folioInput.value.trim();
+    const folioValor =
+        folio.value.trim();
+
+    const nombreValor =
+        nombre.value.trim();
+
+    const actividadValor =
+        actividad.value.trim();
 
 
-    // ---------------------------------------------
-    // VALIDAR FOLIO
-    // ---------------------------------------------
+    // ==========================================
+    // VALIDACIONES
+    // ==========================================
 
-    if (folio === "") {
+    if (!folioValor) {
 
         mostrarMensaje(
-            "Ingresa un folio.",
+            "Ingresa el folio.",
             "error"
         );
 
-        folioInput.focus();
+        return;
+    }
+
+
+    if (!nombreValor) {
+
+        mostrarMensaje(
+            "No se encontró el nombre.",
+            "error"
+        );
 
         return;
-
     }
 
 
-    let nombre = "-";
+    if (
+        modoActual === "ENTRADA" &&
+        !actividadValor
+    ) {
 
-    let actividad = "-";
+        mostrarMensaje(
+            "Escribe la actividad.",
+            "error"
+        );
 
+        actividad.focus();
 
-    // ---------------------------------------------
-    // DATOS DE ENTRADA
-    // ---------------------------------------------
-
-    if (modoActual === "ENTRADA") {
-
-        nombre =
-            nombreInput.value.trim();
-
-        actividad =
-            actividadInput.value.trim();
-
-
-        if (nombre === "") {
-
-            mostrarMensaje(
-                "Ingresa el nombre.",
-                "error"
-            );
-
-            nombreInput.focus();
-
-            return;
-
-        }
-
-
-        if (actividad === "") {
-
-            mostrarMensaje(
-                "Ingresa la actividad.",
-                "error"
-            );
-
-            actividadInput.focus();
-
-            return;
-
-        }
-
+        return;
     }
 
 
-    // ---------------------------------------------
-    // BLOQUEAR BOTÓN
-    // ---------------------------------------------
-
-    btnRegistrar.disabled = true;
-
-    btnRegistrar.textContent =
-        "REGISTRANDO...";
-
-
-    mostrarMensaje(
-        "Enviando información...",
-        "info"
-    );
-
-
-    // ---------------------------------------------
-    // DATOS PARA GOOGLE SHEETS
-    // ---------------------------------------------
+    // ==========================================
+    // DATOS
+    // ==========================================
 
     const datos = {
 
         modo: modoActual,
 
-        folio: folio,
+        folio: folioValor,
 
-        nombre: nombre,
+        nombre: nombreValor,
 
-        actividad: actividad
+        actividad:
+            actividadValor || "-"
 
     };
 
 
+    console.log(
+        "Datos enviados:",
+        datos
+    );
+
+
+    mostrarMensaje(
+        "Registrando...",
+        "info"
+    );
+
+
+    btnRegistrar.disabled = true;
+
+    btnBuscar.disabled = true;
+
+
     try {
 
-        const respuesta =
-            await fetch(
-                URL_SCRIPT,
-                {
-                    method: "POST",
+        /*
+         * Tu Apps Script utiliza:
+         *
+         * JSON.parse(e.postData.contents)
+         *
+         * Por eso enviamos JSON.
+         */
 
-                    body: JSON.stringify(datos)
-                }
-            );
+        await fetch(
+            URL_APPS_SCRIPT,
+            {
+                method: "POST",
 
+                mode: "no-cors",
 
-        if (!respuesta.ok) {
+                headers: {
+                    "Content-Type":
+                        "text/plain;charset=utf-8"
+                },
 
-            throw new Error(
-                "Error de comunicación con Google Apps Script."
-            );
-
-        }
-
-
-        const resultado =
-            await respuesta.json();
-
-
-        // -----------------------------------------
-        // REGISTRO CORRECTO
-        // -----------------------------------------
-
-        if (resultado.status === "ok") {
-
-            mostrarMensaje(
-                resultado.mensaje ||
-                "Registro realizado correctamente.",
-                "exito"
-            );
-
-
-            setTimeout(
-                regresarMenu,
-                1500
-            );
-
-        }
-
-
-        // -----------------------------------------
-        // ERROR DEL SERVIDOR
-        // -----------------------------------------
-
-        else {
-
-            throw new Error(
-                resultado.error ||
-                "Google Sheets no pudo guardar el registro."
-            );
-
-        }
-
-
-    } catch (error) {
-
-        console.error(error);
-
-
-        mostrarMensaje(
-            "Error al registrar: " +
-            error.message,
-            "error"
+                body:
+                    JSON.stringify(datos)
+            }
         );
 
 
+        /*
+         * Google Apps Script recibe el POST.
+         *
+         * Debido a no-cors, el navegador
+         * no permite leer la respuesta.
+         */
+
+
+        mostrarMensaje(
+            modoActual === "ENTRADA"
+                ? "ENTRADA registrada correctamente."
+                : "SALIDA registrada correctamente.",
+            "exito"
+        );
+
+
+        // Volver al inicio
+
+        setTimeout(
+            volverInicio,
+            1800
+        );
+
+    }
+
+    catch (error) {
+
+        console.error(
+            "Error al registrar:",
+            error
+        );
+
+        mostrarMensaje(
+            "Ocurrió un error al registrar.",
+            "error"
+        );
+
         btnRegistrar.disabled = false;
 
-        btnRegistrar.textContent =
-            "REGISTRAR";
+        btnBuscar.disabled = false;
 
     }
 
 }
 
 
-// =====================================================
+// ======================================================
 // CANCELAR
-// =====================================================
+// ======================================================
 
 btnCancelar.addEventListener(
     "click",
-    regresarMenu
+    volverInicio
 );
 
 
-// =====================================================
-// REGRESAR AL MENÚ
-// =====================================================
+// ======================================================
+// VOLVER AL INICIO
+// ======================================================
 
-function regresarMenu() {
+function volverInicio() {
 
-    formulario.classList.add("oculto");
-
-    menuPrincipal.classList.remove("oculto");
-
-
-    folioInput.value = "";
-
-    nombreInput.value = "";
-
-    actividadInput.value = "";
-
-
-    nombreInput.setAttribute(
-        "readonly",
-        true
+    formulario.classList.add(
+        "oculto"
     );
 
+    menuPrincipal.classList.remove(
+        "oculto"
+    );
 
-    mostrarMensaje("", "");
+    folio.value = "";
 
+    nombre.value = "";
 
-    btnRegistrar.disabled = false;
+    actividad.value = "";
 
-    btnRegistrar.textContent =
-        "REGISTRAR";
+    campoNombre.classList.add(
+        "oculto"
+    );
 
+    campoActividad.classList.add(
+        "oculto"
+    );
+
+    mensaje.textContent = "";
+
+    mensaje.className = "mensaje";
+
+    btnRegistrar.disabled = true;
+
+    btnBuscar.disabled = false;
 
     modoActual = "";
 
 }
 
 
-// =====================================================
-// MOSTRAR MENSAJES
-// =====================================================
+// ======================================================
+// MOSTRAR MENSAJE
+// ======================================================
 
 function mostrarMensaje(
     texto,
@@ -557,14 +573,6 @@ function mostrarMensaje(
     mensaje.textContent = texto;
 
     mensaje.className =
-        "mensaje";
-
-
-    if (tipo !== "") {
-
-        mensaje.classList.add(tipo);
-
-    }
+        "mensaje " + tipo;
 
 }
-
