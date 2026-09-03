@@ -13,13 +13,15 @@
 
     --guinda-claro: #96324F;
 
+    --morado: #DC88F7;
+
+    --morado-hover: #CE70F0;
+
     --verde: #2E7D32;
 
     --rojo: #C62828;
 
     --azul: #1976D2;
-
-    --morado: #7B1FA2;
 
     --gris-fondo: #F4F1F3;
 
@@ -31,10 +33,6 @@
 
 }
 
-
-/* ===================================== */
-/* CUERPO */
-/* ===================================== */
 
 body {
 
@@ -64,10 +62,6 @@ body {
 
 }
 
-
-/* ===================================== */
-/* CONTENEDOR PRINCIPAL */
-/* ===================================== */
 
 .contenedor {
 
@@ -149,18 +143,6 @@ body {
 }
 
 
-.flor {
-
-    font-size:
-        38px;
-
-}
-
-
-/* ===================================== */
-/* SUBTÍTULOS */
-/* ===================================== */
-
 .subtitulo {
 
     color:
@@ -177,10 +159,6 @@ body {
 
 }
 
-
-/* ===================================== */
-/* PANTALLAS */
-/* ===================================== */
 
 .pantalla {
 
@@ -210,7 +188,7 @@ h2 {
 
 
 /* ===================================== */
-/* BOTONES GENERALES */
+/* BOTONES */
 /* ===================================== */
 
 .boton {
@@ -219,7 +197,7 @@ h2 {
         100%;
 
     min-height:
-        58px;
+        62px;
 
     padding:
         15px;
@@ -246,6 +224,18 @@ h2 {
         transform 0.1s,
         box-shadow 0.2s,
         opacity 0.2s;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    text-align:
+        center;
 
 }
 
@@ -293,6 +283,12 @@ h2 {
     color:
         white;
 
+    min-height:
+        70px;
+
+    font-size:
+        21px;
+
 }
 
 
@@ -303,6 +299,12 @@ h2 {
 
     color:
         white;
+
+    min-height:
+        70px;
+
+    font-size:
+        21px;
 
 }
 
@@ -425,19 +427,31 @@ input:focus {
 
 
 /* ===================================== */
-/* BOTONES REGISTRAR / CANCELAR */
+/* REGISTRAR */
 /* ===================================== */
 
 .registrar {
 
     background:
-        var(--guinda);
+        var(--morado);
 
     color:
         white;
 
 }
 
+
+.registrar:hover {
+
+    background:
+        var(--morado-hover);
+
+}
+
+
+/* ===================================== */
+/* CANCELAR */
+/* ===================================== */
 
 .cancelar {
 
@@ -457,7 +471,7 @@ input:focus {
 .actividad {
 
     background:
-        var(--guinda);
+        var(--morado);
 
     color:
         white;
@@ -469,16 +483,16 @@ input:focus {
         center;
 
     justify-content:
-        flex-start;
+        center;
 
     text-align:
-        left;
+        center;
 
     gap:
-        15px;
+        12px;
 
-    padding-left:
-        18px;
+    padding:
+        15px;
 
 }
 
@@ -486,7 +500,7 @@ input:focus {
 .actividad:hover {
 
     background:
-        var(--guinda-claro);
+        var(--morado-hover);
 
 }
 
@@ -494,10 +508,10 @@ input:focus {
 .actividad-icono {
 
     width:
-        42px;
+        auto;
 
     min-width:
-        42px;
+        auto;
 
     font-size:
         28px;
@@ -547,8 +561,6 @@ input:focus {
 }
 
 
-/* Ajustes internos del lector QR */
-
 #reader video {
 
     width:
@@ -591,7 +603,7 @@ input:focus {
 
 
 /* ===================================== */
-/* INSTRUCCIONES QR */
+/* QR */
 /* ===================================== */
 
 .instruccion {
@@ -604,10 +616,6 @@ input:focus {
 
 }
 
-
-/* ===================================== */
-/* QR ESCANEADO */
-/* ===================================== */
 
 .qr-exito {
 
@@ -654,10 +662,6 @@ input:focus {
 
 }
 
-
-/* ===================================== */
-/* ANIMACIÓN QR */
-/* ===================================== */
 
 @keyframes brillo {
 
@@ -734,7 +738,7 @@ input:focus {
 
 
 /* ===================================== */
-/* CONFIRMACIÓN FINAL */
+/* CONFIRMACIÓN */
 /* ===================================== */
 
 .confirmacion {
@@ -854,10 +858,6 @@ input:focus {
 }
 
 
-/* ===================================== */
-/* ANIMACIONES CONFIRMACIÓN */
-/* ===================================== */
-
 @keyframes aparecerCheck {
 
     0% {
@@ -965,7 +965,19 @@ input:focus {
             17px;
 
         min-height:
-            55px;
+            58px;
+
+    }
+
+
+    .entrada,
+    .salida {
+
+        min-height:
+            65px;
+
+        font-size:
+            20px;
 
     }
 
