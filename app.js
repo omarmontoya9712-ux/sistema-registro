@@ -16,16 +16,7 @@ let folioActual = "";
 
 let nombreActual = "";
 
-let actividadActual = "";
-
-let opcionActual = "";
-
 let lectorQR = null;
-
-
-// Cámara actual
-// 0 = frontal
-// 1 = trasera
 
 let camaraActual = 0;
 
@@ -71,7 +62,7 @@ const mensajeEntrada =
 
 
 // =====================================================
-// CONVERTIR A MAYÚSCULAS
+// MAYÚSCULAS
 // =====================================================
 
 folioInput.addEventListener(
@@ -97,7 +88,7 @@ nombreInput.addEventListener(
 
 
 // =====================================================
-// MOSTRAR UNA PANTALLA
+// MOSTRAR PANTALLA
 // =====================================================
 
 function mostrarPantalla(pantalla) {
@@ -105,19 +96,12 @@ function mostrarPantalla(pantalla) {
     const pantallas = [
 
         menuPrincipal,
-
         opcionesFolio,
-
         pantallaManual,
-
         pantallaQR,
-
         formularioEntrada,
-
         pantallaActividades,
-
         pantallaSubmenu,
-
         pantallaConfirmacion
 
     ];
@@ -126,21 +110,71 @@ function mostrarPantalla(pantalla) {
     pantallas.forEach(
         function(p) {
 
-            if (p) {
-
-                p.classList.add("oculto");
-
-            }
+            p.classList.add("oculto");
 
         }
     );
 
 
-    if (pantalla) {
+    pantalla.classList.remove("oculto");
 
-        pantalla.classList.remove("oculto");
+}
 
-    }
+
+// =====================================================
+// LIMPIAR ESTADO
+// =====================================================
+
+function limpiarEstado() {
+
+    modoActual = "";
+
+    folioActual = "";
+
+    nombreActual = "";
+
+    folioInput.value = "";
+
+    nombreInput.value = "";
+
+    mensajeEntrada.textContent = "";
+
+    mensajeEntrada.className = "mensaje";
+
+
+    document
+        .getElementById("campoNombre")
+        .classList.add("oculto");
+
+
+    document
+        .getElementById("btnNombre")
+        .classList.add("oculto");
+
+
+    document
+        .getElementById("qrFolio")
+        .textContent = "";
+
+
+    document
+        .getElementById("qrExito")
+        .classList.add("oculto");
+
+
+    document
+        .getElementById("instruccionSubmenu")
+        .classList.add("oculto");
+
+
+    document
+        .getElementById("tituloSubmenu")
+        .textContent = "";
+
+
+    document
+        .getElementById("botonesSubmenu")
+        .innerHTML = "";
 
 }
 
@@ -153,100 +187,7 @@ async function volverInicio() {
 
     await detenerQR();
 
-
-    modoActual = "";
-
-    folioActual = "";
-
-    nombreActual = "";
-
-    actividadActual = "";
-
-    opcionActual = "";
-
-
-    folioInput.value = "";
-
-    nombreInput.value = "";
-
-
-    mensajeEntrada.textContent = "";
-
-    mensajeEntrada.className =
-        "mensaje";
-
-
-    const campoNombre =
-        document.getElementById(
-            "campoNombre"
-        );
-
-    const btnNombre =
-        document.getElementById(
-            "btnNombre"
-        );
-
-
-    if (campoNombre) {
-
-        campoNombre.classList.remove(
-            "oculto"
-        );
-
-    }
-
-
-    if (btnNombre) {
-
-        btnNombre.classList.remove(
-            "oculto"
-        );
-
-    }
-
-
-    const qrFolio =
-        document.getElementById(
-            "qrFolio"
-        );
-
-
-    if (qrFolio) {
-
-        qrFolio.textContent = "";
-
-    }
-
-
-    const qrExito =
-        document.getElementById(
-            "qrExito"
-        );
-
-
-    if (qrExito) {
-
-        qrExito.classList.add(
-            "oculto"
-        );
-
-    }
-
-
-    const botones =
-        document.querySelectorAll(
-            ".boton"
-        );
-
-
-    botones.forEach(
-        function(boton) {
-
-            boton.disabled = false;
-
-        }
-    );
-
+    limpiarEstado();
 
     mostrarPantalla(
         menuPrincipal
@@ -256,18 +197,22 @@ async function volverInicio() {
 
 
 // =====================================================
-// MOSTRAR CONFIRMACIÓN
+// CONFIRMACIÓN
 // =====================================================
 
 function mostrarConfirmacion(
     tipo,
-    actividad,
-    opcion
+    actividad
 ) {
 
     const titulo =
         document.getElementById(
             "tituloConfirmacion"
+        );
+
+    const nombre =
+        document.getElementById(
+            "nombreConfirmacion"
         );
 
     const mensaje =
@@ -281,13 +226,17 @@ function mostrarConfirmacion(
         );
 
 
+    nombre.textContent =
+        nombreActual;
+
+
     if (tipo === "ENTRADA") {
 
         titulo.textContent =
             "¡Bienvenido!";
 
         mensaje.textContent =
-            "¡Vuelve pronto!";
+            "";
 
     }
 
@@ -302,28 +251,19 @@ function mostrarConfirmacion(
     }
 
 
-    let textoFinal = "";
-
-
     if (actividad) {
 
-        textoFinal =
+        actividadTexto.textContent =
             actividad;
 
     }
 
+    else {
 
-    if (opcion) {
-
-        textoFinal +=
-            " - " +
-            opcion;
+        actividadTexto.textContent =
+            "";
 
     }
-
-
-    actividadTexto.textContent =
-        textoFinal;
 
 
     mostrarPantalla(
@@ -337,7 +277,7 @@ function mostrarConfirmacion(
             volverInicio();
 
         },
-        3000
+        5000
     );
 
 }
@@ -441,8 +381,6 @@ document
 
             procesarFolio(
                 folioInput.value
-                    .trim()
-                    .toUpperCase()
             );
 
         }
@@ -461,8 +399,6 @@ folioInput.addEventListener(
 
             procesarFolio(
                 folioInput.value
-                    .trim()
-                    .toUpperCase()
             );
 
         }
@@ -552,11 +488,8 @@ async function iniciarQR() {
             if (
 
                 nombre.includes("front") ||
-
                 nombre.includes("frontal") ||
-
                 nombre.includes("user") ||
-
                 nombre.includes("facetime")
 
             ) {
@@ -692,7 +625,7 @@ function iniciarQRConCamara(
 
         function(errorMessage) {
 
-            // Búsqueda normal del QR.
+            // Error normal mientras busca el QR.
 
         }
 
@@ -770,7 +703,7 @@ function iniciarQRConModo(
 
         function(errorMessage) {
 
-            // Búsqueda normal del QR.
+            // Error normal mientras busca el QR.
 
         }
 
@@ -904,11 +837,8 @@ function actualizarTextoBotonCamara() {
     if (
 
         nombre.includes("front") ||
-
         nombre.includes("frontal") ||
-
         nombre.includes("user") ||
-
         nombre.includes("facetime")
 
     ) {
@@ -1001,7 +931,7 @@ document
 function procesarFolio(folio) {
 
     folio =
-        folio
+        String(folio || "")
             .trim()
             .toUpperCase();
 
@@ -1023,7 +953,7 @@ function procesarFolio(folio) {
 
     if (modoActual === "SALIDA") {
 
-        registrarSalida();
+        buscarNombreParaSalida();
 
         return;
 
@@ -1058,6 +988,16 @@ function buscarFolio() {
         "Buscando folio...";
 
 
+    document
+        .getElementById("campoNombre")
+        .classList.add("oculto");
+
+
+    document
+        .getElementById("btnNombre")
+        .classList.add("oculto");
+
+
     fetch(
 
         URL_GOOGLE +
@@ -1074,7 +1014,8 @@ function buscarFolio() {
             if (!response.ok) {
 
                 throw new Error(
-                    "Error HTTP"
+                    "Error HTTP " +
+                    response.status
                 );
 
             }
@@ -1109,24 +1050,6 @@ function buscarFolio() {
                     "✓ Folio encontrado";
 
 
-                document
-                    .getElementById(
-                        "campoNombre"
-                    )
-                    .classList.add(
-                        "oculto"
-                    );
-
-
-                document
-                    .getElementById(
-                        "btnNombre"
-                    )
-                    .classList.add(
-                        "oculto"
-                    );
-
-
                 setTimeout(
                     function() {
 
@@ -1156,21 +1079,13 @@ function buscarFolio() {
 
 
             document
-                .getElementById(
-                    "campoNombre"
-                )
-                .classList.remove(
-                    "oculto"
-                );
+                .getElementById("campoNombre")
+                .classList.remove("oculto");
 
 
             document
-                .getElementById(
-                    "btnNombre"
-                )
-                .classList.remove(
-                    "oculto"
-                );
+                .getElementById("btnNombre")
+                .classList.remove("oculto");
 
 
             setTimeout(
@@ -1188,7 +1103,100 @@ function buscarFolio() {
     .catch(
         function(error) {
 
-            console.error(error);
+            console.error(
+                error
+            );
+
+
+            mensajeEntrada.className =
+                "mensaje error";
+
+
+            mensajeEntrada.textContent =
+                "No se pudo conectar con Google Sheets.";
+
+        }
+    );
+
+}
+
+
+// =====================================================
+// BUSCAR NOMBRE PARA SALIDA
+// =====================================================
+
+function buscarNombreParaSalida() {
+
+    mensajeEntrada.className =
+        "mensaje info";
+
+
+    mensajeEntrada.textContent =
+        "Buscando folio...";
+
+
+    mostrarPantalla(
+        formularioEntrada
+    );
+
+
+    fetch(
+
+        URL_GOOGLE +
+        "?accion=buscar&folio=" +
+        encodeURIComponent(
+            folioActual
+        )
+
+    )
+
+    .then(
+        function(response) {
+
+            if (!response.ok) {
+
+                throw new Error(
+                    "Error HTTP " +
+                    response.status
+                );
+
+            }
+
+            return response.json();
+
+        }
+    )
+
+    .then(
+        function(data) {
+
+            if (data.encontrado === true) {
+
+                nombreActual =
+                    String(
+                        data.nombre || ""
+                    ).toUpperCase();
+
+            }
+
+            else {
+
+                nombreActual = "";
+
+            }
+
+
+            registrarSalida();
+
+        }
+    )
+
+    .catch(
+        function(error) {
+
+            console.error(
+                error
+            );
 
 
             mensajeEntrada.className =
@@ -1291,7 +1299,8 @@ function guardarNuevoUsuario() {
             if (!response.ok) {
 
                 throw new Error(
-                    "Error HTTP"
+                    "Error HTTP " +
+                    response.status
                 );
 
             }
@@ -1334,7 +1343,9 @@ function guardarNuevoUsuario() {
     .catch(
         function(error) {
 
-            console.error(error);
+            console.error(
+                error
+            );
 
 
             mensajeEntrada.className =
@@ -1391,26 +1402,16 @@ document
         "click",
         function() {
 
-            const opciones = [];
-
-
-            for (
-                let i = 1;
-                i <= 21;
-                i++
-            ) {
-
-                opciones.push(
-                    "Módulo " + i
+            const opciones =
+                crearNumeros(
+                    1,
+                    21
                 );
-
-            }
 
 
             crearSubmenu(
                 "🎓 Prepa Abierta",
                 opciones,
-                "Elige tu módulo",
                 true
             );
 
@@ -1428,11 +1429,7 @@ document
         "click",
         function() {
 
-            const opciones = [
-
-                "Propedéutico"
-
-            ];
+            const opciones = [];
 
 
             for (
@@ -1442,7 +1439,7 @@ document
             ) {
 
                 opciones.push(
-                    "Módulo " + i
+                    String(i)
                 );
 
             }
@@ -1451,7 +1448,6 @@ document
             crearSubmenu(
                 "🧑‍🎓 Prepa en Línea",
                 opciones,
-                "Elige tu módulo",
                 true
             );
 
@@ -1464,32 +1460,54 @@ document
 // =====================================================
 
 document
-    .getElementById("btnBachilleratos")
+    .getElementById("btnBachilleratosPilares")
     .addEventListener(
         "click",
         function() {
 
-            const opciones = [];
-
-
-            for (
-                let i = 1;
-                i <= 13;
-                i++
-            ) {
-
-                opciones.push(
-                    "Módulo " + i
+            const opciones =
+                crearNumeros(
+                    1,
+                    13
                 );
-
-            }
 
 
             crearSubmenu(
-                "🏫 Bachilleratos PILARES",
+                "🎓 Bachilleratos PILARES",
                 opciones,
-                "Elige tu módulo",
                 true
+            );
+
+        }
+    );
+
+
+// =====================================================
+// SABERES SECTEI
+// =====================================================
+
+document
+    .getElementById("btnSaberesSectei")
+    .addEventListener(
+        "click",
+        function() {
+
+            crearSubmenu(
+
+                "📚 Saberes SECTEI",
+
+                [
+
+                    "Ciencia",
+                    "Tecnología",
+                    "Arte",
+                    "Cultura",
+                    "Innovación"
+
+                ],
+
+                false
+
             );
 
         }
@@ -1512,53 +1530,15 @@ document
 
                 [
 
-                    "📐 Matemáticas",
-
-                    "📖 Español",
-
-                    "🏛️ Historia",
-
-                    "⚗️ Química",
-
-                    "🧬 Biología"
+                    "Matemáticas",
+                    "Español",
+                    "Historia",
+                    "Química",
+                    "Biología"
 
                 ],
 
-                "Elige una opción"
-
-            );
-
-        }
-    );
-
-
-// =====================================================
-// SABERES SECTEI
-// =====================================================
-
-document
-    .getElementById("btnSaberes")
-    .addEventListener(
-        "click",
-        function() {
-
-            crearSubmenu(
-
-                "📚 Saberes SECTEI",
-
-                [
-
-                    "🧠 Saberes y aprendizaje",
-
-                    "🎨 Cultura y creatividad",
-
-                    "🔬 Ciencia y tecnología",
-
-                    "🌱 Medio ambiente"
-
-                ],
-
-                "Elige una opción"
+                false
 
             );
 
@@ -1578,19 +1558,17 @@ document
 
             crearSubmenu(
 
-                "💻 Computación",
+                "🖥️ Computación",
 
                 [
 
-                    "💻 Escuela de Código",
-
+                    "👨‍💻 Escuela de Código",
                     "👩‍🏫 Profesora Gabi",
-
                     "👨‍🏫 Profesor Pedro"
 
                 ],
 
-                "Elige una opción"
+                false
 
             );
 
@@ -1614,17 +1592,14 @@ document
 
                 [
 
-                    "💪 Ponte Pila",
-
-                    "💰 Autonomía económica",
-
+                    "📣 Ponte Pila",
+                    "💼 Autonomía Económica",
                     "🎭 Cultura",
-
                     "💻 Ciberescuela"
 
                 ],
 
-                "Elige una opción"
+                false
 
             );
 
@@ -1669,43 +1644,38 @@ function crearNumeros(
 function crearSubmenu(
     titulo,
     opciones,
-    instruccion = "",
-    usarModulo = false
+    esModulo
 ) {
 
     document
-        .getElementById(
-            "tituloSubmenu"
-        )
+        .getElementById("tituloSubmenu")
         .textContent =
-        limpiarActividad(
-            titulo
-        );
+        titulo;
 
 
-    const instruccionElemento =
+    const instruccion =
         document.getElementById(
             "instruccionSubmenu"
         );
 
 
-    if (
-        instruccion &&
-        instruccionElemento
-    ) {
+    if (esModulo) {
 
-        instruccionElemento.textContent =
-            instruccion;
+        instruccion.textContent =
+            "Elige tu módulo";
 
-        instruccionElemento.classList.remove(
+        instruccion.classList.remove(
             "oculto"
         );
 
     }
 
-    else if (instruccionElemento) {
+    else {
 
-        instruccionElemento.classList.add(
+        instruccion.textContent =
+            "";
+
+        instruccion.classList.add(
             "oculto"
         );
 
@@ -1722,7 +1692,7 @@ function crearSubmenu(
 
 
     opciones.forEach(
-        function(opcion) {
+        function(opcion, indice) {
 
             const boton =
                 document.createElement(
@@ -1735,92 +1705,52 @@ function crearSubmenu(
 
 
             boton.className =
-                "boton actividad boton-submenu";
+                "boton actividad";
 
 
-            let textoOpcion =
-                opcion;
+            const icono =
+                obtenerIconoSubopcion(
+                    opcion,
+                    esModulo
+                );
 
 
-            let icono =
-                "";
+            const texto =
+                esModulo
+                    ? "Módulo " +
+                      (indice + 1)
+                    : quitarIcono(
+                        opcion
+                      );
 
 
-            // =========================================
-            // MÓDULOS SIN ICONO
-            // =========================================
+            boton.innerHTML =
 
-            if (usarModulo) {
+                '<span class="actividad-icono">' +
+                icono +
+                '</span>' +
 
-                textoOpcion =
-                    opcion;
-
-            }
-
-            else {
-
-                const coincidencia =
-                    opcion.match(
-                        /^(\S+)\s+(.+)$/
-                    );
-
-
-                if (coincidencia) {
-
-                    icono =
-                        coincidencia[1];
-
-                    textoOpcion =
-                        coincidencia[2];
-
-                }
-
-            }
-
-
-            if (usarModulo) {
-
-                boton.innerHTML =
-
-                    '<span class="actividad-texto">' +
-                    textoOpcion +
-                    '</span>';
-
-            }
-
-            else {
-
-                boton.innerHTML =
-
-                    '<span class="actividad-icono">' +
-                    icono +
-                    '</span>' +
-
-                    '<span class="actividad-texto">' +
-                    textoOpcion +
-                    '</span>';
-
-            }
+                '<span class="actividad-texto">' +
+                texto +
+                '</span>';
 
 
             boton.addEventListener(
                 "click",
                 function() {
 
-                    const opcionLimpia =
-                        limpiarActividad(
-                            textoOpcion
-                        );
+                    const opcionRegistro =
+                        esModulo
+                            ? "Módulo " +
+                              (indice + 1)
+                            : quitarIcono(
+                                opcion
+                              );
 
 
                     registrarEntrada(
-
-                        limpiarActividad(
-                            titulo
-                        ),
-
-                        opcionLimpia
-
+                        quitarIcono(titulo),
+                        opcionRegistro
                     );
 
                 }
@@ -1843,21 +1773,211 @@ function crearSubmenu(
 
 
 // =====================================================
-// LIMPIAR ICONOS
+// ICONOS SUBOPCIONES
 // =====================================================
 
-function limpiarActividad(
-    actividad
+function obtenerIconoSubopcion(
+    opcion,
+    esModulo
 ) {
 
-    if (!actividad) {
+    if (esModulo) {
 
-        return "";
+        return "📘";
 
     }
 
 
-    return String(actividad)
+    if (
+        opcion.includes(
+            "Escuela de Código"
+        )
+    ) {
+
+        return "👨‍💻";
+
+    }
+
+
+    if (
+        opcion.includes(
+            "Profesora Gabi"
+        )
+    ) {
+
+        return "👩‍🏫";
+
+    }
+
+
+    if (
+        opcion.includes(
+            "Profesor Pedro"
+        )
+    ) {
+
+        return "👨‍🏫";
+
+    }
+
+
+    if (
+        opcion.includes(
+            "Ponte Pila"
+        )
+    ) {
+
+        return "📣";
+
+    }
+
+
+    if (
+        opcion.includes(
+            "Autonomía Económica"
+        )
+    ) {
+
+        return "💼";
+
+    }
+
+
+    if (
+        opcion.includes(
+            "Cultura"
+        )
+    ) {
+
+        return "🎭";
+
+    }
+
+
+    if (
+        opcion.includes(
+            "Ciberescuela"
+        )
+    ) {
+
+        return "💻";
+
+    }
+
+
+    if (
+        opcion.includes(
+            "Matemáticas"
+        )
+    ) {
+
+        return "🔢";
+
+    }
+
+
+    if (
+        opcion.includes(
+            "Español"
+        )
+    ) {
+
+        return "📖";
+
+    }
+
+
+    if (
+        opcion.includes(
+            "Historia"
+        )
+    ) {
+
+        return "🏛️";
+
+    }
+
+
+    if (
+        opcion.includes(
+            "Química"
+        )
+    ) {
+
+        return "⚗️";
+
+    }
+
+
+    if (
+        opcion.includes(
+            "Biología"
+        )
+    ) {
+
+        return "🧬";
+
+    }
+
+
+    if (
+        opcion.includes(
+            "Ciencia"
+        )
+    ) {
+
+        return "🔬";
+
+    }
+
+
+    if (
+        opcion.includes(
+            "Tecnología"
+        )
+    ) {
+
+        return "💻";
+
+    }
+
+
+    if (
+        opcion.includes(
+            "Arte"
+        )
+    ) {
+
+        return "🎨";
+
+    }
+
+
+    if (
+        opcion.includes(
+            "Innovación"
+        )
+    ) {
+
+        return "💡";
+
+    }
+
+
+    return "📌";
+
+}
+
+
+// =====================================================
+// QUITAR ICONO
+// =====================================================
+
+function quitarIcono(
+    texto
+) {
+
+    return String(texto)
         .replace(
             /^[^\p{L}\p{N}]+/u,
             ""
@@ -1873,27 +1993,19 @@ function limpiarActividad(
 
 function registrarEntrada(
     actividad,
-    opcion = ""
+    opcion
 ) {
 
     actividad =
-        limpiarActividad(
+        quitarIcono(
             actividad
         );
 
 
     opcion =
-        limpiarActividad(
+        quitarIcono(
             opcion
         );
-
-
-    actividadActual =
-        actividad;
-
-
-    opcionActual =
-        opcion;
 
 
     const botones =
@@ -1951,7 +2063,8 @@ function registrarEntrada(
             if (!response.ok) {
 
                 throw new Error(
-                    "Error HTTP"
+                    "Error HTTP " +
+                    response.status
                 );
 
             }
@@ -1993,13 +2106,8 @@ function registrarEntrada(
 
 
             mostrarConfirmacion(
-
                 "ENTRADA",
-
-                actividad,
-
-                opcion
-
+                actividad
             );
 
         }
@@ -2008,7 +2116,9 @@ function registrarEntrada(
     .catch(
         function(error) {
 
-            console.error(error);
+            console.error(
+                error
+            );
 
 
             alert(
@@ -2055,7 +2165,8 @@ function registrarSalida() {
                         .toUpperCase(),
 
                 nombre:
-                    "",
+                    nombreActual
+                        .toUpperCase(),
 
                 actividad:
                     "",
@@ -2075,7 +2186,8 @@ function registrarSalida() {
             if (!response.ok) {
 
                 throw new Error(
-                    "Error HTTP"
+                    "Error HTTP " +
+                    response.status
                 );
 
             }
@@ -2107,7 +2219,6 @@ function registrarSalida() {
 
             mostrarConfirmacion(
                 "SALIDA",
-                "",
                 ""
             );
 
@@ -2117,7 +2228,9 @@ function registrarSalida() {
     .catch(
         function(error) {
 
-            console.error(error);
+            console.error(
+                error
+            );
 
 
             alert(
