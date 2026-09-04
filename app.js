@@ -203,21 +203,32 @@ function mostrarConfirmacion(
     }
 
 
-    let textoActividad =
-        actividad || "";
+    if (actividad) {
 
+        if (opcion) {
 
-    if (opcion) {
+            actividadTexto.textContent =
+                actividad +
+                " - " +
+                opcion;
 
-        textoActividad +=
-            " - " +
-            opcion;
+        }
+
+        else {
+
+            actividadTexto.textContent =
+                actividad;
+
+        }
 
     }
 
+    else {
 
-    actividadTexto.textContent =
-        textoActividad;
+        actividadTexto.textContent =
+            "";
+
+    }
 
 
     mostrarPantalla(
@@ -339,7 +350,7 @@ document
 
 
 // =====================================================
-// ENTER EN FOLIO
+// ENTER
 // =====================================================
 
 folioInput.addEventListener(
@@ -361,7 +372,7 @@ folioInput.addEventListener(
 
 
 // =====================================================
-// INICIAR QR
+// QR
 // =====================================================
 
 document
@@ -376,26 +387,19 @@ document
     );
 
 
-// =====================================================
-// INICIAR QR
-// =====================================================
-
 async function iniciarQR() {
 
     mostrarPantalla(
         pantallaQR
     );
 
-
     document
         .getElementById("qrExito")
         .classList.add("oculto");
 
-
     document
         .getElementById("qrFolio")
         .textContent = "";
-
 
     document
         .getElementById("reader")
@@ -413,9 +417,7 @@ async function iniciarQR() {
             camarasDisponibles.length === 0
         ) {
 
-            iniciarQRConModo(
-                "user"
-            );
+            iniciarQRConModo("user");
 
             return;
 
@@ -478,10 +480,7 @@ async function iniciarQR() {
             error
         );
 
-
-        iniciarQRConModo(
-            "user"
-        );
+        iniciarQRConModo("user");
 
     }
 
@@ -489,7 +488,7 @@ async function iniciarQR() {
 
 
 // =====================================================
-// QR CON ID
+// QR CON CÁMARA
 // =====================================================
 
 function iniciarQRConCamara(
@@ -518,11 +517,8 @@ function iniciarQRConCamara(
             fps: 10,
 
             qrbox: {
-
                 width: 250,
-
                 height: 250
-
             }
 
         },
@@ -563,11 +559,7 @@ function iniciarQRConCamara(
 
         },
 
-        function(errorMessage) {
-
-            // Búsqueda normal del QR.
-
-        }
+        function() {}
 
     )
 
@@ -578,7 +570,6 @@ function iniciarQRConCamara(
                 "Error iniciando cámara:",
                 error
             );
-
 
             alert(
                 "No se pudo acceder a la cámara. " +
@@ -624,11 +615,8 @@ function iniciarQRConModo(
             fps: 10,
 
             qrbox: {
-
                 width: 250,
-
                 height: 250
-
             }
 
         },
@@ -669,11 +657,7 @@ function iniciarQRConModo(
 
         },
 
-        function(errorMessage) {
-
-            // Búsqueda normal del QR.
-
-        }
+        function() {}
 
     )
 
@@ -681,7 +665,6 @@ function iniciarQRConModo(
         function(error) {
 
             console.error(error);
-
 
             alert(
                 "No se pudo acceder a la cámara. " +
@@ -767,9 +750,7 @@ function actualizarTextoBotonCamara() {
 
 
     if (!boton) {
-
         return;
-
     }
 
 
@@ -829,9 +810,7 @@ function actualizarTextoBotonCamara() {
 async function detenerQR() {
 
     if (!lectorQR) {
-
         return;
-
     }
 
 
@@ -873,18 +852,14 @@ async function detenerQR() {
 
 
 // =====================================================
-// BOTÓN CAMBIAR CÁMARA
+// BOTÓN CÁMARA
 // =====================================================
 
 document
     .getElementById("btnCambiarCamara")
     .addEventListener(
         "click",
-        function() {
-
-            cambiarCamara();
-
-        }
+        cambiarCamara
     );
 
 
@@ -963,15 +938,11 @@ function buscarFolio() {
     )
 
     .then(
-        function(response) {
-
-            return response.json();
-
-        }
+        response => response.json()
     )
 
     .then(
-        function(data) {
+        data => {
 
             console.log(
                 "Respuesta búsqueda:",
@@ -993,16 +964,6 @@ function buscarFolio() {
 
                 mensajeEntrada.textContent =
                     "✓ Folio encontrado";
-
-
-                document
-                    .getElementById("campoNombre")
-                    .classList.add("oculto");
-
-
-                document
-                    .getElementById("btnNombre")
-                    .classList.add("oculto");
 
 
                 setTimeout(
@@ -1074,4 +1035,830 @@ function buscarFolio() {
 }
 
 
-//
+// =====================================================
+// REGISTRAR NOMBRE
+// =====================================================
+
+document
+    .getElementById("btnNombre")
+    .addEventListener(
+        "click",
+        function() {
+
+            const nombre =
+                nombreInput.value
+                    .trim()
+                    .toUpperCase();
+
+
+            if (!nombre) {
+
+                mensajeEntrada.className =
+                    "mensaje error";
+
+
+                mensajeEntrada.textContent =
+                    "Escribe el nombre.";
+
+                return;
+
+            }
+
+
+            nombreActual =
+                nombre;
+
+
+            guardarNuevoUsuario();
+
+        }
+    );
+
+
+// =====================================================
+// GUARDAR USUARIO NUEVO
+// =====================================================
+
+function guardarNuevoUsuario() {
+
+    mensajeEntrada.className =
+        "mensaje info";
+
+
+    mensajeEntrada.textContent =
+        "Registrando folio...";
+
+
+    fetch(
+
+        URL_GOOGLE,
+
+        {
+
+            method: "POST",
+
+            body: JSON.stringify({
+
+                modo:
+                    "REGISTRAR_USUARIO",
+
+                folio:
+                    folioActual
+                        .toUpperCase(),
+
+                nombre:
+                    nombreActual
+                        .toUpperCase()
+
+            })
+
+        }
+
+    )
+
+    .then(
+        response => response.json()
+    )
+
+    .then(
+        data => {
+
+            console.log(
+                "Registro usuario:",
+                data
+            );
+
+
+            if (data.error) {
+
+                mensajeEntrada.className =
+                    "mensaje error";
+
+
+                mensajeEntrada.textContent =
+                    data.error;
+
+                return;
+
+            }
+
+
+            mostrarPantalla(
+                pantallaActividades
+            );
+
+        }
+    )
+
+    .catch(
+        function(error) {
+
+            console.error(error);
+
+
+            mensajeEntrada.className =
+                "mensaje error";
+
+
+            mensajeEntrada.textContent =
+                "Error al registrar el folio.";
+
+        }
+    );
+
+}
+
+
+// =====================================================
+// ACTIVIDADES DIRECTAS
+// =====================================================
+
+document
+    .querySelectorAll(
+        ".actividad[data-actividad]"
+    )
+    .forEach(
+        function(boton) {
+
+            boton.addEventListener(
+                "click",
+                function() {
+
+                    registrarEntrada(
+                        boton.dataset.actividad,
+                        ""
+                    );
+
+                }
+            );
+
+        }
+    );
+
+
+// =====================================================
+// PREPA ABIERTA
+// =====================================================
+
+document
+    .getElementById("btnPrepaAbierta")
+    .addEventListener(
+        "click",
+        function() {
+
+            crearSubmenu(
+
+                "Prepa Abierta",
+
+                crearNumeros(1, 21),
+
+                "modulo"
+
+            );
+
+        }
+    );
+
+
+// =====================================================
+// PREPA EN LÍNEA
+// =====================================================
+
+document
+    .getElementById("btnPrepaLinea")
+    .addEventListener(
+        "click",
+        function() {
+
+            const opciones = [
+                "Propedéutico"
+            ];
+
+
+            for (
+                let i = 1;
+                i <= 23;
+                i++
+            ) {
+
+                opciones.push(
+                    String(i)
+                );
+
+            }
+
+
+            crearSubmenu(
+
+                "Prepa en Línea",
+
+                opciones,
+
+                "modulo"
+
+            );
+
+        }
+    );
+
+
+// =====================================================
+// BACHILLERATOS PILARES
+// =====================================================
+
+document
+    .getElementById("btnBachilleratosPilares")
+    .addEventListener(
+        "click",
+        function() {
+
+            crearSubmenu(
+
+                "Bachilleratos PILARES",
+
+                crearNumeros(1, 13),
+
+                "modulo"
+
+            );
+
+        }
+    );
+
+
+// =====================================================
+// ASESORÍAS ACADÉMICAS
+// =====================================================
+
+document
+    .getElementById("btnAsesoria")
+    .addEventListener(
+        "click",
+        function() {
+
+            crearSubmenu(
+
+                "Asesorías Académicas",
+
+                [
+
+                    "Matemáticas",
+                    "Español",
+                    "Historia",
+                    "Química",
+                    "Biología"
+
+                ],
+
+                "opcion"
+
+            );
+
+        }
+    );
+
+
+// =====================================================
+// COMPUTACIÓN
+// =====================================================
+
+document
+    .getElementById("btnComputacion")
+    .addEventListener(
+        "click",
+        function() {
+
+            crearSubmenu(
+
+                "Computación",
+
+                [
+
+                    "Escuela de Código",
+                    "Profesora Gabi",
+                    "Profesor Pedro"
+
+                ],
+
+                "opcion"
+
+            );
+
+        }
+    );
+
+
+// =====================================================
+// BENEFICIARIOS
+// =====================================================
+
+document
+    .getElementById("btnBeneficiarios")
+    .addEventListener(
+        "click",
+        function() {
+
+            crearSubmenu(
+
+                "Beneficiarios",
+
+                [
+
+                    "Ponte Pila",
+                    "Autonomía Económica",
+                    "Cultura",
+                    "Ciberescuela"
+
+                ],
+
+                "opcion"
+
+            );
+
+        }
+    );
+
+
+// =====================================================
+// CREAR NÚMEROS
+// =====================================================
+
+function crearNumeros(
+    inicio,
+    fin
+) {
+
+    const resultado = [];
+
+
+    for (
+        let i = inicio;
+        i <= fin;
+        i++
+    ) {
+
+        resultado.push(
+            String(i)
+        );
+
+    }
+
+
+    return resultado;
+
+}
+
+
+// =====================================================
+// CREAR SUBMENÚ
+// =====================================================
+
+function crearSubmenu(
+    titulo,
+    opciones,
+    tipo
+) {
+
+    document
+        .getElementById("tituloSubmenu")
+        .textContent =
+        titulo;
+
+
+    const instruccion =
+        document.getElementById(
+            "instruccionSubmenu"
+        );
+
+
+    if (tipo === "modulo") {
+
+        instruccion.textContent =
+            "Elige tu módulo";
+
+    }
+
+    else {
+
+        instruccion.textContent =
+            "Elige una opción";
+
+    }
+
+
+    const contenedor =
+        document.getElementById(
+            "botonesSubmenu"
+        );
+
+
+    contenedor.innerHTML = "";
+
+
+    opciones.forEach(
+        function(opcion) {
+
+            const boton =
+                document.createElement(
+                    "button"
+                );
+
+
+            boton.type =
+                "button";
+
+
+            boton.className =
+                "boton actividad boton-submenu";
+
+
+            let texto =
+                opcion;
+
+
+            let opcionGuardar =
+                opcion;
+
+
+            if (
+                tipo === "modulo" &&
+                /^\d+$/.test(opcion)
+            ) {
+
+                texto =
+                    "Módulo " +
+                    opcion;
+
+                opcionGuardar =
+                    "Módulo " +
+                    opcion;
+
+            }
+
+
+            if (tipo === "opcion") {
+
+                const iconos = {
+
+                    "Matemáticas": "➗",
+                    "Español": "📝",
+                    "Historia": "📜",
+                    "Química": "⚗️",
+                    "Biología": "🧬",
+
+                    "Escuela de Código": "👨‍💻",
+                    "Profesora Gabi": "👩‍🏫",
+                    "Profesor Pedro": "👨‍🏫",
+
+                    "Ponte Pila": "💪",
+                    "Autonomía Económica": "💰",
+                    "Cultura": "🎨",
+                    "Ciberescuela": "🖥️"
+
+                };
+
+
+                texto =
+                    (
+                        iconos[opcion] || ""
+                    ) +
+                    " " +
+                    opcion;
+
+            }
+
+
+            boton.textContent =
+                texto;
+
+
+            boton.addEventListener(
+                "click",
+                function() {
+
+                    registrarEntrada(
+
+                        titulo,
+
+                        opcionGuardar
+
+                    );
+
+                }
+            );
+
+
+            contenedor.appendChild(
+                boton
+            );
+
+        }
+    );
+
+
+    mostrarPantalla(
+        pantallaSubmenu
+    );
+
+}
+
+
+// =====================================================
+// LIMPIAR ICONOS
+// =====================================================
+
+function limpiarActividad(
+    actividad
+) {
+
+    return actividad
+        .replace(
+            /^[^\p{L}\p{N}]+/u,
+            ""
+        )
+        .trim();
+
+}
+
+
+// =====================================================
+// REGISTRAR ENTRADA
+// =====================================================
+
+function registrarEntrada(
+    actividad,
+    opcion
+) {
+
+    actividad =
+        limpiarActividad(
+            actividad
+        );
+
+
+    const botones =
+        document.querySelectorAll(
+            ".actividad"
+        );
+
+
+    botones.forEach(
+        function(boton) {
+
+            boton.disabled =
+                true;
+
+        }
+    );
+
+
+    fetch(
+
+        URL_GOOGLE,
+
+        {
+
+            method: "POST",
+
+            body: JSON.stringify({
+
+                modo:
+                    "ENTRADA",
+
+                folio:
+                    folioActual
+                        .toUpperCase(),
+
+                nombre:
+                    nombreActual
+                        .toUpperCase(),
+
+                actividad:
+                    actividad,
+
+                opcion:
+                    opcion || ""
+
+            })
+
+        }
+
+    )
+
+    .then(
+        response => response.json()
+    )
+
+    .then(
+        data => {
+
+            console.log(
+                "Entrada:",
+                data
+            );
+
+
+            if (data.error) {
+
+                alert(
+                    data.error
+                );
+
+
+                botones.forEach(
+                    function(boton) {
+
+                        boton.disabled =
+                            false;
+
+                    }
+                );
+
+
+                return;
+
+            }
+
+
+            mostrarConfirmacion(
+
+                "ENTRADA",
+
+                actividad,
+
+                opcion
+
+            );
+
+        }
+    )
+
+    .catch(
+        function(error) {
+
+            console.error(error);
+
+
+            alert(
+                "No se pudo registrar la entrada."
+            );
+
+
+            botones.forEach(
+                function(boton) {
+
+                    boton.disabled =
+                        false;
+
+                }
+            );
+
+        }
+    );
+
+}
+
+
+// =====================================================
+// REGISTRAR SALIDA
+// =====================================================
+
+function registrarSalida() {
+
+    fetch(
+
+        URL_GOOGLE,
+
+        {
+
+            method: "POST",
+
+            body: JSON.stringify({
+
+                modo:
+                    "SALIDA",
+
+                folio:
+                    folioActual
+                        .toUpperCase(),
+
+                nombre:
+                    "",
+
+                actividad:
+                    "",
+
+                opcion:
+                    ""
+
+            })
+
+        }
+
+    )
+
+    .then(
+        response => response.json()
+    )
+
+    .then(
+        data => {
+
+            console.log(
+                "Salida:",
+                data
+            );
+
+
+            if (data.error) {
+
+                alert(
+                    data.error
+                );
+
+                return;
+
+            }
+
+
+            mostrarConfirmacion(
+                "SALIDA",
+                "",
+                ""
+            );
+
+        }
+    )
+
+    .catch(
+        function(error) {
+
+            console.error(error);
+
+
+            alert(
+                "No se pudo registrar la salida."
+            );
+
+        }
+    );
+
+}
+
+
+// =====================================================
+// BOTONES CANCELAR
+// =====================================================
+
+document
+    .getElementById("btnCancelarFolio")
+    .addEventListener(
+        "click",
+        volverInicio
+    );
+
+
+document
+    .getElementById("btnCancelarManual")
+    .addEventListener(
+        "click",
+        volverInicio
+    );
+
+
+document
+    .getElementById("btnCancelarQR")
+    .addEventListener(
+        "click",
+        volverInicio
+    );
+
+
+document
+    .getElementById("btnCancelarEntrada")
+    .addEventListener(
+        "click",
+        volverInicio
+    );
+
+
+document
+    .getElementById("btnCancelarActividad")
+    .addEventListener(
+        "click",
+        volverInicio
+    );
+
+
+document
+    .getElementById("btnVolverActividades")
+    .addEventListener(
+        "click",
+        function() {
+
+            mostrarPantalla(
+                pantallaActividades
+            );
+
+        }
+    );
