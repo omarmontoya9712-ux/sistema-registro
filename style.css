@@ -1,53 +1,32 @@
-/* =====================================================
-   CONFIGURACIÓN GENERAL
-   ===================================================== */
-
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
 }
 
-
 :root {
-
     --guinda: #7B1E3A;
-
     --guinda-oscuro: #5B1429;
-
     --guinda-claro: #96324F;
 
-    --morado: #DC88F7;
-
-    --morado-hover: #CE70F0;
-
     --verde: #2E7D32;
-
     --rojo: #C62828;
-
     --azul: #1976D2;
 
     --gris-fondo: #F4F1F3;
-
-    --gris: #777777;
+    --gris: #777;
+    --gris-borde: #D0D0D0;
+    --gris-hover: #F2F2F2;
 
     --blanco: #FFFFFF;
-
     --texto: #333333;
-
-    --borde: #8B5265;
-
-    --borde-claro: #D7B9C4;
-
 }
 
-
-/* =====================================================
-   CUERPO
-   ===================================================== */
+/* ===================================== */
+/* GENERAL */
+/* ===================================== */
 
 body {
-
     font-family:
         Arial,
         Helvetica,
@@ -70,33 +49,21 @@ body {
 
     padding: 20px;
 
-    color:
-        var(--texto);
-
+    color: var(--texto);
 }
 
-
-/* =====================================================
-   CONTENEDOR PRINCIPAL
-   ===================================================== */
-
 .contenedor {
-
     width: 100%;
 
     max-width: 620px;
 
-    background:
-        var(--blanco);
+    background: var(--blanco);
 
-    padding:
-        30px 25px;
+    padding: 30px 25px;
 
-    border-radius:
-        22px;
+    border-radius: 22px;
 
-    text-align:
-        center;
+    text-align: center;
 
     box-shadow:
         0 8px 30px
@@ -105,16 +72,29 @@ body {
     border-top:
         7px solid
         var(--guinda);
-
 }
 
+.pantalla {
+    width: 100%;
+}
 
-/* =====================================================
-   ENCABEZADO
-   ===================================================== */
+.oculto {
+    display: none !important;
+}
+
+h2 {
+    color: var(--guinda);
+
+    margin-bottom: 22px;
+
+    font-size: 24px;
+}
+
+/* ===================================== */
+/* ENCABEZADO */
+/* ===================================== */
 
 .encabezado {
-
     display: flex;
 
     align-items: center;
@@ -124,1372 +104,710 @@ body {
     gap: 12px;
 
     margin-bottom: 20px;
-
 }
-
 
 .titulo-principal {
-
     flex: 1;
-
 }
-
 
 .encabezado h1 {
+    color: var(--guinda);
 
-    color:
-        var(--guinda);
+    font-size: 30px;
 
-    font-size:
-        30px;
+    font-weight: 800;
 
-    font-weight:
-        800;
-
-    letter-spacing:
-        0.5px;
-
+    letter-spacing: 0.5px;
 }
-
 
 .icono-encabezado {
-
-    font-size:
-        38px;
-
+    font-size: 38px;
 }
-
 
 .subtitulo {
+    color: #666;
 
-    color:
-        #666666;
+    margin-top: 7px;
 
-    margin-top:
-        7px;
+    margin-bottom: 25px;
 
-    margin-bottom:
-        25px;
-
-    font-size:
-        15px;
-
+    font-size: 15px;
 }
 
-
-.pantalla {
-
-    width:
-        100%;
-
-}
-
-
-.oculto {
-
-    display:
-        none !important;
-
-}
-
-
-h2 {
-
-    color:
-        var(--guinda);
-
-    margin-bottom:
-        22px;
-
-    font-size:
-        24px;
-
-}
-
-
-/* =====================================================
-   BOTONES GENERALES
-   ===================================================== */
+/* ===================================== */
+/* BOTONES GENERALES */
+/* ===================================== */
 
 .boton {
+    width: 100%;
 
-    width:
-        100%;
+    min-height: 62px;
 
-    min-height:
-        62px;
+    padding: 15px;
 
-    padding:
-        15px;
+    border: 2px solid transparent;
 
-    border:
-        2px solid
-        var(--borde);
+    border-radius: 13px;
 
-    border-radius:
-        13px;
+    font-size: 18px;
 
-    font-size:
-        18px;
+    font-weight: bold;
 
-    font-weight:
-        bold;
+    cursor: pointer;
 
-    cursor:
-        pointer;
-
-    margin-bottom:
-        12px;
+    margin-bottom: 12px;
 
     transition:
         transform 0.1s,
         box-shadow 0.2s,
-        opacity 0.2s,
-        border-color 0.2s;
+        background 0.2s,
+        opacity 0.2s;
 
-    display:
-        flex;
+    display: flex;
 
-    align-items:
-        center;
+    align-items: center;
 
-    justify-content:
-        center;
+    justify-content: center;
 
-    text-align:
-        center;
-
+    text-align: center;
 }
-
 
 .boton:hover {
-
-    opacity:
-        0.94;
+    opacity: 0.93;
 
     box-shadow:
-        0 5px 12px
-        rgba(0, 0, 0, 0.14);
-
-    border-color:
-        var(--guinda);
-
+        0 4px 10px
+        rgba(0,0,0,0.12);
 }
-
 
 .boton:active {
-
-    transform:
-        scale(0.98);
-
+    transform: scale(0.98);
 }
-
 
 .boton:disabled {
+    opacity: 0.6;
 
-    opacity:
-        0.6;
-
-    cursor:
-        not-allowed;
-
+    cursor: not-allowed;
 }
 
-
-/* =====================================================
-   ENTRADA Y SALIDA
-   ===================================================== */
+/* ===================================== */
+/* ENTRADA Y SALIDA */
+/* ===================================== */
 
 .entrada {
+    background: var(--verde);
 
-    background:
-        var(--verde);
+    color: white;
 
-    color:
-        white;
+    border-color: #256B29;
 
-    min-height:
-        70px;
+    min-height: 70px;
 
-    font-size:
-        21px;
-
-    border-color:
-        #1B5E20;
-
+    font-size: 21px;
 }
-
 
 .salida {
+    background: var(--rojo);
 
-    background:
-        var(--rojo);
+    color: white;
 
-    color:
-        white;
+    border-color: #A82020;
 
-    min-height:
-        70px;
+    min-height: 70px;
 
-    font-size:
-        21px;
-
-    border-color:
-        #8E1B1B;
-
+    font-size: 21px;
 }
 
-
-/* =====================================================
-   BOTONES DE FOLIO
-   ===================================================== */
+/* ===================================== */
+/* BOTONES DE FOLIO */
+/* ===================================== */
 
 .boton-manual {
+    background: var(--azul);
 
-    background:
-        var(--azul);
+    color: white;
 
-    color:
-        white;
-
-    border-color:
-        #125A9C;
-
+    border-color: #145FA8;
 }
-
 
 .boton-qr {
+    background: var(--guinda);
 
-    background:
-        var(--morado);
+    color: white;
 
-    color:
-        white;
-
-    border-color:
-        #A94AC7;
-
+    border-color: var(--guinda-oscuro);
 }
 
-
-/* =====================================================
-   CAMBIAR CÁMARA
-   ===================================================== */
+/* ===================================== */
+/* CAMBIAR CÁMARA */
+/* ===================================== */
 
 #btnCambiarCamara {
+    background: var(--azul);
 
-    background:
-        var(--azul);
+    color: white;
 
-    color:
-        white;
+    border-color: #145FA8;
 
-    margin-top:
-        8px;
+    margin-top: 8px;
 
-    margin-bottom:
-        15px;
-
-    border-color:
-        #125A9C;
-
+    margin-bottom: 15px;
 }
-
 
 #btnCambiarCamara:hover {
-
-    background:
-        #1565C0;
-
+    background: #1565C0;
 }
 
-
-/* =====================================================
-   CAMPOS
-   ===================================================== */
+/* ===================================== */
+/* CAMPOS */
+/* ===================================== */
 
 label {
+    display: block;
 
-    display:
-        block;
+    text-align: left;
 
-    text-align:
-        left;
+    font-weight: bold;
 
-    font-weight:
-        bold;
+    margin-bottom: 8px;
 
-    margin-bottom:
-        8px;
-
-    color:
-        var(--guinda);
-
+    color: var(--guinda);
 }
 
-
 input {
+    width: 100%;
 
-    width:
-        100%;
+    padding: 15px;
 
-    padding:
-        15px;
-
-    margin-bottom:
-        18px;
+    margin-bottom: 18px;
 
     border:
         2px solid
-        #cccccc;
+        #ddd;
 
-    border-radius:
-        11px;
+    border-radius: 11px;
 
-    font-size:
-        18px;
-
-    color:
-        var(--texto);
-
-    background:
-        white;
-
+    font-size: 18px;
 }
 
-
 input:focus {
+    outline: none;
 
-    outline:
-        none;
-
-    border-color:
-        var(--guinda);
+    border-color: var(--guinda);
 
     box-shadow:
         0 0 0 3px
-        rgba(123, 30, 58, 0.12);
-
+        rgba(123,30,58,0.12);
 }
 
-
-/* =====================================================
-   REGISTRAR
-   ===================================================== */
+/* ===================================== */
+/* REGISTRAR */
+/* ===================================== */
 
 .registrar {
+    background: var(--guinda);
 
-    background:
-        var(--morado);
+    color: white;
 
-    color:
-        white;
-
-    border-color:
-        #A94AC7;
-
+    border-color: var(--guinda-oscuro);
 }
-
 
 .registrar:hover {
-
-    background:
-        var(--morado-hover);
-
+    background: var(--guinda-claro);
 }
 
-
-/* =====================================================
-   CANCELAR
-   ===================================================== */
+/* ===================================== */
+/* CANCELAR */
+/* ===================================== */
 
 .cancelar {
+    background: #777;
 
-    background:
-        var(--gris);
+    color: white;
 
-    color:
-        white;
-
-    border-color:
-        #555555;
-
+    border-color: #5F5F5F;
 }
 
+.cancelar:hover {
+    background: #666;
+}
 
-/* =====================================================
-   ACTIVIDADES
-   ===================================================== */
+/* ===================================== */
+/* ACTIVIDADES Y SUBACTIVIDADES */
+/* ===================================== */
 
 /*
-   Las actividades ahora se muestran
-   como una cuadrícula tipo tabla.
+   Se utiliza CSS Grid para que los botones
+   se adapten automáticamente al dispositivo.
+
+   No se limita a 3 columnas.
 */
 
-.rejilla-actividades {
+#pantallaActividades,
+#pantallaSubmenu {
+    width: 100%;
+}
 
-    display:
-        grid;
+/* Grid de actividades */
+
+#pantallaActividades {
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+}
+
+/*
+   Los botones de actividad se organizan
+   automáticamente según el ancho disponible.
+*/
+
+#pantallaActividades > .actividad:not(#btnCancelarActividad) {
+    width: 100%;
+}
+
+/*
+   Contenedor visual de actividades.
+   Se convierte en grid mediante display: grid.
+*/
+
+#pantallaActividades {
+    display: grid;
 
     grid-template-columns:
-        repeat(3, 1fr);
+        repeat(
+            auto-fit,
+            minmax(145px, 1fr)
+        );
 
-    gap:
-        12px;
-
-    width:
-        100%;
-
-    margin:
-        0 auto 18px auto;
-
-    justify-items:
-        center;
-
+    gap: 12px;
 }
 
+/*
+   El título ocupa todo el ancho.
+*/
 
-.rejilla-actividades .actividad {
+#pantallaActividades h2 {
+    grid-column: 1 / -1;
 
-    width:
-        100%;
-
-    min-height:
-        125px;
-
-    margin:
-        0;
-
+    width: 100%;
 }
 
+/*
+   Botón cancelar ocupa todo el ancho.
+*/
 
-/* =====================================================
-   BOTONES DE ACTIVIDAD
-   ===================================================== */
+#btnCancelarActividad {
+    grid-column: 1 / -1;
+}
+
+/* ===================================== */
+/* BOTONES DE ACTIVIDAD */
+/* ===================================== */
 
 .actividad {
+    background: var(--blanco);
 
-    background:
-        var(--morado);
-
-    color:
-        white;
+    color: var(--texto);
 
     border:
         2px solid
-        #A94AC7;
+        var(--gris-borde);
 
-    display:
-        flex;
+    border-radius: 13px;
 
-    flex-direction:
-        column;
+    min-height: 105px;
 
-    align-items:
-        center;
+    padding: 14px 10px;
 
-    justify-content:
-        center;
+    display: flex;
 
-    text-align:
-        center;
+    flex-direction: column;
 
-    gap:
-        8px;
+    align-items: center;
 
-    padding:
-        14px 8px;
+    justify-content: center;
 
-    border-radius:
-        13px;
+    text-align: center;
 
+    gap: 8px;
+
+    margin-bottom: 0;
+
+    box-shadow:
+        0 2px 5px
+        rgba(0,0,0,0.05);
 }
-
 
 .actividad:hover {
-
-    background:
-        var(--morado-hover);
+    background: var(--gris-hover);
 
     border-color:
-        #8E35A9;
-
-}
-
-
-.actividad-icono {
-
-    width:
-        100%;
-
-    min-width:
-        auto;
-
-    font-size:
-        32px;
-
-    line-height:
-        1;
-
-    text-align:
-        center;
-
-}
-
-
-.actividad-texto {
-
-    display:
-        block;
-
-    width:
-        100%;
-
-    font-size:
-        16px;
-
-    line-height:
-        1.2;
-
-    font-weight:
-        bold;
-
-    text-align:
-        center;
-
-    word-break:
-        normal;
-
-    overflow-wrap:
-        break-word;
-
-}
-
-
-/* =====================================================
-   SUBMENÚ
-   ===================================================== */
-
-#botonesSubmenu {
-
-    width:
-        100%;
-
-}
-
-
-.rejilla-submenu {
-
-    display:
-        grid;
-
-    grid-template-columns:
-        repeat(3, 1fr);
-
-    gap:
-        12px;
-
-    width:
-        100%;
-
-    margin:
-        0 auto 18px auto;
-
-    justify-items:
-        center;
-
-}
-
-
-/*
-   Los botones de las subopciones también
-   son cuadrados y centrados.
-*/
-
-.boton-submenu {
-
-    width:
-        100%;
-
-    min-height:
-        115px;
-
-    margin:
-        0;
-
-    padding:
-        12px 8px;
-
-}
-
-
-.boton-submenu .actividad-icono {
-
-    font-size:
-        31px;
-
-}
-
-
-.boton-submenu .actividad-texto {
-
-    font-size:
-        16px;
-
-}
-
-
-/*
-   Los módulos de Prepa no llevan icono.
-   El texto queda centrado.
-*/
-
-.boton-submenu .actividad-texto:only-child {
-
-    font-size:
-        17px;
-
-    line-height:
-        1.25;
-
-}
-
-
-/* =====================================================
-   INSTRUCCIÓN DE SUBMENÚ
-   ===================================================== */
-
-.instruccion-submenu {
-
-    color:
-        #666666;
-
-    font-size:
-        16px;
-
-    font-weight:
-        bold;
-
-    margin-top:
-        -10px;
-
-    margin-bottom:
-        18px;
-
-    text-align:
-        center;
-
-}
-
-
-/* =====================================================
-   LECTOR QR
-   ===================================================== */
-
-#reader {
-
-    width:
-        100%;
-
-    max-width:
-        400px;
-
-    margin:
-        20px auto;
-
-    border-radius:
-        12px;
-
-    overflow:
-        hidden;
-
-}
-
-
-#reader video {
-
-    width:
-        100% !important;
-
-    max-width:
-        100%;
-
-    border-radius:
-        12px;
-
-}
-
-
-#reader__scan_region {
-
-    border-radius:
-        12px;
-
-    overflow:
-        hidden;
-
-}
-
-
-#reader__dashboard {
-
-    padding:
-        10px 0 !important;
-
-}
-
-
-#reader__dashboard_section {
-
-    margin:
-        0 auto;
-
-}
-
-
-/* =====================================================
-   QR
-   ===================================================== */
-
-.instruccion {
-
-    color:
-        #666666;
-
-    margin-bottom:
-        15px;
-
-}
-
-
-.qr-exito {
-
-    background:
-        var(--verde);
-
-    color:
-        white;
-
-    padding:
-        16px;
-
-    border-radius:
-        12px;
-
-    font-size:
-        20px;
-
-    font-weight:
-        bold;
-
-    margin:
-        15px 0;
-
-    animation:
-        brillo
-        0.5s
-        ease-in-out;
-
-    border:
-        2px solid
-        #1B5E20;
-
-}
-
-
-.qr-folio {
+        var(--guinda);
 
     color:
         var(--guinda);
 
-    font-weight:
-        bold;
-
-    margin:
-        10px 0;
-
-    min-height:
-        20px;
-
+    box-shadow:
+        0 4px 10px
+        rgba(0,0,0,0.10);
 }
 
+.actividad:active {
+    transform: scale(0.98);
+}
+
+.actividad-icono {
+    width: auto;
+
+    min-width: auto;
+
+    font-size: 30px;
+
+    line-height: 1;
+
+    text-align: center;
+}
+
+/* ===================================== */
+/* SUBMENÚ */
+/* ===================================== */
+
+#pantallaSubmenu {
+    display: grid;
+
+    grid-template-columns:
+        repeat(
+            auto-fit,
+            minmax(120px, 1fr)
+        );
+
+    gap: 12px;
+
+    align-items: stretch;
+
+    justify-items: stretch;
+}
+
+#pantallaSubmenu h2 {
+    grid-column: 1 / -1;
+
+    width: 100%;
+}
+
+/*
+   El contenedor generado por JavaScript
+   también utiliza grid.
+*/
+
+#botonesSubmenu {
+    grid-column: 1 / -1;
+
+    width: 100%;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(
+            auto-fit,
+            minmax(120px, 1fr)
+        );
+
+    gap: 12px;
+
+    justify-items: stretch;
+}
+
+/*
+   Los botones de las subcategorías
+   son cuadrados y muestran icono + texto.
+*/
+
+#botonesSubmenu .boton {
+    width: 100%;
+
+    min-height: 115px;
+
+    aspect-ratio: 1 / 1;
+
+    margin-bottom: 0;
+
+    background: var(--blanco);
+
+    color: var(--texto);
+
+    border:
+        2px solid
+        var(--gris-borde);
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    align-items: center;
+
+    text-align: center;
+
+    padding: 10px;
+
+    white-space: normal;
+
+    line-height: 1.2;
+}
+
+#botonesSubmenu .boton:hover {
+    background: var(--gris-hover);
+
+    border-color: var(--guinda);
+
+    color: var(--guinda);
+}
+
+/*
+   Iconos dentro de las subcategorías.
+*/
+
+#botonesSubmenu .subactividad-icono {
+    font-size: 30px;
+
+    line-height: 1;
+
+    margin-bottom: 8px;
+}
+
+/*
+   Texto de la subcategoría.
+*/
+
+#botonesSubmenu .subactividad-texto {
+    display: block;
+
+    font-size: 16px;
+
+    font-weight: bold;
+
+    text-align: center;
+
+    word-break: normal;
+}
+
+/*
+   Botón VOLVER ocupa todo el ancho.
+*/
+
+#btnVolverActividades {
+    grid-column: 1 / -1;
+
+    width: 100%;
+
+    margin-top: 4px;
+
+    margin-bottom: 0;
+}
+
+/* ===================================== */
+/* LECTOR QR */
+/* ===================================== */
+
+#reader {
+    width: 100%;
+
+    max-width: 400px;
+
+    margin: 20px auto;
+
+    border-radius: 12px;
+
+    overflow: hidden;
+}
+
+#reader video {
+    width: 100% !important;
+
+    max-width: 100%;
+
+    border-radius: 12px;
+}
+
+#reader__scan_region {
+    border-radius: 12px;
+
+    overflow: hidden;
+}
+
+#reader__dashboard {
+    padding: 10px 0 !important;
+}
+
+#reader__dashboard_section {
+    margin: 0 auto;
+}
+
+/* ===================================== */
+/* QR */
+/* ===================================== */
+
+.instruccion {
+    color: #666;
+
+    margin-bottom: 15px;
+}
+
+.qr-exito {
+    background: var(--verde);
+
+    color: white;
+
+    padding: 16px;
+
+    border-radius: 12px;
+
+    font-size: 20px;
+
+    font-weight: bold;
+
+    margin: 15px 0;
+
+    animation:
+        brillo 0.5s
+        ease-in-out;
+}
+
+.qr-folio {
+    color: var(--guinda);
+
+    font-weight: bold;
+
+    margin: 10px 0;
+
+    min-height: 20px;
+}
 
 @keyframes brillo {
 
     0% {
+        transform: scale(0.8);
 
-        transform:
-            scale(0.8);
-
-        opacity:
-            0;
-
+        opacity: 0;
     }
 
     50% {
-
-        transform:
-            scale(1.08);
-
+        transform: scale(1.08);
     }
 
     100% {
+        transform: scale(1);
 
-        transform:
-            scale(1);
-
-        opacity:
-            1;
-
+        opacity: 1;
     }
-
 }
 
-
-/* =====================================================
-   MENSAJES
-   ===================================================== */
+/* ===================================== */
+/* MENSAJES */
+/* ===================================== */
 
 .mensaje {
+    min-height: 25px;
 
-    min-height:
-        25px;
+    margin: 10px 0;
 
-    margin:
-        10px 0;
-
-    font-weight:
-        bold;
-
+    font-weight: bold;
 }
-
 
 .mensaje.exito {
-
-    color:
-        var(--verde);
-
+    color: var(--verde);
 }
-
 
 .mensaje.error {
-
-    color:
-        var(--rojo);
-
+    color: var(--rojo);
 }
-
 
 .mensaje.info {
-
-    color:
-        var(--azul);
-
+    color: var(--azul);
 }
 
-
-/* =====================================================
-   CONFIRMACIÓN
-   ===================================================== */
+/* ===================================== */
+/* CONFIRMACIÓN */
+/* ===================================== */
 
 .confirmacion {
+    display: flex;
 
-    display:
-        flex;
+    flex-direction: column;
 
-    flex-direction:
-        column;
+    align-items: center;
 
-    align-items:
-        center;
+    justify-content: center;
 
-    justify-content:
-        center;
-
-    min-height:
-        300px;
+    min-height: 350px;
 
     animation:
         aparecerConfirmacion
         0.35s
         ease-out;
-
 }
 
-
 .check-confirmacion {
+    width: 105px;
 
-    width:
-        105px;
+    height: 105px;
 
-    height:
-        105px;
+    border-radius: 50%;
 
-    border-radius:
-        50%;
+    background: var(--verde);
 
-    background:
-        var(--verde);
+    color: white;
 
-    color:
-        white;
+    display: flex;
 
-    display:
-        flex;
+    align-items: center;
 
-    align-items:
-        center;
+    justify-content: center;
 
-    justify-content:
-        center;
+    font-size: 70px;
 
-    font-size:
-        70px;
+    font-weight: bold;
 
-    font-weight:
-        bold;
-
-    margin-bottom:
-        25px;
+    margin-bottom: 25px;
 
     box-shadow:
         0 8px 25px
-        rgba(46, 125, 50, 0.30);
-
-    border:
-        4px solid
-        #1B5E20;
+        rgba(46,125,50,0.30);
 
     animation:
         aparecerCheck
         0.6s
         ease-out;
-
 }
-
 
 .confirmacion h2 {
+    font-size: 30px;
 
-    font-size:
-        30px;
+    color: var(--guinda);
 
-    color:
-        var(--guinda);
-
-    margin-bottom:
-        10px;
-
+    margin-bottom: 10px;
 }
-
 
 #mensajeConfirmacion {
+    color: var(--verde);
 
-    color:
-        var(--verde);
+    font-size: 22px;
 
-    font-size:
-        22px;
+    font-weight: bold;
 
-    font-weight:
-        bold;
-
-    margin-bottom:
-        12px;
-
+    margin-bottom: 12px;
 }
-
 
 .actividad-confirmacion {
+    color: #666;
 
-    color:
-        #666666;
+    font-size: 16px;
 
-    font-size:
-        16px;
-
-    font-weight:
-        bold;
-
-    max-width:
-        90%;
-
-    line-height:
-        1.4;
-
+    font-weight: bold;
 }
 
-
-@keyframes aparecerCheck {
-
-    0% {
-
-        transform:
-            scale(0);
-
-        opacity:
-            0;
-
-    }
-
-    60% {
-
-        transform:
-            scale(1.15);
-
-        opacity:
-            1;
-
-    }
-
-    100% {
-
-        transform:
-            scale(1);
-
-    }
-
-}
-
-
-@keyframes aparecerConfirmacion {
-
-    from {
-
-        opacity:
-            0;
-
-        transform:
-            translateY(15px);
-
-    }
-
-    to {
-
-        opacity:
-            1;
-
-        transform:
-            translateY(0);
-
-    }
-
-}
-
-
-/* =====================================================
-   TABLET
-   ===================================================== */
-
-@media (max-width: 700px) {
-
-    .contenedor {
-
-        max-width:
-            600px;
-
-    }
-
-
-    .rejilla-actividades,
-    .rejilla-submenu {
-
-        grid-template-columns:
-            repeat(2, 1fr);
-
-    }
-
-
-    .rejilla-actividades .actividad,
-    .boton-submenu {
-
-        min-height:
-            120px;
-
-    }
-
-}
-
-
-/* =====================================================
-   MÓVILES
-   ===================================================== */
-
-@media (max-width: 500px) {
-
-    body {
-
-        padding:
-            10px;
-
-        align-items:
-            flex-start;
-
-    }
-
-
-    .contenedor {
-
-        margin-top:
-            10px;
-
-        padding:
-            25px 15px;
-
-        border-radius:
-            18px;
-
-    }
-
-
-    .encabezado {
-
-        gap:
-            7px;
-
-    }
-
-
-    .encabezado h1 {
-
-        font-size:
-            22px;
-
-    }
-
-
-    .icono-encabezado {
-
-        font-size:
-            28px;
-
-    }
-
-
-    h2 {
-
-        font-size:
-            21px;
-
-    }
-
-
-    .boton {
-
-        font-size:
-            16px;
-
-        min-height:
-            58px;
-
-    }
-
-
-    .entrada,
-    .salida {
-
-        min-height:
-            65px;
-
-        font-size:
-            20px;
-
-    }
-
-
-    /*
-       En celular mantenemos 2 columnas
-       para que siga pareciendo una tabla.
-    */
-
-    .rejilla-actividades,
-    .rejilla-submenu {
-
-        grid-template-columns:
-            repeat(2, 1fr);
-
-        gap:
-            10px;
-
-    }
-
-
-    .rejilla-actividades .actividad {
-
-        min-height:
-            115px;
-
-        padding:
-            12px 6px;
-
-    }
-
-
-    .boton-submenu {
-
-        min-height:
-            105px;
-
-        padding:
-            10px 5px;
-
-    }
-
-
-    .actividad-icono {
-
-        font-size:
-            28px;
-
-    }
-
-
-    .boton-submenu .actividad-icono {
-
-        font-size:
-            27px;
-
-    }
-
-
-    .actividad-texto {
-
-        font-size:
-            14px;
-
-    }
-
-
-    .boton-submenu .actividad-texto {
-
-        font-size:
-            14px;
-
-    }
-
-
-    .boton-submenu .actividad-texto:only-child {
-
-        font-size:
-            15px;
-
-    }
-
-
-    #reader {
-
-        max-width:
-            100%;
-
-        margin:
-            15px auto;
-
-    }
-
-
-    #btnCambiarCamara {
-
-        min-height:
-            52px;
-
-        font-size:
-            16px;
-
-    }
-
-
-    .check-confirmacion {
-
-        width:
-            90px;
-
-        height:
-            90px;
-
-        font-size:
-            60px;
-
-    }
-
-
-    .confirmacion h2 {
-
-        font-size:
-            26px;
-
-    }
-
-
-    #mensajeConfirmacion {
-
-        font-size:
-            20px;
-
-    }
-
-}
-
-
-/* =====================================================
-   MÓVILES MUY PEQUEÑOS
-   ===================================================== */
-
-@media (max-width: 360px) {
-
-    .contenedor {
-
-        padding:
-            22px 10px;
-
-    }
-
-
-    .encabezado h1 {
-
-        font-size:
-            19px;
-
-    }
-
-
-    .icono-encabezado {
-
-        font-size:
-            24px;
-
-    }
-
-
-    .rejilla-actividades,
-    .rejilla-submenu {
-
-        gap:
-            7px;
-
-    }
-
-
-    .rejilla-actividades .actividad {
-
-        min-height:
-            105px;
-
-    }
-
-
-    .boton-submenu {
-
-        min-height:
-            95px;
-
-    }
-
-
-    .actividad-texto,
-    .boton-submenu .actividad-texto {
-
-        font-size:
-            13px;
-
-    }
-
-}
+/*
+   Nombre del usuario en
