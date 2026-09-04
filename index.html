@@ -274,7 +274,8 @@
 
 
         <div
-            id="campoNombre">
+            id="campoNombre"
+            class="oculto">
 
             <label for="nombre">
                 Nombre completo
@@ -293,7 +294,7 @@
 
         <button
             id="btnNombre"
-            class="boton registrar"
+            class="boton registrar oculto"
             type="button">
 
             CONTINUAR
@@ -331,9 +332,7 @@
             class="rejilla-actividades">
 
 
-            <!-- ================================= -->
             <!-- ALFABETIZACIÓN -->
-            <!-- ================================= -->
 
             <button
                 class="boton actividad"
@@ -351,9 +350,7 @@
             </button>
 
 
-            <!-- ================================= -->
             <!-- PRIMARIA INEA -->
-            <!-- ================================= -->
 
             <button
                 class="boton actividad"
@@ -371,9 +368,7 @@
             </button>
 
 
-            <!-- ================================= -->
             <!-- SECUNDARIA INEA -->
-            <!-- ================================= -->
 
             <button
                 class="boton actividad"
@@ -391,9 +386,7 @@
             </button>
 
 
-            <!-- ================================= -->
             <!-- PREPA ABIERTA -->
-            <!-- ================================= -->
 
             <button
                 id="btnPrepaAbierta"
@@ -411,9 +404,7 @@
             </button>
 
 
-            <!-- ================================= -->
             <!-- PREPA EN LÍNEA -->
-            <!-- ================================= -->
 
             <button
                 id="btnPrepaLinea"
@@ -431,17 +422,15 @@
             </button>
 
 
-            <!-- ================================= -->
             <!-- BACHILLERATOS PILARES -->
-            <!-- ================================= -->
 
             <button
-                id="btnBachilleratos"
+                id="btnBachilleratosPilares"
                 class="boton actividad"
                 type="button">
 
                 <span class="actividad-icono">
-                    🏫
+                    🎓
                 </span>
 
                 <span class="actividad-texto">
@@ -451,9 +440,25 @@
             </button>
 
 
-            <!-- ================================= -->
+            <!-- SABERES SECTEI -->
+
+            <button
+                id="btnSaberesSectei"
+                class="boton actividad"
+                type="button">
+
+                <span class="actividad-icono">
+                    📚
+                </span>
+
+                <span class="actividad-texto">
+                    Saberes SECTEI
+                </span>
+
+            </button>
+
+
             <!-- ASESORÍAS ACADÉMICAS -->
-            <!-- ================================= -->
 
             <button
                 id="btnAsesoria"
@@ -471,29 +476,7 @@
             </button>
 
 
-            <!-- ================================= -->
-            <!-- SABERES SECTEI -->
-            <!-- ================================= -->
-
-            <button
-                id="btnSaberes"
-                class="boton actividad"
-                type="button">
-
-                <span class="actividad-icono">
-                    📚
-                </span>
-
-                <span class="actividad-texto">
-                    Saberes SECTEI
-                </span>
-
-            </button>
-
-
-            <!-- ================================= -->
             <!-- COMPUTACIÓN -->
-            <!-- ================================= -->
 
             <button
                 id="btnComputacion"
@@ -501,7 +484,7 @@
                 type="button">
 
                 <span class="actividad-icono">
-                    💻
+                    🖥️
                 </span>
 
                 <span class="actividad-texto">
@@ -511,9 +494,7 @@
             </button>
 
 
-            <!-- ================================= -->
             <!-- USO DE COMPUTADORA -->
-            <!-- ================================= -->
 
             <button
                 class="boton actividad"
@@ -531,9 +512,7 @@
             </button>
 
 
-            <!-- ================================= -->
             <!-- SERVICIO SOCIAL -->
-            <!-- ================================= -->
 
             <button
                 class="boton actividad"
@@ -551,9 +530,7 @@
             </button>
 
 
-            <!-- ================================= -->
             <!-- BENEFICIARIOS -->
-            <!-- ================================= -->
 
             <button
                 id="btnBeneficiarios"
@@ -572,10 +549,6 @@
 
         </div>
 
-
-        <!-- ===================================== -->
-        <!-- CANCELAR -->
-        <!-- ===================================== -->
 
         <button
             id="btnCancelarActividad"
@@ -643,8 +616,14 @@
         </h2>
 
 
-        <p id="mensajeConfirmacion">
-            ¡Vuelve pronto!
+        <p
+            id="nombreConfirmacion"
+            class="nombre-confirmacion">
+        </p>
+
+
+        <p
+            id="mensajeConfirmacion">
         </p>
 
 
@@ -658,10 +637,6 @@
 
 </main>
 
-
-<!-- ========================================= -->
-<!-- JAVASCRIPT -->
-<!-- ========================================= -->
 
 <script src="app.js"></script>
 
