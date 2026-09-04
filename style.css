@@ -8,29 +8,21 @@
 :root {
 
     --guinda: #7B1E3A;
-
     --guinda-oscuro: #5B1429;
-
     --guinda-claro: #96324F;
 
     --morado: #DC88F7;
-
     --morado-hover: #CE70F0;
 
     --verde: #2E7D32;
-
     --rojo: #C62828;
-
     --azul: #1976D2;
 
     --gris-fondo: #F4F1F3;
-
     --gris: #777;
 
     --blanco: #FFFFFF;
-
     --texto: #333333;
-
 }
 
 
@@ -69,17 +61,13 @@ body {
 
     max-width: 520px;
 
-    background:
-        var(--blanco);
+    background: var(--blanco);
 
-    padding:
-        30px 25px;
+    padding: 30px 25px;
 
-    border-radius:
-        22px;
+    border-radius: 22px;
 
-    text-align:
-        center;
+    text-align: center;
 
     box-shadow:
         0 8px 30px
@@ -91,10 +79,6 @@ body {
 
 }
 
-
-/* ===================================== */
-/* ENCABEZADO */
-/* ===================================== */
 
 .encabezado {
 
@@ -120,130 +104,103 @@ body {
 
 .encabezado h1 {
 
-    color:
-        var(--guinda);
+    color: var(--guinda);
 
-    font-size:
-        30px;
+    font-size: 30px;
 
-    font-weight:
-        800;
+    font-weight: 800;
 
-    letter-spacing:
-        0.5px;
+    letter-spacing: 0.5px;
 
 }
 
 
 .icono-encabezado {
 
-    font-size:
-        38px;
+    font-size: 38px;
 
 }
 
 
 .subtitulo {
 
-    color:
-        #666;
+    color: #666;
 
-    margin-top:
-        7px;
+    margin-top: 7px;
 
-    margin-bottom:
-        25px;
+    margin-bottom: 25px;
 
-    font-size:
-        15px;
+    font-size: 15px;
 
 }
 
 
 .pantalla {
 
-    width:
-        100%;
+    width: 100%;
 
 }
 
 
 .oculto {
 
-    display:
-        none !important;
+    display: none !important;
 
 }
 
 
 h2 {
 
-    color:
-        var(--guinda);
+    color: var(--guinda);
 
-    margin-bottom:
-        22px;
+    margin-bottom: 22px;
 
 }
 
 
 /* ===================================== */
-/* BOTONES */
+/* BOTONES GENERALES */
 /* ===================================== */
 
 .boton {
 
-    width:
-        100%;
+    width: 100%;
 
-    min-height:
-        62px;
+    min-height: 62px;
 
-    padding:
-        15px;
+    padding: 15px;
 
-    border:
-        none;
+    border: none;
 
-    border-radius:
-        13px;
+    border-radius: 13px;
 
-    font-size:
-        18px;
+    font-size: 18px;
 
-    font-weight:
-        bold;
+    font-weight: bold;
 
-    cursor:
-        pointer;
+    cursor: pointer;
 
-    margin-bottom:
-        12px;
+    margin-bottom: 12px;
 
     transition:
         transform 0.1s,
         box-shadow 0.2s,
         opacity 0.2s;
 
-    display:
-        flex;
+    display: flex;
 
-    align-items:
-        center;
+    align-items: center;
 
-    justify-content:
-        center;
+    justify-content: center;
 
-    text-align:
-        center;
+    text-align: center;
 
 }
 
 
 .boton:hover {
 
-    opacity:
-        0.93;
+    opacity: 0.93;
 
     box-shadow:
         0 4px 10px
@@ -254,19 +211,16 @@ h2 {
 
 .boton:active {
 
-    transform:
-        scale(0.98);
+    transform: scale(0.98);
 
 }
 
 
 .boton:disabled {
 
-    opacity:
-        0.6;
+    opacity: 0.6;
 
-    cursor:
-        not-allowed;
+    cursor: not-allowed;
 
 }
 
@@ -277,89 +231,72 @@ h2 {
 
 .entrada {
 
-    background:
-        var(--verde);
+    background: var(--verde);
 
-    color:
-        white;
+    color: white;
 
-    min-height:
-        70px;
+    min-height: 70px;
 
-    font-size:
-        21px;
+    font-size: 21px;
 
 }
 
 
 .salida {
 
-    background:
-        var(--rojo);
+    background: var(--rojo);
 
-    color:
-        white;
+    color: white;
 
-    min-height:
-        70px;
+    min-height: 70px;
 
-    font-size:
-        21px;
+    font-size: 21px;
 
 }
 
 
 /* ===================================== */
-/* BOTONES DE FOLIO */
+/* FOLIO */
 /* ===================================== */
 
 .boton-manual {
 
-    background:
-        var(--azul);
+    background: var(--azul);
 
-    color:
-        white;
+    color: white;
 
 }
 
 
 .boton-qr {
 
-    background:
-        var(--morado);
+    background: var(--morado);
 
-    color:
-        white;
+    color: white;
 
 }
 
 
 /* ===================================== */
-/* BOTÓN CAMBIAR CÁMARA */
+/* CÁMARA */
 /* ===================================== */
 
 #btnCambiarCamara {
 
-    background:
-        var(--azul);
+    background: var(--azul);
 
-    color:
-        white;
+    color: white;
 
-    margin-top:
-        8px;
+    margin-top: 8px;
 
-    margin-bottom:
-        15px;
+    margin-bottom: 15px;
 
 }
 
 
 #btnCambiarCamara:hover {
 
-    background:
-        #1565C0;
+    background: #1565C0;
 
 }
 
@@ -370,54 +307,42 @@ h2 {
 
 label {
 
-    display:
-        block;
+    display: block;
 
-    text-align:
-        left;
+    text-align: left;
 
-    font-weight:
-        bold;
+    font-weight: bold;
 
-    margin-bottom:
-        8px;
+    margin-bottom: 8px;
 
-    color:
-        var(--guinda);
+    color: var(--guinda);
 
 }
 
 
 input {
 
-    width:
-        100%;
+    width: 100%;
 
-    padding:
-        15px;
+    padding: 15px;
 
-    margin-bottom:
-        18px;
+    margin-bottom: 18px;
 
     border:
         2px solid #ddd;
 
-    border-radius:
-        11px;
+    border-radius: 11px;
 
-    font-size:
-        18px;
+    font-size: 18px;
 
 }
 
 
 input:focus {
 
-    outline:
-        none;
+    outline: none;
 
-    border-color:
-        var(--guinda);
+    border-color: var(--guinda);
 
     box-shadow:
         0 0 0 3px
@@ -432,19 +357,16 @@ input:focus {
 
 .registrar {
 
-    background:
-        var(--morado);
+    background: var(--morado);
 
-    color:
-        white;
+    color: white;
 
 }
 
 
 .registrar:hover {
 
-    background:
-        var(--morado-hover);
+    background: var(--morado-hover);
 
 }
 
@@ -455,69 +377,98 @@ input:focus {
 
 .cancelar {
 
-    background:
-        var(--gris);
+    background: var(--gris);
 
-    color:
-        white;
+    color: white;
 
 }
 
 
 /* ===================================== */
-/* ACTIVIDADES */
+/* ACTIVIDADES - CUADRÍCULA */
 /* ===================================== */
+
+.grid-actividades {
+
+    width: 100%;
+
+    max-width: 480px;
+
+    margin: 0 auto 15px;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 12px;
+
+    justify-items: center;
+
+}
+
+
+.grid-actividades .actividad {
+
+    width: 100%;
+
+    aspect-ratio: 1 / 1;
+
+    min-height: 130px;
+
+    margin-bottom: 0;
+
+    padding: 12px;
+
+}
+
 
 .actividad {
 
-    background:
-        var(--morado);
+    background: var(--morado);
 
-    color:
-        white;
+    color: white;
 
-    display:
-        flex;
+    display: flex;
 
-    align-items:
-        center;
+    flex-direction: column;
 
-    justify-content:
-        center;
+    align-items: center;
 
-    text-align:
-        center;
+    justify-content: center;
 
-    gap:
-        12px;
+    text-align: center;
 
-    padding:
-        15px;
+    gap: 9px;
+
+    line-height: 1.15;
 
 }
 
 
 .actividad:hover {
 
-    background:
-        var(--morado-hover);
+    background: var(--morado-hover);
 
 }
 
 
 .actividad-icono {
 
-    width:
-        auto;
+    font-size: 30px;
 
-    min-width:
-        auto;
+    text-align: center;
 
-    font-size:
-        28px;
+}
 
-    text-align:
-        center;
+
+/* ===================================== */
+/* BOTÓN ANCHO COMPLETO */
+/* ===================================== */
+
+.boton-ancho-completo {
+
+    width: 100%;
 
 }
 
@@ -528,11 +479,71 @@ input:focus {
 
 #botonesSubmenu {
 
-    display:
-        flex;
+    width: 100%;
 
-    flex-direction:
-        column;
+    max-width: 480px;
+
+    margin: 0 auto 15px;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 12px;
+
+    justify-items: center;
+
+}
+
+
+#botonesSubmenu .actividad {
+
+    width: 100%;
+
+    aspect-ratio: 1 / 1;
+
+    min-height: 115px;
+
+    margin-bottom: 0;
+
+    padding: 10px;
+
+}
+
+
+/* ===================================== */
+/* INSTRUCCIÓN DEL SUBMENÚ */
+/* ===================================== */
+
+.instruccion-submenu {
+
+    color: #666;
+
+    font-size: 17px;
+
+    font-weight: bold;
+
+    margin-top: -10px;
+
+    margin-bottom: 15px;
+
+}
+
+
+/* ===================================== */
+/* MÓDULOS */
+/* ===================================== */
+
+#botonesSubmenu .actividad.modulo {
+
+    min-height: 85px;
+
+    aspect-ratio: 1 / 1;
+
+    font-size: 20px;
+
+    padding: 10px;
 
 }
 
@@ -543,61 +554,49 @@ input:focus {
 
 #reader {
 
-    width:
-        100%;
+    width: 100%;
 
-    max-width:
-        400px;
+    max-width: 400px;
 
-    margin:
-        20px auto;
+    margin: 20px auto;
 
-    border-radius:
-        12px;
+    border-radius: 12px;
 
-    overflow:
-        hidden;
+    overflow: hidden;
 
 }
 
 
 #reader video {
 
-    width:
-        100% !important;
+    width: 100% !important;
 
-    max-width:
-        100%;
+    max-width: 100%;
 
-    border-radius:
-        12px;
+    border-radius: 12px;
 
 }
 
 
 #reader__scan_region {
 
-    border-radius:
-        12px;
+    border-radius: 12px;
 
-    overflow:
-        hidden;
+    overflow: hidden;
 
 }
 
 
 #reader__dashboard {
 
-    padding:
-        10px 0 !important;
+    padding: 10px 0 !important;
 
 }
 
 
 #reader__dashboard_section {
 
-    margin:
-        0 auto;
+    margin: 0 auto;
 
 }
 
@@ -608,37 +607,28 @@ input:focus {
 
 .instruccion {
 
-    color:
-        #666;
+    color: #666;
 
-    margin-bottom:
-        15px;
+    margin-bottom: 15px;
 
 }
 
 
 .qr-exito {
 
-    background:
-        var(--verde);
+    background: var(--verde);
 
-    color:
-        white;
+    color: white;
 
-    padding:
-        16px;
+    padding: 16px;
 
-    border-radius:
-        12px;
+    border-radius: 12px;
 
-    font-size:
-        20px;
+    font-size: 20px;
 
-    font-weight:
-        bold;
+    font-weight: bold;
 
-    margin:
-        15px 0;
+    margin: 15px 0;
 
     animation:
         brillo 0.5s ease-in-out;
@@ -648,17 +638,13 @@ input:focus {
 
 .qr-folio {
 
-    color:
-        var(--guinda);
+    color: var(--guinda);
 
-    font-weight:
-        bold;
+    font-weight: bold;
 
-    margin:
-        10px 0;
+    margin: 10px 0;
 
-    min-height:
-        20px;
+    min-height: 20px;
 
 }
 
@@ -667,28 +653,23 @@ input:focus {
 
     0% {
 
-        transform:
-            scale(0.8);
+        transform: scale(0.8);
 
-        opacity:
-            0;
+        opacity: 0;
 
     }
 
     50% {
 
-        transform:
-            scale(1.08);
+        transform: scale(1.08);
 
     }
 
     100% {
 
-        transform:
-            scale(1);
+        transform: scale(1);
 
-        opacity:
-            1;
+        opacity: 1;
 
     }
 
@@ -701,38 +682,32 @@ input:focus {
 
 .mensaje {
 
-    min-height:
-        25px;
+    min-height: 25px;
 
-    margin:
-        10px 0;
+    margin: 10px 0;
 
-    font-weight:
-        bold;
+    font-weight: bold;
 
 }
 
 
 .mensaje.exito {
 
-    color:
-        var(--verde);
+    color: var(--verde);
 
 }
 
 
 .mensaje.error {
 
-    color:
-        var(--rojo);
+    color: var(--rojo);
 
 }
 
 
 .mensaje.info {
 
-    color:
-        var(--azul);
+    color: var(--azul);
 
 }
 
@@ -743,20 +718,15 @@ input:focus {
 
 .confirmacion {
 
-    display:
-        flex;
+    display: flex;
 
-    flex-direction:
-        column;
+    flex-direction: column;
 
-    align-items:
-        center;
+    align-items: center;
 
-    justify-content:
-        center;
+    justify-content: center;
 
-    min-height:
-        300px;
+    min-height: 300px;
 
     animation:
         aparecerConfirmacion
@@ -768,38 +738,27 @@ input:focus {
 
 .check-confirmacion {
 
-    width:
-        105px;
+    width: 105px;
 
-    height:
-        105px;
+    height: 105px;
 
-    border-radius:
-        50%;
+    border-radius: 50%;
 
-    background:
-        var(--verde);
+    background: var(--verde);
 
-    color:
-        white;
+    color: white;
 
-    display:
-        flex;
+    display: flex;
 
-    align-items:
-        center;
+    align-items: center;
 
-    justify-content:
-        center;
+    justify-content: center;
 
-    font-size:
-        70px;
+    font-size: 70px;
 
-    font-weight:
-        bold;
+    font-weight: bold;
 
-    margin-bottom:
-        25px;
+    margin-bottom: 25px;
 
     box-shadow:
         0 8px 25px
@@ -815,45 +774,35 @@ input:focus {
 
 .confirmacion h2 {
 
-    font-size:
-        30px;
+    font-size: 30px;
 
-    color:
-        var(--guinda);
+    color: var(--guinda);
 
-    margin-bottom:
-        10px;
+    margin-bottom: 10px;
 
 }
 
 
 #mensajeConfirmacion {
 
-    color:
-        var(--verde);
+    color: var(--verde);
 
-    font-size:
-        22px;
+    font-size: 22px;
 
-    font-weight:
-        bold;
+    font-weight: bold;
 
-    margin-bottom:
-        12px;
+    margin-bottom: 12px;
 
 }
 
 
 .actividad-confirmacion {
 
-    color:
-        #666;
+    color: #666;
 
-    font-size:
-        16px;
+    font-size: 16px;
 
-    font-weight:
-        bold;
+    font-weight: bold;
 
 }
 
@@ -862,28 +811,23 @@ input:focus {
 
     0% {
 
-        transform:
-            scale(0);
+        transform: scale(0);
 
-        opacity:
-            0;
+        opacity: 0;
 
     }
 
     60% {
 
-        transform:
-            scale(1.15);
+        transform: scale(1.15);
 
-        opacity:
-            1;
+        opacity: 1;
 
     }
 
     100% {
 
-        transform:
-            scale(1);
+        transform: scale(1);
 
     }
 
@@ -894,21 +838,17 @@ input:focus {
 
     from {
 
-        opacity:
-            0;
+        opacity: 0;
 
-        transform:
-            translateY(15px);
+        transform: translateY(15px);
 
     }
 
     to {
 
-        opacity:
-            1;
+        opacity: 1;
 
-        transform:
-            translateY(0);
+        transform: translateY(0);
 
     }
 
@@ -923,49 +863,41 @@ input:focus {
 
     body {
 
-        padding:
-            10px;
+        padding: 10px;
 
-        align-items:
-            flex-start;
+        align-items: flex-start;
 
     }
 
 
     .contenedor {
 
-        margin-top:
-            10px;
+        margin-top: 10px;
 
-        padding:
-            25px 18px;
+        padding: 25px 15px;
 
     }
 
 
     .encabezado h1 {
 
-        font-size:
-            23px;
+        font-size: 23px;
 
     }
 
 
     .icono-encabezado {
 
-        font-size:
-            30px;
+        font-size: 30px;
 
     }
 
 
     .boton {
 
-        font-size:
-            17px;
+        font-size: 17px;
 
-        min-height:
-            58px;
+        min-height: 58px;
 
     }
 
@@ -973,71 +905,118 @@ input:focus {
     .entrada,
     .salida {
 
-        min-height:
-            65px;
+        min-height: 65px;
 
-        font-size:
-            20px;
+        font-size: 20px;
+
+    }
+
+
+    /* --------------------------------- */
+    /* ACTIVIDADES EN CELULAR */
+    /* --------------------------------- */
+
+    .grid-actividades {
+
+        grid-template-columns:
+            repeat(2, 1fr);
+
+        gap: 10px;
+
+    }
+
+
+    .grid-actividades .actividad {
+
+        min-height: 145px;
+
+        font-size: 16px;
 
     }
 
 
     .actividad-icono {
 
-        font-size:
-            25px;
+        font-size: 27px;
+
+    }
+
+
+    /* --------------------------------- */
+    /* SUBMENÚ EN CELULAR */
+    /* --------------------------------- */
+
+    #botonesSubmenu {
+
+        grid-template-columns:
+            repeat(2, 1fr);
+
+        gap: 10px;
+
+    }
+
+
+    #botonesSubmenu .actividad {
+
+        min-height: 130px;
+
+        font-size: 16px;
+
+    }
+
+
+    /* --------------------------------- */
+    /* MÓDULOS */
+    /* --------------------------------- */
+
+    #botonesSubmenu .actividad.modulo {
+
+        min-height: 90px;
+
+        font-size: 18px;
 
     }
 
 
     #reader {
 
-        max-width:
-            100%;
+        max-width: 100%;
 
-        margin:
-            15px auto;
+        margin: 15px auto;
 
     }
 
 
     #btnCambiarCamara {
 
-        min-height:
-            52px;
+        min-height: 52px;
 
-        font-size:
-            16px;
+        font-size: 16px;
 
     }
 
 
     .check-confirmacion {
 
-        width:
-            90px;
+        width: 90px;
 
-        height:
-            90px;
+        height: 90px;
 
-        font-size:
-            60px;
+        font-size: 60px;
 
     }
 
 
     .confirmacion h2 {
 
-        font-size:
-            26px;
+        font-size: 26px;
 
     }
 
 
     #mensajeConfirmacion {
 
-        font-size:
-            20px;
+        font-size: 20px;
 
     }
 
