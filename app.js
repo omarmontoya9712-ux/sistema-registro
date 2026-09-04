@@ -16,19 +16,20 @@ let folioActual = "";
 
 let nombreActual = "";
 
-let lectorQR = null;
-
-// 0 = frontal
-// 1 = trasera
-let camaraActual = 0;
-
-let camarasDisponibles = [];
-
-
-// Actividad y opción seleccionadas
 let actividadActual = "";
 
 let opcionActual = "";
+
+let lectorQR = null;
+
+
+// Cámara actual
+// 0 = frontal
+// 1 = trasera
+
+let camaraActual = 0;
+
+let camarasDisponibles = [];
 
 
 // =====================================================
@@ -70,7 +71,7 @@ const mensajeEntrada =
 
 
 // =====================================================
-// CONVERTIR FOLIO Y NOMBRE A MAYÚSCULAS
+// CONVERTIR A MAYÚSCULAS
 // =====================================================
 
 folioInput.addEventListener(
@@ -96,7 +97,7 @@ nombreInput.addEventListener(
 
 
 // =====================================================
-// MOSTRAR PANTALLA
+// MOSTRAR UNA PANTALLA
 // =====================================================
 
 function mostrarPantalla(pantalla) {
@@ -148,9 +149,9 @@ function mostrarPantalla(pantalla) {
 // VOLVER AL INICIO
 // =====================================================
 
-function volverInicio() {
+async function volverInicio() {
 
-    detenerQR();
+    await detenerQR();
 
 
     modoActual = "";
@@ -188,7 +189,7 @@ function volverInicio() {
 
     if (campoNombre) {
 
-        campoNombre.classList.add(
+        campoNombre.classList.remove(
             "oculto"
         );
 
@@ -197,7 +198,7 @@ function volverInicio() {
 
     if (btnNombre) {
 
-        btnNombre.classList.add(
+        btnNombre.classList.remove(
             "oculto"
         );
 
@@ -210,17 +211,17 @@ function volverInicio() {
         );
 
 
-    const qrExito =
-        document.getElementById(
-            "qrExito"
-        );
-
-
     if (qrFolio) {
 
         qrFolio.textContent = "";
 
     }
+
+
+    const qrExito =
+        document.getElementById(
+            "qrExito"
+        );
 
 
     if (qrExito) {
@@ -230,6 +231,21 @@ function volverInicio() {
         );
 
     }
+
+
+    const botones =
+        document.querySelectorAll(
+            ".boton"
+        );
+
+
+    botones.forEach(
+        function(boton) {
+
+            boton.disabled = false;
+
+        }
+    );
 
 
     mostrarPantalla(
@@ -342,9 +358,7 @@ document
 
 
             document
-                .getElementById(
-                    "tituloFolio"
-                )
+                .getElementById("tituloFolio")
                 .textContent =
                 "Registro de Entrada";
 
@@ -372,9 +386,7 @@ document
 
 
             document
-                .getElementById(
-                    "tituloFolio"
-                )
+                .getElementById("tituloFolio")
                 .textContent =
                 "Registro de Salida";
 
@@ -398,7 +410,6 @@ document
         function() {
 
             folioInput.value = "";
-
 
             mostrarPantalla(
                 pantallaManual
@@ -592,6 +603,47 @@ async function iniciarQR() {
 
 
 // =====================================================
+// PROCESAR QR
+// =====================================================
+
+function procesarQR(decodedText) {
+
+    folioActual =
+        decodedText
+            .trim()
+            .toUpperCase();
+
+
+    document
+        .getElementById("qrExito")
+        .classList.remove("oculto");
+
+
+    document
+        .getElementById("qrFolio")
+        .textContent =
+        "Folio: " +
+        folioActual;
+
+
+    detenerQR();
+
+
+    setTimeout(
+        function() {
+
+            procesarFolio(
+                folioActual
+            );
+
+        },
+        700
+    );
+
+}
+
+
+// =====================================================
 // INICIAR QR CON CÁMARA
 // =====================================================
 
@@ -632,49 +684,15 @@ function iniciarQRConCamara(
 
         function(decodedText) {
 
-            folioActual =
+            procesarQR(
                 decodedText
-                    .trim()
-                    .toUpperCase();
-
-
-            document
-                .getElementById(
-                    "qrExito"
-                )
-                .classList.remove(
-                    "oculto"
-                );
-
-
-            document
-                .getElementById(
-                    "qrFolio"
-                )
-                .textContent =
-                "Folio: " +
-                folioActual;
-
-
-            detenerQR();
-
-
-            setTimeout(
-                function() {
-
-                    procesarFolio(
-                        folioActual
-                    );
-
-                },
-                700
             );
 
         },
 
         function(errorMessage) {
 
-            // Error normal mientras busca el QR.
+            // Búsqueda normal del QR.
 
         }
 
@@ -744,49 +762,15 @@ function iniciarQRConModo(
 
         function(decodedText) {
 
-            folioActual =
+            procesarQR(
                 decodedText
-                    .trim()
-                    .toUpperCase();
-
-
-            document
-                .getElementById(
-                    "qrExito"
-                )
-                .classList.remove(
-                    "oculto"
-                );
-
-
-            document
-                .getElementById(
-                    "qrFolio"
-                )
-                .textContent =
-                "Folio: " +
-                folioActual;
-
-
-            detenerQR();
-
-
-            setTimeout(
-                function() {
-
-                    procesarFolio(
-                        folioActual
-                    );
-
-                },
-                700
             );
 
         },
 
         function(errorMessage) {
 
-            // Error normal mientras busca el QR.
+            // Búsqueda normal del QR.
 
         }
 
@@ -1037,10 +1021,7 @@ function procesarFolio(folio) {
         folio;
 
 
-    if (
-        modoActual ===
-        "SALIDA"
-    ) {
+    if (modoActual === "SALIDA") {
 
         registrarSalida();
 
@@ -1049,10 +1030,7 @@ function procesarFolio(folio) {
     }
 
 
-    if (
-        modoActual ===
-        "ENTRADA"
-    ) {
+    if (modoActual === "ENTRADA") {
 
         buscarFolio();
 
@@ -1093,6 +1071,14 @@ function buscarFolio() {
     .then(
         function(response) {
 
+            if (!response.ok) {
+
+                throw new Error(
+                    "Error HTTP"
+                );
+
+            }
+
             return response.json();
 
         }
@@ -1107,9 +1093,7 @@ function buscarFolio() {
             );
 
 
-            if (
-                data.encontrado === true
-            ) {
+            if (data.encontrado === true) {
 
                 nombreActual =
                     String(
@@ -1123,6 +1107,24 @@ function buscarFolio() {
 
                 mensajeEntrada.textContent =
                     "✓ Folio encontrado";
+
+
+                document
+                    .getElementById(
+                        "campoNombre"
+                    )
+                    .classList.add(
+                        "oculto"
+                    );
+
+
+                document
+                    .getElementById(
+                        "btnNombre"
+                    )
+                    .classList.add(
+                        "oculto"
+                    );
 
 
                 setTimeout(
@@ -1286,6 +1288,14 @@ function guardarNuevoUsuario() {
     .then(
         function(response) {
 
+            if (!response.ok) {
+
+                throw new Error(
+                    "Error HTTP"
+                );
+
+            }
+
             return response.json();
 
         }
@@ -1346,7 +1356,7 @@ function guardarNuevoUsuario() {
 
 document
     .querySelectorAll(
-        "#pantallaActividades .actividad[data-actividad]"
+        ".actividad[data-actividad]"
     )
     .forEach(
         function(boton) {
@@ -1359,43 +1369,9 @@ document
                         boton.dataset.actividad;
 
 
-                    const tieneSubmenu =
-                        boton.id ===
-                            "btnPrepaAbierta" ||
-
-                        boton.id ===
-                            "btnPrepaLinea" ||
-
-                        boton.id ===
-                            "btnBachilleratos" ||
-
-                        boton.id ===
-                            "btnAsesoria" ||
-
-                        boton.id ===
-                            "btnComputacion" ||
-
-                        boton.id ===
-                            "btnBeneficiarios";
-
-
-                    if (tieneSubmenu) {
-
-                        return;
-
-                    }
-
-
-                    actividadActual =
-                        actividad;
-
-                    opcionActual =
-                        boton.dataset.opcion || "";
-
-
                     registrarEntrada(
-                        actividadActual,
-                        opcionActual
+                        actividad,
+                        ""
                     );
 
                 }
@@ -1415,16 +1391,26 @@ document
         "click",
         function() {
 
-            const opciones =
-                crearNumeros(
-                    1,
-                    21
+            const opciones = [];
+
+
+            for (
+                let i = 1;
+                i <= 21;
+                i++
+            ) {
+
+                opciones.push(
+                    "Módulo " + i
                 );
+
+            }
 
 
             crearSubmenu(
                 "🎓 Prepa Abierta",
                 opciones,
+                "Elige tu módulo",
                 true
             );
 
@@ -1456,7 +1442,7 @@ document
             ) {
 
                 opciones.push(
-                    String(i)
+                    "Módulo " + i
                 );
 
             }
@@ -1465,6 +1451,7 @@ document
             crearSubmenu(
                 "🧑‍🎓 Prepa en Línea",
                 opciones,
+                "Elige tu módulo",
                 true
             );
 
@@ -1482,16 +1469,26 @@ document
         "click",
         function() {
 
-            const opciones =
-                crearNumeros(
-                    1,
-                    13
+            const opciones = [];
+
+
+            for (
+                let i = 1;
+                i <= 13;
+                i++
+            ) {
+
+                opciones.push(
+                    "Módulo " + i
                 );
+
+            }
 
 
             crearSubmenu(
                 "🏫 Bachilleratos PILARES",
                 opciones,
+                "Elige tu módulo",
                 true
             );
 
@@ -1515,19 +1512,53 @@ document
 
                 [
 
-                    "Matemáticas",
+                    "📐 Matemáticas",
 
-                    "Español",
+                    "📖 Español",
 
-                    "Historia",
+                    "🏛️ Historia",
 
-                    "Química",
+                    "⚗️ Química",
 
-                    "Biología"
+                    "🧬 Biología"
 
                 ],
 
-                false
+                "Elige una opción"
+
+            );
+
+        }
+    );
+
+
+// =====================================================
+// SABERES SECTEI
+// =====================================================
+
+document
+    .getElementById("btnSaberes")
+    .addEventListener(
+        "click",
+        function() {
+
+            crearSubmenu(
+
+                "📚 Saberes SECTEI",
+
+                [
+
+                    "🧠 Saberes y aprendizaje",
+
+                    "🎨 Cultura y creatividad",
+
+                    "🔬 Ciencia y tecnología",
+
+                    "🌱 Medio ambiente"
+
+                ],
+
+                "Elige una opción"
 
             );
 
@@ -1547,19 +1578,19 @@ document
 
             crearSubmenu(
 
-                "🖥️ Computación",
+                "💻 Computación",
 
                 [
 
-                    "Escuela de Código",
+                    "💻 Escuela de Código",
 
-                    "Profesora Gabi",
+                    "👩‍🏫 Profesora Gabi",
 
-                    "Profesor Pedro"
+                    "👨‍🏫 Profesor Pedro"
 
                 ],
 
-                false
+                "Elige una opción"
 
             );
 
@@ -1583,17 +1614,17 @@ document
 
                 [
 
-                    "Ponte Pila",
+                    "💪 Ponte Pila",
 
-                    "Autonomía Económica",
+                    "💰 Autonomía económica",
 
-                    "Cultura",
+                    "🎭 Cultura",
 
-                    "Ciberescuela"
+                    "💻 Ciberescuela"
 
                 ],
 
-                false
+                "Elige una opción"
 
             );
 
@@ -1638,7 +1669,8 @@ function crearNumeros(
 function crearSubmenu(
     titulo,
     opciones,
-    sonModulos
+    instruccion = "",
+    usarModulo = false
 ) {
 
     document
@@ -1646,26 +1678,36 @@ function crearSubmenu(
             "tituloSubmenu"
         )
         .textContent =
-        titulo;
+        limpiarActividad(
+            titulo
+        );
 
 
-    const instruccion =
+    const instruccionElemento =
         document.getElementById(
             "instruccionSubmenu"
         );
 
 
-    if (sonModulos) {
+    if (
+        instruccion &&
+        instruccionElemento
+    ) {
 
-        instruccion.textContent =
-            "Elige tu módulo";
+        instruccionElemento.textContent =
+            instruccion;
+
+        instruccionElemento.classList.remove(
+            "oculto"
+        );
 
     }
 
-    else {
+    else if (instruccionElemento) {
 
-        instruccion.textContent =
-            "Selecciona una opción";
+        instruccionElemento.classList.add(
+            "oculto"
+        );
 
     }
 
@@ -1693,192 +1735,56 @@ function crearSubmenu(
 
 
             boton.className =
-                "boton actividad boton-subopcion";
+                "boton actividad boton-submenu";
 
 
-            let icono = "";
+            let textoOpcion =
+                opcion;
+
+
+            let icono =
+                "";
 
 
             // =========================================
-            // ICONOS PARA SUBCATEGORÍAS
+            // MÓDULOS SIN ICONO
             // =========================================
 
-            if (!sonModulos) {
+            if (usarModulo) {
 
-                if (
-                    titulo.includes(
-                        "Asesorías"
-                    )
-                ) {
+                textoOpcion =
+                    opcion;
 
-                    if (
-                        opcion ===
-                        "Matemáticas"
-                    ) {
+            }
 
-                        icono = "🔢";
+            else {
 
-                    }
-
-                    else if (
-                        opcion ===
-                        "Español"
-                    ) {
-
-                        icono = "📖";
-
-                    }
-
-                    else if (
-                        opcion ===
-                        "Historia"
-                    ) {
-
-                        icono = "🏛️";
-
-                    }
-
-                    else if (
-                        opcion ===
-                        "Química"
-                    ) {
-
-                        icono = "⚗️";
-
-                    }
-
-                    else if (
-                        opcion ===
-                        "Biología"
-                    ) {
-
-                        icono = "🧬";
-
-                    }
-
-                }
+                const coincidencia =
+                    opcion.match(
+                        /^(\S+)\s+(.+)$/
+                    );
 
 
-                else if (
-                    titulo.includes(
-                        "Computación"
-                    )
-                ) {
+                if (coincidencia) {
 
-                    if (
-                        opcion ===
-                        "Escuela de Código"
-                    ) {
+                    icono =
+                        coincidencia[1];
 
-                        icono = "💻";
-
-                    }
-
-                    else if (
-                        opcion ===
-                        "Profesora Gabi"
-                    ) {
-
-                        icono = "👩‍🏫";
-
-                    }
-
-                    else if (
-                        opcion ===
-                        "Profesor Pedro"
-                    ) {
-
-                        icono = "👨‍🏫";
-
-                    }
-
-                }
-
-
-                else if (
-                    titulo.includes(
-                        "Beneficiarios"
-                    )
-                ) {
-
-                    if (
-                        opcion ===
-                        "Ponte Pila"
-                    ) {
-
-                        icono = "💪";
-
-                    }
-
-                    else if (
-                        opcion ===
-                        "Autonomía Económica"
-                    ) {
-
-                        icono = "💰";
-
-                    }
-
-                    else if (
-                        opcion ===
-                        "Cultura"
-                    ) {
-
-                        icono = "🎭";
-
-                    }
-
-                    else if (
-                        opcion ===
-                        "Ciberescuela"
-                    ) {
-
-                        icono = "💻";
-
-                    }
+                    textoOpcion =
+                        coincidencia[2];
 
                 }
 
             }
 
 
-            // =========================================
-            // TEXTO DE MÓDULOS
-            // =========================================
+            if (usarModulo) {
 
-            if (sonModulos) {
+                boton.innerHTML =
 
-                if (
-                    titulo.includes(
-                        "Prepa Abierta"
-                    ) ||
-                    titulo.includes(
-                        "Prepa en Línea"
-                    ) ||
-                    titulo.includes(
-                        "Bachilleratos"
-                    )
-                ) {
-
-                    if (
-                        opcion ===
-                        "Propedéutico"
-                    ) {
-
-                        boton.textContent =
-                            "Propedéutico";
-
-                    }
-
-                    else {
-
-                        boton.textContent =
-                            "Módulo " +
-                            opcion;
-
-                    }
-
-                }
+                    '<span class="actividad-texto">' +
+                    textoOpcion +
+                    '</span>';
 
             }
 
@@ -1886,12 +1792,12 @@ function crearSubmenu(
 
                 boton.innerHTML =
 
-                    '<span class="subopcion-icono">' +
+                    '<span class="actividad-icono">' +
                     icono +
                     '</span>' +
 
-                    '<span>' +
-                    opcion +
+                    '<span class="actividad-texto">' +
+                    textoOpcion +
                     '</span>';
 
             }
@@ -1901,47 +1807,19 @@ function crearSubmenu(
                 "click",
                 function() {
 
-                    actividadActual =
-                        obtenerActividadDesdeTitulo(
-                            titulo
+                    const opcionLimpia =
+                        limpiarActividad(
+                            textoOpcion
                         );
-
-
-                    if (sonModulos) {
-
-                        if (
-                            opcion ===
-                            "Propedéutico"
-                        ) {
-
-                            opcionActual =
-                                "Propedéutico";
-
-                        }
-
-                        else {
-
-                            opcionActual =
-                                "Módulo " +
-                                opcion;
-
-                        }
-
-                    }
-
-                    else {
-
-                        opcionActual =
-                            opcion;
-
-                    }
 
 
                     registrarEntrada(
 
-                        actividadActual,
+                        limpiarActividad(
+                            titulo
+                        ),
 
-                        opcionActual
+                        opcionLimpia
 
                     );
 
@@ -1965,80 +1843,21 @@ function crearSubmenu(
 
 
 // =====================================================
-// OBTENER ACTIVIDAD DESDE TÍTULO
+// LIMPIAR ICONOS
 // =====================================================
 
-function obtenerActividadDesdeTitulo(
-    titulo
+function limpiarActividad(
+    actividad
 ) {
 
-    if (
-        titulo.includes(
-            "Prepa Abierta"
-        )
-    ) {
+    if (!actividad) {
 
-        return "Prepa Abierta";
+        return "";
 
     }
 
 
-    if (
-        titulo.includes(
-            "Prepa en Línea"
-        )
-    ) {
-
-        return "Prepa en Línea";
-
-    }
-
-
-    if (
-        titulo.includes(
-            "Bachilleratos PILARES"
-        )
-    ) {
-
-        return "Bachilleratos PILARES";
-
-    }
-
-
-    if (
-        titulo.includes(
-            "Asesorías académicas"
-        )
-    ) {
-
-        return "Asesorías académicas";
-
-    }
-
-
-    if (
-        titulo.includes(
-            "Computación"
-        )
-    ) {
-
-        return "Computación";
-
-    }
-
-
-    if (
-        titulo.includes(
-            "Beneficiarios"
-        )
-    ) {
-
-        return "Beneficiarios";
-
-    }
-
-
-    return titulo
+    return String(actividad)
         .replace(
             /^[^\p{L}\p{N}]+/u,
             ""
@@ -2049,32 +1868,12 @@ function obtenerActividadDesdeTitulo(
 
 
 // =====================================================
-// LIMPIAR ICONOS
-// =====================================================
-
-function limpiarActividad(
-    actividad
-) {
-
-    return String(
-        actividad || ""
-    )
-    .replace(
-        /^[^\p{L}\p{N}]+/u,
-        ""
-    )
-    .trim();
-
-}
-
-
-// =====================================================
 // REGISTRAR ENTRADA
 // =====================================================
 
 function registrarEntrada(
     actividad,
-    opcion
+    opcion = ""
 ) {
 
     actividad =
@@ -2084,14 +1883,14 @@ function registrarEntrada(
 
 
     opcion =
-        String(
-            opcion || ""
-        )
-        .trim();
+        limpiarActividad(
+            opcion
+        );
 
 
     actividadActual =
         actividad;
+
 
     opcionActual =
         opcion;
@@ -2099,7 +1898,7 @@ function registrarEntrada(
 
     const botones =
         document.querySelectorAll(
-            ".boton"
+            ".actividad"
         );
 
 
@@ -2148,6 +1947,14 @@ function registrarEntrada(
 
     .then(
         function(response) {
+
+            if (!response.ok) {
+
+                throw new Error(
+                    "Error HTTP"
+                );
+
+            }
 
             return response.json();
 
@@ -2201,9 +2008,7 @@ function registrarEntrada(
     .catch(
         function(error) {
 
-            console.error(
-                error
-            );
+            console.error(error);
 
 
             alert(
@@ -2267,6 +2072,14 @@ function registrarSalida() {
     .then(
         function(response) {
 
+            if (!response.ok) {
+
+                throw new Error(
+                    "Error HTTP"
+                );
+
+            }
+
             return response.json();
 
         }
@@ -2293,13 +2106,9 @@ function registrarSalida() {
 
 
             mostrarConfirmacion(
-
                 "SALIDA",
-
                 "",
-
                 ""
-
             );
 
         }
@@ -2308,9 +2117,7 @@ function registrarSalida() {
     .catch(
         function(error) {
 
-            console.error(
-                error
-            );
+            console.error(error);
 
 
             alert(
@@ -2328,9 +2135,7 @@ function registrarSalida() {
 // =====================================================
 
 document
-    .getElementById(
-        "btnCancelarFolio"
-    )
+    .getElementById("btnCancelarFolio")
     .addEventListener(
         "click",
         volverInicio
@@ -2338,9 +2143,7 @@ document
 
 
 document
-    .getElementById(
-        "btnCancelarManual"
-    )
+    .getElementById("btnCancelarManual")
     .addEventListener(
         "click",
         volverInicio
@@ -2348,9 +2151,7 @@ document
 
 
 document
-    .getElementById(
-        "btnCancelarQR"
-    )
+    .getElementById("btnCancelarQR")
     .addEventListener(
         "click",
         volverInicio
@@ -2358,9 +2159,7 @@ document
 
 
 document
-    .getElementById(
-        "btnCancelarEntrada"
-    )
+    .getElementById("btnCancelarEntrada")
     .addEventListener(
         "click",
         volverInicio
@@ -2368,9 +2167,7 @@ document
 
 
 document
-    .getElementById(
-        "btnCancelarActividad"
-    )
+    .getElementById("btnCancelarActividad")
     .addEventListener(
         "click",
         volverInicio
@@ -2378,9 +2175,7 @@ document
 
 
 document
-    .getElementById(
-        "btnVolverActividades"
-    )
+    .getElementById("btnVolverActividades")
     .addEventListener(
         "click",
         function() {
@@ -2390,26 +2185,4 @@ document
             );
 
         }
-    );
-
-
-// =====================================================
-// OCULTAR CAMPOS DE NUEVO USUARIO AL INICIO
-// =====================================================
-
-document
-    .getElementById(
-        "campoNombre"
-    )
-    .classList.add(
-        "oculto"
-    );
-
-
-document
-    .getElementById(
-        "btnNombre"
-    )
-    .classList.add(
-        "oculto"
     );
