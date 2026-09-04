@@ -12,10 +12,7 @@
 
     <title>Registro PILARES</title>
 
-    <link
-        rel="stylesheet"
-        href="style.css"
-    >
+    <link rel="stylesheet" href="style.css">
 
     <script
         src="https://unpkg.com/html5-qrcode"
@@ -60,7 +57,7 @@
 
 
     <!-- ===================================== -->
-    <!-- MENÚ PRINCIPAL -->
+    <!-- INICIO -->
     <!-- ===================================== -->
 
     <section
@@ -103,9 +100,8 @@
         class="pantalla oculto">
 
         <h2 id="tituloFolio">
-            Registro
+            Folio
         </h2>
-
 
         <p class="subtitulo">
             Selecciona cómo deseas ingresar el folio
@@ -193,7 +189,7 @@
 
 
     <!-- ===================================== -->
-    <!-- ESCÁNER QR -->
+    <!-- ESCANEAR QR -->
     <!-- ===================================== -->
 
     <section
@@ -213,15 +209,23 @@
         <div id="reader"></div>
 
 
+        <!-- ================================= -->
+        <!-- CAMBIAR CÁMARA -->
+        <!-- ================================= -->
+
         <button
             id="btnCambiarCamara"
-            class="boton boton-camara"
+            class="boton"
             type="button">
 
             🔄 CAMBIAR CÁMARA
 
         </button>
 
+
+        <!-- ================================= -->
+        <!-- RESULTADO QR -->
+        <!-- ================================= -->
 
         <div
             id="qrExito"
@@ -251,7 +255,7 @@
 
 
     <!-- ===================================== -->
-    <!-- FORMULARIO NUEVO USUARIO -->
+    <!-- NUEVO USUARIO -->
     <!-- ===================================== -->
 
     <section
@@ -269,7 +273,8 @@
         </p>
 
 
-        <div id="campoNombre">
+        <div
+            id="campoNombre">
 
             <label for="nombre">
                 Nombre completo
@@ -321,261 +326,256 @@
         </h2>
 
 
-        <!-- ================================= -->
-        <!-- ALFABETIZACIÓN -->
-        <!-- ================================= -->
+        <div
+            id="contenedorActividades"
+            class="rejilla-actividades">
 
-        <button
-            class="boton actividad"
-            data-actividad="Alfabetización"
-            data-opcion=""
-            type="button">
 
-            <span class="actividad-icono">
-                👓
-            </span>
+            <!-- ================================= -->
+            <!-- ALFABETIZACIÓN -->
+            <!-- ================================= -->
 
-            <span>
-                Alfabetización
-            </span>
+            <button
+                class="boton actividad"
+                data-actividad="Alfabetización"
+                type="button">
 
-        </button>
+                <span class="actividad-icono">
+                    👓
+                </span>
 
+                <span class="actividad-texto">
+                    Alfabetización
+                </span>
 
-        <!-- ================================= -->
-        <!-- PRIMARIA INEA -->
-        <!-- ================================= -->
+            </button>
 
-        <button
-            class="boton actividad"
-            data-actividad="Primaria INEA"
-            data-opcion=""
-            type="button">
 
-            <span class="actividad-icono">
-                📘
-            </span>
+            <!-- ================================= -->
+            <!-- PRIMARIA INEA -->
+            <!-- ================================= -->
 
-            <span>
-                Primaria INEA
-            </span>
+            <button
+                class="boton actividad"
+                data-actividad="Primaria INEA"
+                type="button">
 
-        </button>
+                <span class="actividad-icono">
+                    📘
+                </span>
 
+                <span class="actividad-texto">
+                    Primaria INEA
+                </span>
 
-        <!-- ================================= -->
-        <!-- SECUNDARIA INEA -->
-        <!-- ================================= -->
+            </button>
 
-        <button
-            class="boton actividad"
-            data-actividad="Secundaria INEA"
-            data-opcion=""
-            type="button">
 
-            <span class="actividad-icono">
-                📕
-            </span>
+            <!-- ================================= -->
+            <!-- SECUNDARIA INEA -->
+            <!-- ================================= -->
 
-            <span>
-                Secundaria INEA
-            </span>
+            <button
+                class="boton actividad"
+                data-actividad="Secundaria INEA"
+                type="button">
 
-        </button>
+                <span class="actividad-icono">
+                    📕
+                </span>
 
+                <span class="actividad-texto">
+                    Secundaria INEA
+                </span>
 
-        <!-- ================================= -->
-        <!-- PREPA ABIERTA -->
-        <!-- ================================= -->
+            </button>
 
-        <button
-            id="btnPrepaAbierta"
-            class="boton actividad"
-            data-actividad="Prepa Abierta"
-            type="button">
 
-            <span class="actividad-icono">
-                🎓
-            </span>
+            <!-- ================================= -->
+            <!-- PREPA ABIERTA -->
+            <!-- ================================= -->
 
-            <span>
-                Prepa Abierta
-            </span>
+            <button
+                id="btnPrepaAbierta"
+                class="boton actividad"
+                type="button">
 
-        </button>
+                <span class="actividad-icono">
+                    🎓
+                </span>
 
+                <span class="actividad-texto">
+                    Prepa Abierta
+                </span>
 
-        <!-- ================================= -->
-        <!-- PREPA EN LÍNEA -->
-        <!-- ================================= -->
+            </button>
 
-        <button
-            id="btnPrepaLinea"
-            class="boton actividad"
-            data-actividad="Prepa en Línea"
-            type="button">
 
-            <span class="actividad-icono">
-                🧑‍🎓
-            </span>
+            <!-- ================================= -->
+            <!-- PREPA EN LÍNEA -->
+            <!-- ================================= -->
 
-            <span>
-                Prepa en Línea
-            </span>
+            <button
+                id="btnPrepaLinea"
+                class="boton actividad"
+                type="button">
 
-        </button>
+                <span class="actividad-icono">
+                    🧑‍🎓
+                </span>
 
+                <span class="actividad-texto">
+                    Prepa en Línea
+                </span>
 
-        <!-- ================================= -->
-        <!-- BACHILLERATOS PILARES -->
-        <!-- ================================= -->
+            </button>
 
-        <button
-            id="btnBachilleratos"
-            class="boton actividad"
-            data-actividad="Bachilleratos PILARES"
-            type="button">
 
-            <span class="actividad-icono">
-                🏫
-            </span>
+            <!-- ================================= -->
+            <!-- BACHILLERATOS PILARES -->
+            <!-- ================================= -->
 
-            <span>
-                Bachilleratos PILARES
-            </span>
+            <button
+                id="btnBachilleratos"
+                class="boton actividad"
+                type="button">
 
-        </button>
+                <span class="actividad-icono">
+                    🏫
+                </span>
 
+                <span class="actividad-texto">
+                    Bachilleratos PILARES
+                </span>
 
-        <!-- ================================= -->
-        <!-- SABERES SECTEI -->
-        <!-- ================================= -->
+            </button>
 
-        <button
-            class="boton actividad"
-            data-actividad="Saberes SECTEI"
-            data-opcion=""
-            type="button">
 
-            <span class="actividad-icono">
-                🧠
-            </span>
+            <!-- ================================= -->
+            <!-- ASESORÍAS ACADÉMICAS -->
+            <!-- ================================= -->
 
-            <span>
-                Saberes SECTEI
-            </span>
+            <button
+                id="btnAsesoria"
+                class="boton actividad"
+                type="button">
 
-        </button>
+                <span class="actividad-icono">
+                    👨‍🏫
+                </span>
 
+                <span class="actividad-texto">
+                    Asesorías académicas
+                </span>
 
-        <!-- ================================= -->
-        <!-- ASESORÍAS ACADÉMICAS -->
-        <!-- ================================= -->
+            </button>
 
-        <button
-            id="btnAsesoria"
-            class="boton actividad"
-            data-actividad="Asesorías académicas"
-            type="button">
 
-            <span class="actividad-icono">
-                👨‍🏫
-            </span>
+            <!-- ================================= -->
+            <!-- SABERES SECTEI -->
+            <!-- ================================= -->
 
-            <span>
-                Asesorías académicas
-            </span>
+            <button
+                id="btnSaberes"
+                class="boton actividad"
+                type="button">
 
-        </button>
+                <span class="actividad-icono">
+                    📚
+                </span>
 
+                <span class="actividad-texto">
+                    Saberes SECTEI
+                </span>
 
-        <!-- ================================= -->
-        <!-- COMPUTACIÓN -->
-        <!-- ================================= -->
+            </button>
 
-        <button
-            id="btnComputacion"
-            class="boton actividad"
-            data-actividad="Computación"
-            type="button">
 
-            <span class="actividad-icono">
-                🖥️
-            </span>
+            <!-- ================================= -->
+            <!-- COMPUTACIÓN -->
+            <!-- ================================= -->
 
-            <span>
-                Computación
-            </span>
+            <button
+                id="btnComputacion"
+                class="boton actividad"
+                type="button">
 
-        </button>
+                <span class="actividad-icono">
+                    💻
+                </span>
 
+                <span class="actividad-texto">
+                    Computación
+                </span>
 
-        <!-- ================================= -->
-        <!-- USO DE COMPUTADORA -->
-        <!-- ================================= -->
+            </button>
 
-        <button
-            class="boton actividad"
-            data-actividad="Uso de computadora"
-            data-opcion=""
-            type="button">
 
-            <span class="actividad-icono">
-                🖱️
-            </span>
+            <!-- ================================= -->
+            <!-- USO DE COMPUTADORA -->
+            <!-- ================================= -->
 
-            <span>
-                Uso de computadora
-            </span>
+            <button
+                class="boton actividad"
+                data-actividad="Uso de computadora"
+                type="button">
 
-        </button>
+                <span class="actividad-icono">
+                    🖱️
+                </span>
 
+                <span class="actividad-texto">
+                    Uso de computadora
+                </span>
 
-        <!-- ================================= -->
-        <!-- SERVICIO SOCIAL -->
-        <!-- ================================= -->
+            </button>
 
-        <button
-            class="boton actividad"
-            data-actividad="Servicio social"
-            data-opcion=""
-            type="button">
 
-            <span class="actividad-icono">
-                🤝
-            </span>
+            <!-- ================================= -->
+            <!-- SERVICIO SOCIAL -->
+            <!-- ================================= -->
 
-            <span>
-                Servicio social
-            </span>
+            <button
+                class="boton actividad"
+                data-actividad="Servicio social"
+                type="button">
 
-        </button>
+                <span class="actividad-icono">
+                    🤝
+                </span>
 
+                <span class="actividad-texto">
+                    Servicio social
+                </span>
 
-        <!-- ================================= -->
-        <!-- BENEFICIARIOS -->
-        <!-- ================================= -->
+            </button>
 
-        <button
-            id="btnBeneficiarios"
-            class="boton actividad"
-            data-actividad="Beneficiarios"
-            type="button">
 
-            <span class="actividad-icono">
-                👥
-            </span>
+            <!-- ================================= -->
+            <!-- BENEFICIARIOS -->
+            <!-- ================================= -->
 
-            <span>
-                Beneficiarios
-            </span>
+            <button
+                id="btnBeneficiarios"
+                class="boton actividad"
+                type="button">
 
-        </button>
+                <span class="actividad-icono">
+                    👥
+                </span>
 
+                <span class="actividad-texto">
+                    Beneficiarios
+                </span>
 
-        <!-- ================================= -->
+            </button>
+
+        </div>
+
+
+        <!-- ===================================== -->
         <!-- CANCELAR -->
-        <!-- ================================= -->
+        <!-- ===================================== -->
 
         <button
             id="btnCancelarActividad"
@@ -603,11 +603,13 @@
 
         <p
             id="instruccionSubmenu"
-            class="instruccion-submenu">
+            class="instruccion-submenu oculto">
         </p>
 
 
-        <div id="botonesSubmenu">
+        <div
+            id="botonesSubmenu"
+            class="rejilla-submenu">
         </div>
 
 
@@ -624,7 +626,7 @@
 
 
     <!-- ===================================== -->
-    <!-- CONFIRMACIÓN -->
+    <!-- CONFIRMACIÓN FINAL -->
     <!-- ===================================== -->
 
     <section
@@ -656,6 +658,10 @@
 
 </main>
 
+
+<!-- ========================================= -->
+<!-- JAVASCRIPT -->
+<!-- ========================================= -->
 
 <script src="app.js"></script>
 
