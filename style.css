@@ -1,3 +1,7 @@
+/* =====================================================
+   CONFIGURACIÓN GENERAL
+   ===================================================== */
+
 * {
     box-sizing: border-box;
     margin: 0;
@@ -18,8 +22,8 @@
     --rojo: #C62828;
     --azul: #1976D2;
 
-    --gris-fondo: #F4F1F3;
-    --gris: #777;
+    --gris: #777777;
+    --gris-claro: #F4F1F3;
 
     --blanco: #FFFFFF;
     --texto: #333333;
@@ -27,9 +31,9 @@
 }
 
 
-/* ===================================== */
-/* CUERPO */
-/* ===================================== */
+/* =====================================================
+   CUERPO
+   ===================================================== */
 
 body {
 
@@ -55,15 +59,14 @@ body {
 
     padding: 20px;
 
-    color:
-        var(--texto);
+    color: var(--texto);
 
 }
 
 
-/* ===================================== */
-/* CONTENEDOR PRINCIPAL */
-/* ===================================== */
+/* =====================================================
+   CONTENEDOR
+   ===================================================== */
 
 .contenedor {
 
@@ -71,17 +74,13 @@ body {
 
     max-width: 650px;
 
-    background:
-        var(--blanco);
+    background: var(--blanco);
 
-    padding:
-        30px 25px;
+    padding: 30px 25px;
 
-    border-radius:
-        22px;
+    border-radius: 22px;
 
-    text-align:
-        center;
+    text-align: center;
 
     box-shadow:
         0 8px 30px
@@ -94,9 +93,9 @@ body {
 }
 
 
-/* ===================================== */
-/* ENCABEZADO */
-/* ===================================== */
+/* =====================================================
+   ENCABEZADO
+   ===================================================== */
 
 .encabezado {
 
@@ -148,7 +147,7 @@ body {
 .subtitulo {
 
     color:
-        #666;
+        #666666;
 
     margin-top:
         7px;
@@ -162,10 +161,13 @@ body {
 }
 
 
+/* =====================================================
+   PANTALLAS
+   ===================================================== */
+
 .pantalla {
 
-    width:
-        100%;
+    width: 100%;
 
 }
 
@@ -189,67 +191,53 @@ h2 {
 }
 
 
-/* ===================================== */
-/* BOTONES GENERALES */
-/* ===================================== */
+/* =====================================================
+   BOTONES GENERALES
+   ===================================================== */
 
 .boton {
 
-    width:
-        100%;
+    width: 100%;
 
-    min-height:
-        62px;
+    min-height: 62px;
 
-    padding:
-        15px;
+    padding: 15px;
 
-    border:
-        none;
+    border: none;
 
-    border-radius:
-        13px;
+    border-radius: 13px;
 
-    font-size:
-        18px;
+    font-size: 18px;
 
-    font-weight:
-        bold;
+    font-weight: bold;
 
-    cursor:
-        pointer;
+    cursor: pointer;
 
-    margin-bottom:
-        12px;
+    margin-bottom: 12px;
 
     transition:
         transform 0.1s,
         box-shadow 0.2s,
         opacity 0.2s;
 
-    display:
-        flex;
+    display: flex;
 
-    align-items:
-        center;
+    align-items: center;
 
-    justify-content:
-        center;
+    justify-content: center;
 
-    text-align:
-        center;
+    text-align: center;
 
 }
 
 
 .boton:hover {
 
-    opacity:
-        0.93;
+    opacity: 0.93;
 
     box-shadow:
         0 4px 10px
-        rgba(0,0,0,0.12);
+        rgba(0, 0, 0, 0.12);
 
 }
 
@@ -273,9 +261,9 @@ h2 {
 }
 
 
-/* ===================================== */
-/* ENTRADA Y SALIDA */
-/* ===================================== */
+/* =====================================================
+   ENTRADA / SALIDA
+   ===================================================== */
 
 .entrada {
 
@@ -311,9 +299,9 @@ h2 {
 }
 
 
-/* ===================================== */
-/* BOTONES DE FOLIO */
-/* ===================================== */
+/* =====================================================
+   BOTONES DE FOLIO
+   ===================================================== */
 
 .boton-manual {
 
@@ -337,9 +325,9 @@ h2 {
 }
 
 
-/* ===================================== */
-/* BOTÓN CAMBIAR CÁMARA */
-/* ===================================== */
+/* =====================================================
+   CAMBIAR CÁMARA
+   ===================================================== */
 
 #btnCambiarCamara {
 
@@ -366,9 +354,9 @@ h2 {
 }
 
 
-/* ===================================== */
-/* CAMPOS */
-/* ===================================== */
+/* =====================================================
+   CAMPOS
+   ===================================================== */
 
 label {
 
@@ -402,7 +390,8 @@ input {
         18px;
 
     border:
-        2px solid #ddd;
+        2px solid
+        #dddddd;
 
     border-radius:
         11px;
@@ -423,14 +412,14 @@ input:focus {
 
     box-shadow:
         0 0 0 3px
-        rgba(123,30,58,0.12);
+        rgba(123, 30, 58, 0.12);
 
 }
 
 
-/* ===================================== */
-/* REGISTRAR */
-/* ===================================== */
+/* =====================================================
+   BOTÓN REGISTRAR
+   ===================================================== */
 
 .registrar {
 
@@ -451,9 +440,9 @@ input:focus {
 }
 
 
-/* ===================================== */
-/* CANCELAR */
-/* ===================================== */
+/* =====================================================
+   CANCELAR
+   ===================================================== */
 
 .cancelar {
 
@@ -466,9 +455,14 @@ input:focus {
 }
 
 
-/* ===================================== */
-/* ACTIVIDADES */
-/* ===================================== */
+/* =====================================================
+   ACTIVIDADES PRINCIPALES
+   ===================================================== */
+
+/*
+   Las actividades principales ahora se muestran
+   como una cuadrícula centrada.
+*/
 
 #pantallaActividades {
 
@@ -492,18 +486,50 @@ input:focus {
 }
 
 
+#pantallaActividades
+.actividad {
+
+    width:
+        145px;
+
+    min-height:
+        125px;
+
+    margin:
+        0;
+
+    padding:
+        12px;
+
+    border-radius:
+        15px;
+
+    flex-direction:
+        column;
+
+    gap:
+        8px;
+
+}
+
+
 /*
-   Las actividades principales
-   se presentan en una cuadrícula.
+   Contenedor visual de actividades.
+
+   Como los botones están directamente dentro
+   de la sección, usamos flex-wrap.
 */
 
 #pantallaActividades {
 
     display:
-        grid;
+        flex;
 
-    grid-template-columns:
-        repeat(3, 1fr);
+    flex-wrap:
+        wrap;
+
+    justify-content:
+        center;
 
     gap:
         12px;
@@ -513,36 +539,54 @@ input:focus {
 
 #pantallaActividades > h2 {
 
-    grid-column:
-        1 / -1;
+    flex-basis:
+        100%;
 
 }
 
 
-#pantallaActividades > .cancelar {
+/* =====================================================
+   ICONOS DE ACTIVIDADES
+   ===================================================== */
 
-    grid-column:
-        1 / -1;
+.actividad-icono {
+
+    font-size:
+        34px;
+
+    line-height:
+        1;
+
+    display:
+        block;
 
 }
 
 
-.actividad {
+/* =====================================================
+   BOTÓN CANCELAR DE ACTIVIDADES
+   ===================================================== */
 
-    background:
-        var(--morado);
+#pantallaActividades
+#btnCancelarActividad {
 
-    color:
-        white;
+    flex-basis:
+        100%;
 
-    min-height:
-        110px;
+    width:
+        100%;
 
-    padding:
-        12px;
+    margin-top:
+        8px;
 
-    border-radius:
-        14px;
+}
+
+
+/* =====================================================
+   SUBMENÚ
+   ===================================================== */
+
+#pantallaSubmenu {
 
     display:
         flex;
@@ -553,30 +597,117 @@ input:focus {
     align-items:
         center;
 
+}
+
+
+#pantallaSubmenu h2 {
+
+    width:
+        100%;
+
+    margin-bottom:
+        8px;
+
+}
+
+
+.instruccion-submenu {
+
+    width:
+        100%;
+
+    color:
+        #666666;
+
+    font-size:
+        16px;
+
+    font-weight:
+        bold;
+
+    margin-bottom:
+        18px;
+
+}
+
+
+/*
+   CUADRÍCULA DE SUBOPCIONES
+*/
+
+#botonesSubmenu {
+
+    width:
+        100%;
+
+    display:
+        grid;
+
+    grid-template-columns:
+        repeat(
+            3,
+            1fr
+        );
+
     justify-content:
         center;
 
-    text-align:
+    align-items:
         center;
 
     gap:
-        7px;
+        12px;
+
+    margin:
+        0 auto 18px;
 
 }
 
 
-.actividad:hover {
+/*
+   SUBOPCIONES CUADRADAS
+*/
 
-    background:
-        var(--morado-hover);
+#botonesSubmenu .boton-subopcion {
 
-}
+    width:
+        100%;
 
+    aspect-ratio:
+        1 / 1;
 
-.actividad-icono {
+    min-height:
+        0;
+
+    margin:
+        0;
+
+    padding:
+        10px;
+
+    border-radius:
+        15px;
+
+    flex-direction:
+        column;
+
+    gap:
+        8px;
 
     font-size:
-        30px;
+        16px;
+
+}
+
+
+/* =====================================================
+   ICONOS DE SUBOPCIONES
+   ===================================================== */
+
+.subopcion-icono {
+
+    font-size:
+        32px;
 
     line-height:
         1;
@@ -584,153 +715,27 @@ input:focus {
 }
 
 
-.actividad span:last-child {
+/* =====================================================
+   MÓDULOS
+   ===================================================== */
 
-    font-size:
-        15px;
+/*
+   Los módulos de Prepa Abierta,
+   Prepa en Línea y Bachilleratos
+   no llevan icono.
+*/
 
-    line-height:
-        1.2;
-
-}
-
-
-/* ===================================== */
-/* SUBMENÚ */
-/* ===================================== */
-
-#pantallaSubmenu {
-
-    text-align:
-        center;
-
-}
-
-
-#instruccionSubmenu {
-
-    color:
-        #666;
-
-    font-size:
-        17px;
-
-    font-weight:
-        bold;
-
-    margin-top:
-        -10px;
-
-    margin-bottom:
-        20px;
-
-}
-
-
-#botonesSubmenu {
-
-    display:
-        grid;
-
-    grid-template-columns:
-        repeat(3, 1fr);
-
-    gap:
-        12px;
-
-    justify-content:
-        center;
-
-    align-items:
-        center;
-
-    margin-bottom:
-        15px;
-
-}
-
-
-.boton-submenu {
-
-    width:
-        100%;
-
-    min-height:
-        95px;
-
-    margin-bottom:
-        0;
-
-    padding:
-        10px;
-
-    font-size:
-        16px;
-
-    border-radius:
-        14px;
-
-    background:
-        var(--morado);
+#botonesSubmenu .boton-subopcion {
 
     color:
         white;
 
-    display:
-        flex;
-
-    align-items:
-        center;
-
-    justify-content:
-        center;
-
-    text-align:
-        center;
-
 }
 
 
-.boton-submenu:hover {
-
-    background:
-        var(--morado-hover);
-
-}
-
-
-/* ===================================== */
-/* MÓDULOS */
-/* ===================================== */
-
-/*
-   Los módulos de Prepa Abierta,
-   Prepa en Línea y Bachilleratos PILARES
-   se muestran como botones cuadrados.
-*/
-
-#botonesSubmenu .boton-submenu {
-
-    aspect-ratio:
-        1 / 1;
-
-}
-
-
-#botonesSubmenu .boton-submenu {
-
-    font-size:
-        17px;
-
-    font-weight:
-        bold;
-
-}
-
-
-/* ===================================== */
-/* LECTOR QR */
-/* ===================================== */
+/* =====================================================
+   LECTOR QR
+   ===================================================== */
 
 #reader {
 
@@ -793,14 +798,14 @@ input:focus {
 }
 
 
-/* ===================================== */
-/* QR */
-/* ===================================== */
+/* =====================================================
+   QR
+   ===================================================== */
 
 .instruccion {
 
     color:
-        #666;
+        #666666;
 
     margin-bottom:
         15px;
@@ -832,7 +837,9 @@ input:focus {
         15px 0;
 
     animation:
-        brillo 0.5s ease-in-out;
+        brillo
+        0.5s
+        ease-in-out;
 
 }
 
@@ -886,9 +893,9 @@ input:focus {
 }
 
 
-/* ===================================== */
-/* MENSAJES */
-/* ===================================== */
+/* =====================================================
+   MENSAJES
+   ===================================================== */
 
 .mensaje {
 
@@ -928,9 +935,9 @@ input:focus {
 }
 
 
-/* ===================================== */
-/* CONFIRMACIÓN */
-/* ===================================== */
+/* =====================================================
+   CONFIRMACIÓN
+   ===================================================== */
 
 .confirmacion {
 
@@ -994,7 +1001,7 @@ input:focus {
 
     box-shadow:
         0 8px 25px
-        rgba(46,125,50,0.30);
+        rgba(46, 125, 50, 0.30);
 
     animation:
         aparecerCheck
@@ -1038,7 +1045,7 @@ input:focus {
 .actividad-confirmacion {
 
     color:
-        #666;
+        #666666;
 
     font-size:
         16px;
@@ -1106,11 +1113,28 @@ input:focus {
 }
 
 
-/* ===================================== */
-/* MÓVILES */
-/* ===================================== */
+/* =====================================================
+   TABLET
+   ===================================================== */
 
-@media (max-width: 600px) {
+@media (min-width: 501px) {
+
+    #pantallaActividades
+    .actividad {
+
+        width:
+            145px;
+
+    }
+
+}
+
+
+/* =====================================================
+   MÓVILES
+   ===================================================== */
+
+@media (max-width: 500px) {
 
     body {
 
@@ -1130,6 +1154,9 @@ input:focus {
 
         padding:
             25px 15px;
+
+        max-width:
+            100%;
 
     }
 
@@ -1173,16 +1200,11 @@ input:focus {
     }
 
 
-    /*
-       En celular usamos 2 columnas
-       para que los botones sigan siendo
-       cuadrados y fáciles de tocar.
-    */
+    /* =============================================
+       ACTIVIDADES EN CELULAR
+       ============================================= */
 
     #pantallaActividades {
-
-        grid-template-columns:
-            repeat(2, 1fr);
 
         gap:
             10px;
@@ -1190,10 +1212,25 @@ input:focus {
     }
 
 
+    #pantallaActividades
     .actividad {
+
+        width:
+            calc(
+                33.333% - 8px
+            );
 
         min-height:
             105px;
+
+        aspect-ratio:
+            1 / 1;
+
+        font-size:
+            14px;
+
+        padding:
+            8px;
 
     }
 
@@ -1201,37 +1238,48 @@ input:focus {
     .actividad-icono {
 
         font-size:
-            27px;
+            28px;
 
     }
 
 
-    .actividad span:last-child {
-
-        font-size:
-            14px;
-
-    }
-
+    /* =============================================
+       SUBOPCIONES EN CELULAR
+       ============================================= */
 
     #botonesSubmenu {
 
         grid-template-columns:
-            repeat(2, 1fr);
+            repeat(
+                3,
+                1fr
+            );
 
         gap:
-            10px;
+            9px;
 
     }
 
 
-    .boton-submenu {
-
-        min-height:
-            100px;
+    #botonesSubmenu
+    .boton-subopcion {
 
         font-size:
-            15px;
+            13px;
+
+        padding:
+            6px;
+
+        border-radius:
+            12px;
+
+    }
+
+
+    .subopcion-icono {
+
+        font-size:
+            26px;
 
     }
 
@@ -1290,16 +1338,25 @@ input:focus {
 }
 
 
-/* ===================================== */
-/* PANTALLAS MUY PEQUEÑAS */
-/* ===================================== */
+/* =====================================================
+   PANTALLAS MUY PEQUEÑAS
+   ===================================================== */
 
-@media (max-width: 380px) {
+@media (max-width: 360px) {
 
-    #pantallaActividades {
+    #pantallaActividades
+    .actividad {
 
-        grid-template-columns:
-            repeat(2, 1fr);
+        width:
+            calc(
+                50% - 5px
+            );
+
+        min-height:
+            110px;
+
+        font-size:
+            14px;
 
     }
 
@@ -1307,23 +1364,16 @@ input:focus {
     #botonesSubmenu {
 
         grid-template-columns:
-            repeat(2, 1fr);
+            repeat(
+                2,
+                1fr
+            );
 
     }
 
 
-    .actividad {
-
-        min-height:
-            95px;
-
-    }
-
-
-    .boton-submenu {
-
-        min-height:
-            90px;
+    #botonesSubmenu
+    .boton-subopcion {
 
         font-size:
             14px;
