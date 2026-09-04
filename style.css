@@ -10,21 +10,35 @@
     --guinda-claro: #96324F;
 
     --verde: #2E7D32;
+    --verde-claro: #E8F5E9;
+
     --rojo: #C62828;
+    --rojo-claro: #FFEBEE;
+
+    --naranja: #EF6C00;
+    --naranja-claro: #FFF3E0;
+
     --azul: #1976D2;
+    --morado: #9C27B0;
 
     --gris-fondo: #F4F1F3;
+    --gris-boton: #FAFAFA;
+    --gris-borde: #D5D5D5;
+    --gris-hover: #F0F0F0;
     --gris: #777;
-    --gris-borde: #D0D0D0;
-    --gris-hover: #F2F2F2;
 
     --blanco: #FFFFFF;
     --texto: #333333;
 }
 
+
 /* ===================================== */
 /* GENERAL */
 /* ===================================== */
+
+html {
+    min-height: 100%;
+}
 
 body {
     font-family:
@@ -50,20 +64,32 @@ body {
     padding: 20px;
 
     color: var(--texto);
+
+    transition:
+        background 0.5s ease;
 }
+
+
+/* ===================================== */
+/* CONTENEDOR */
+/* ===================================== */
 
 .contenedor {
     width: 100%;
 
-    max-width: 620px;
+    max-width: 650px;
 
-    background: var(--blanco);
+    background:
+        var(--blanco);
 
-    padding: 30px 25px;
+    padding:
+        30px 25px;
 
-    border-radius: 22px;
+    border-radius:
+        22px;
 
-    text-align: center;
+    text-align:
+        center;
 
     box-shadow:
         0 8px 30px
@@ -72,23 +98,12 @@ body {
     border-top:
         7px solid
         var(--guinda);
+
+    transition:
+        background 0.5s ease,
+        box-shadow 0.5s ease;
 }
 
-.pantalla {
-    width: 100%;
-}
-
-.oculto {
-    display: none !important;
-}
-
-h2 {
-    color: var(--guinda);
-
-    margin-bottom: 22px;
-
-    font-size: 24px;
-}
 
 /* ===================================== */
 /* ENCABEZADO */
@@ -106,342 +121,480 @@ h2 {
     margin-bottom: 20px;
 }
 
+
 .titulo-principal {
     flex: 1;
 }
 
+
 .encabezado h1 {
-    color: var(--guinda);
+    color:
+        var(--guinda);
 
-    font-size: 30px;
+    font-size:
+        30px;
 
-    font-weight: 800;
+    font-weight:
+        800;
 
-    letter-spacing: 0.5px;
+    letter-spacing:
+        0.5px;
 }
+
 
 .icono-encabezado {
-    font-size: 38px;
+    font-size:
+        38px;
+
+    line-height:
+        1;
 }
+
 
 .subtitulo {
-    color: #666;
+    color:
+        #666;
 
-    margin-top: 7px;
+    margin-top:
+        7px;
 
-    margin-bottom: 25px;
+    margin-bottom:
+        25px;
 
-    font-size: 15px;
+    font-size:
+        15px;
 }
+
+
+.pantalla {
+    width:
+        100%;
+}
+
+
+.oculto {
+    display:
+        none !important;
+}
+
+
+h2 {
+    color:
+        var(--guinda);
+
+    margin-bottom:
+        22px;
+
+    line-height:
+        1.2;
+}
+
 
 /* ===================================== */
 /* BOTONES GENERALES */
 /* ===================================== */
 
 .boton {
-    width: 100%;
+    width:
+        100%;
 
-    min-height: 62px;
+    min-height:
+        62px;
 
-    padding: 15px;
+    padding:
+        15px;
 
-    border: 2px solid transparent;
+    border:
+        2px solid transparent;
 
-    border-radius: 13px;
+    border-radius:
+        13px;
 
-    font-size: 18px;
+    font-size:
+        18px;
 
-    font-weight: bold;
+    font-weight:
+        bold;
 
-    cursor: pointer;
+    cursor:
+        pointer;
 
-    margin-bottom: 12px;
+    margin-bottom:
+        12px;
 
     transition:
-        transform 0.1s,
-        box-shadow 0.2s,
-        background 0.2s,
-        opacity 0.2s;
+        transform 0.12s ease,
+        box-shadow 0.2s ease,
+        background 0.2s ease,
+        border-color 0.2s ease,
+        opacity 0.2s ease;
 
-    display: flex;
+    display:
+        flex;
 
-    align-items: center;
+    align-items:
+        center;
 
-    justify-content: center;
+    justify-content:
+        center;
 
-    text-align: center;
+    text-align:
+        center;
+
+    user-select:
+        none;
 }
 
+
 .boton:hover {
-    opacity: 0.93;
+    opacity:
+        0.96;
 
     box-shadow:
-        0 4px 10px
+        0 4px 12px
         rgba(0,0,0,0.12);
 }
 
+
 .boton:active {
-    transform: scale(0.98);
+    transform:
+        scale(0.97);
 }
+
 
 .boton:disabled {
-    opacity: 0.6;
+    opacity:
+        0.55;
 
-    cursor: not-allowed;
+    cursor:
+        not-allowed;
 }
 
+
 /* ===================================== */
-/* ENTRADA Y SALIDA */
+/* ENTRADA / SALIDA */
 /* ===================================== */
 
 .entrada {
-    background: var(--verde);
+    background:
+        var(--verde);
 
-    color: white;
+    color:
+        white;
 
-    border-color: #256B29;
+    border-color:
+        #256B29;
 
-    min-height: 70px;
+    min-height:
+        70px;
 
-    font-size: 21px;
+    font-size:
+        21px;
 }
+
+
+.entrada:hover {
+    background:
+        #256B29;
+}
+
 
 .salida {
-    background: var(--rojo);
+    background:
+        var(--rojo);
 
-    color: white;
+    color:
+        white;
 
-    border-color: #A82020;
+    border-color:
+        #A51F1F;
 
-    min-height: 70px;
+    min-height:
+        70px;
 
-    font-size: 21px;
+    font-size:
+        21px;
 }
+
+
+.salida:hover {
+    background:
+        #A51F1F;
+}
+
 
 /* ===================================== */
 /* BOTONES DE FOLIO */
 /* ===================================== */
 
 .boton-manual {
-    background: var(--azul);
+    background:
+        var(--azul);
 
-    color: white;
+    color:
+        white;
 
-    border-color: #145FA8;
+    border-color:
+        #125BA5;
 }
+
 
 .boton-qr {
-    background: var(--guinda);
+    background:
+        var(--morado);
 
-    color: white;
+    color:
+        white;
 
-    border-color: var(--guinda-oscuro);
+    border-color:
+        #7B1FA2;
 }
+
 
 /* ===================================== */
 /* CAMBIAR CÁMARA */
 /* ===================================== */
 
 #btnCambiarCamara {
-    background: var(--azul);
+    background:
+        var(--azul);
 
-    color: white;
+    color:
+        white;
 
-    border-color: #145FA8;
+    border-color:
+        #125BA5;
 
-    margin-top: 8px;
+    margin-top:
+        8px;
 
-    margin-bottom: 15px;
+    margin-bottom:
+        15px;
 }
+
 
 #btnCambiarCamara:hover {
-    background: #1565C0;
+    background:
+        #1565C0;
 }
+
 
 /* ===================================== */
 /* CAMPOS */
 /* ===================================== */
 
 label {
-    display: block;
+    display:
+        block;
 
-    text-align: left;
+    text-align:
+        left;
 
-    font-weight: bold;
+    font-weight:
+        bold;
 
-    margin-bottom: 8px;
+    margin-bottom:
+        8px;
 
-    color: var(--guinda);
+    color:
+        var(--guinda);
 }
+
 
 input {
-    width: 100%;
+    width:
+        100%;
 
-    padding: 15px;
+    padding:
+        15px;
 
-    margin-bottom: 18px;
+    margin-bottom:
+        18px;
 
     border:
-        2px solid
-        #ddd;
+        2px solid #ddd;
 
-    border-radius: 11px;
+    border-radius:
+        11px;
 
-    font-size: 18px;
+    font-size:
+        18px;
+
+    background:
+        white;
 }
 
-input:focus {
-    outline: none;
 
-    border-color: var(--guinda);
+input:focus {
+    outline:
+        none;
+
+    border-color:
+        var(--guinda);
 
     box-shadow:
         0 0 0 3px
         rgba(123,30,58,0.12);
 }
 
+
 /* ===================================== */
 /* REGISTRAR */
 /* ===================================== */
 
 .registrar {
-    background: var(--guinda);
+    background:
+        var(--morado);
 
-    color: white;
+    color:
+        white;
 
-    border-color: var(--guinda-oscuro);
+    border-color:
+        #7B1FA2;
 }
+
 
 .registrar:hover {
-    background: var(--guinda-claro);
+    background:
+        #8E24AA;
 }
+
 
 /* ===================================== */
 /* CANCELAR */
 /* ===================================== */
 
 .cancelar {
-    background: #777;
+    background:
+        var(--gris);
 
-    color: white;
+    color:
+        white;
 
-    border-color: #5F5F5F;
+    border-color:
+        #626262;
 }
+
 
 .cancelar:hover {
-    background: #666;
+    background:
+        #666;
 }
 
+
 /* ===================================== */
-/* ACTIVIDADES Y SUBACTIVIDADES */
+/* ACTIVIDADES */
 /* ===================================== */
-
-/*
-   Se utiliza CSS Grid para que los botones
-   se adapten automáticamente al dispositivo.
-
-   No se limita a 3 columnas.
-*/
-
-#pantallaActividades,
-#pantallaSubmenu {
-    width: 100%;
-}
-
-/* Grid de actividades */
 
 #pantallaActividades {
-    display: flex;
-
-    flex-direction: column;
-
-    align-items: center;
+    width:
+        100%;
 }
 
-/*
-   Los botones de actividad se organizan
-   automáticamente según el ancho disponible.
-*/
 
-#pantallaActividades > .actividad:not(#btnCancelarActividad) {
-    width: 100%;
+#pantallaActividades > h2 {
+    margin-bottom:
+        20px;
 }
 
+
 /*
-   Contenedor visual de actividades.
-   Se convierte en grid mediante display: grid.
+   Las actividades se acomodan
+   automáticamente según el ancho
+   disponible del dispositivo.
 */
 
 #pantallaActividades {
-    display: grid;
+    display:
+        grid;
 
     grid-template-columns:
         repeat(
             auto-fit,
-            minmax(145px, 1fr)
+            minmax(
+                150px,
+                1fr
+            )
         );
 
-    gap: 12px;
+    gap:
+        12px;
 }
+
 
 /*
    El título ocupa todo el ancho.
 */
 
-#pantallaActividades h2 {
-    grid-column: 1 / -1;
-
-    width: 100%;
+#pantallaActividades > h2 {
+    grid-column:
+        1 / -1;
 }
+
 
 /*
-   Botón cancelar ocupa todo el ancho.
+   Cancelar ocupa todo el ancho.
 */
 
-#btnCancelarActividad {
-    grid-column: 1 / -1;
+#pantallaActividades > #btnCancelarActividad {
+    grid-column:
+        1 / -1;
 }
+
 
 /* ===================================== */
 /* BOTONES DE ACTIVIDAD */
 /* ===================================== */
 
-.actividad {
-    background: var(--blanco);
+#pantallaActividades .actividad {
+    width:
+        100%;
 
-    color: var(--texto);
+    min-height:
+        120px;
+
+    margin:
+        0;
+
+    padding:
+        15px 10px;
+
+    background:
+        var(--gris-boton);
+
+    color:
+        var(--texto);
 
     border:
         2px solid
         var(--gris-borde);
 
-    border-radius: 13px;
+    border-radius:
+        15px;
 
-    min-height: 105px;
+    display:
+        flex;
 
-    padding: 14px 10px;
+    flex-direction:
+        column;
 
-    display: flex;
+    align-items:
+        center;
 
-    flex-direction: column;
+    justify-content:
+        center;
 
-    align-items: center;
+    gap:
+        8px;
 
-    justify-content: center;
-
-    text-align: center;
-
-    gap: 8px;
-
-    margin-bottom: 0;
-
-    box-shadow:
-        0 2px 5px
-        rgba(0,0,0,0.05);
+    text-align:
+        center;
 }
 
-.actividad:hover {
-    background: var(--gris-hover);
+
+#pantallaActividades .actividad:hover {
+    background:
+        var(--gris-hover);
 
     border-color:
         var(--guinda);
@@ -450,299 +603,398 @@ input:focus {
         var(--guinda);
 
     box-shadow:
-        0 4px 10px
-        rgba(0,0,0,0.10);
+        0 4px 12px
+        rgba(123,30,58,0.12);
 }
 
-.actividad:active {
-    transform: scale(0.98);
+
+#pantallaActividades .actividad:active {
+    transform:
+        scale(0.97);
 }
+
+
+/* ===================================== */
+/* ICONOS DE ACTIVIDAD */
+/* ===================================== */
 
 .actividad-icono {
-    width: auto;
+    width:
+        auto;
 
-    min-width: auto;
+    min-width:
+        auto;
 
-    font-size: 30px;
+    font-size:
+        40px;
 
-    line-height: 1;
+    line-height:
+        1;
 
-    text-align: center;
+    text-align:
+        center;
+
+    display:
+        block;
+
+    filter:
+        drop-shadow(
+            0 2px 2px
+            rgba(0,0,0,0.10)
+        );
+
+    transition:
+        transform 0.2s ease;
 }
+
+
+#pantallaActividades .actividad:hover
+.actividad-icono {
+    transform:
+        scale(1.08);
+}
+
 
 /* ===================================== */
 /* SUBMENÚ */
 /* ===================================== */
 
 #pantallaSubmenu {
-    display: grid;
-
-    grid-template-columns:
-        repeat(
-            auto-fit,
-            minmax(120px, 1fr)
-        );
-
-    gap: 12px;
-
-    align-items: stretch;
-
-    justify-items: stretch;
+    width:
+        100%;
 }
+
 
 #pantallaSubmenu h2 {
-    grid-column: 1 / -1;
-
-    width: 100%;
+    margin-bottom:
+        10px;
 }
 
+
 /*
-   El contenedor generado por JavaScript
-   también utiliza grid.
+   Instrucción para módulos.
 */
 
 #botonesSubmenu {
-    grid-column: 1 / -1;
-
-    width: 100%;
-
-    display: grid;
+    display:
+        grid;
 
     grid-template-columns:
         repeat(
             auto-fit,
-            minmax(120px, 1fr)
+            minmax(
+                130px,
+                1fr
+            )
         );
 
-    gap: 12px;
+    gap:
+        12px;
 
-    justify-items: stretch;
+    width:
+        100%;
+
+    margin-top:
+        15px;
+
+    margin-bottom:
+        15px;
 }
 
-/*
-   Los botones de las subcategorías
-   son cuadrados y muestran icono + texto.
-*/
 
-#botonesSubmenu .boton {
-    width: 100%;
+/* ===================================== */
+/* BOTONES DE SUBACTIVIDADES */
+/* ===================================== */
 
-    min-height: 115px;
+#botonesSubmenu .boton.actividad {
+    width:
+        100%;
 
-    aspect-ratio: 1 / 1;
+    min-height:
+        110px;
 
-    margin-bottom: 0;
+    margin:
+        0;
 
-    background: var(--blanco);
+    padding:
+        12px 8px;
 
-    color: var(--texto);
+    background:
+        var(--gris-boton);
+
+    color:
+        var(--texto);
 
     border:
         2px solid
         var(--gris-borde);
 
-    display: flex;
+    border-radius:
+        15px;
 
-    flex-direction: column;
+    font-size:
+        17px;
 
-    justify-content: center;
+    display:
+        flex;
 
-    align-items: center;
+    align-items:
+        center;
 
-    text-align: center;
+    justify-content:
+        center;
 
-    padding: 10px;
+    text-align:
+        center;
 
-    white-space: normal;
+    white-space:
+        normal;
 
-    line-height: 1.2;
+    line-height:
+        1.2;
 }
 
-#botonesSubmenu .boton:hover {
-    background: var(--gris-hover);
 
-    border-color: var(--guinda);
+#botonesSubmenu .boton.actividad:hover {
+    background:
+        var(--gris-hover);
 
-    color: var(--guinda);
+    border-color:
+        var(--guinda);
+
+    color:
+        var(--guinda);
+
+    box-shadow:
+        0 4px 12px
+        rgba(123,30,58,0.12);
 }
+
 
 /*
-   Iconos dentro de las subcategorías.
+   Icono de subactividad.
 */
 
-#botonesSubmenu .subactividad-icono {
-    font-size: 30px;
-
-    line-height: 1;
-
-    margin-bottom: 8px;
+#botonesSubmenu .actividad-icono {
+    font-size:
+        38px;
 }
 
+
 /*
-   Texto de la subcategoría.
+   Para que el texto de las
+   subactividades quede centrado.
 */
 
-#botonesSubmenu .subactividad-texto {
-    display: block;
-
-    font-size: 16px;
-
-    font-weight: bold;
-
-    text-align: center;
-
-    word-break: normal;
+#botonesSubmenu .boton.actividad {
+    flex-direction:
+        column;
 }
 
-/*
-   Botón VOLVER ocupa todo el ancho.
-*/
+
+/* ===================================== */
+/* BOTÓN VOLVER DEL SUBMENÚ */
+/* ===================================== */
 
 #btnVolverActividades {
-    grid-column: 1 / -1;
+    width:
+        100%;
 
-    width: 100%;
-
-    margin-top: 4px;
-
-    margin-bottom: 0;
+    margin-top:
+        5px;
 }
+
 
 /* ===================================== */
 /* LECTOR QR */
 /* ===================================== */
 
 #reader {
-    width: 100%;
+    width:
+        100%;
 
-    max-width: 400px;
+    max-width:
+        400px;
 
-    margin: 20px auto;
+    margin:
+        20px auto;
 
-    border-radius: 12px;
+    border-radius:
+        12px;
 
-    overflow: hidden;
+    overflow:
+        hidden;
 }
+
 
 #reader video {
-    width: 100% !important;
+    width:
+        100% !important;
 
-    max-width: 100%;
+    max-width:
+        100%;
 
-    border-radius: 12px;
+    border-radius:
+        12px;
 }
+
 
 #reader__scan_region {
-    border-radius: 12px;
+    border-radius:
+        12px;
 
-    overflow: hidden;
+    overflow:
+        hidden;
 }
+
 
 #reader__dashboard {
-    padding: 10px 0 !important;
+    padding:
+        10px 0 !important;
 }
 
+
 #reader__dashboard_section {
-    margin: 0 auto;
+    margin:
+        0 auto;
 }
+
 
 /* ===================================== */
 /* QR */
 /* ===================================== */
 
 .instruccion {
-    color: #666;
+    color:
+        #666;
 
-    margin-bottom: 15px;
+    margin-bottom:
+        15px;
 }
 
+
 .qr-exito {
-    background: var(--verde);
+    background:
+        var(--verde);
 
-    color: white;
+    color:
+        white;
 
-    padding: 16px;
+    padding:
+        16px;
 
-    border-radius: 12px;
+    border-radius:
+        12px;
 
-    font-size: 20px;
+    font-size:
+        20px;
 
-    font-weight: bold;
+    font-weight:
+        bold;
 
-    margin: 15px 0;
+    margin:
+        15px 0;
 
     animation:
-        brillo 0.5s
+        brillo
+        0.5s
         ease-in-out;
 }
 
+
 .qr-folio {
-    color: var(--guinda);
+    color:
+        var(--guinda);
 
-    font-weight: bold;
+    font-weight:
+        bold;
 
-    margin: 10px 0;
+    margin:
+        10px 0;
 
-    min-height: 20px;
+    min-height:
+        20px;
 }
+
 
 @keyframes brillo {
 
     0% {
-        transform: scale(0.8);
+        transform:
+            scale(0.8);
 
-        opacity: 0;
+        opacity:
+            0;
     }
 
     50% {
-        transform: scale(1.08);
+        transform:
+            scale(1.08);
     }
 
     100% {
-        transform: scale(1);
+        transform:
+            scale(1);
 
-        opacity: 1;
+        opacity:
+            1;
     }
 }
+
 
 /* ===================================== */
 /* MENSAJES */
 /* ===================================== */
 
 .mensaje {
-    min-height: 25px;
+    min-height:
+        25px;
 
-    margin: 10px 0;
+    margin:
+        10px 0;
 
-    font-weight: bold;
+    font-weight:
+        bold;
 }
+
 
 .mensaje.exito {
-    color: var(--verde);
+    color:
+        var(--verde);
 }
+
 
 .mensaje.error {
-    color: var(--rojo);
+    color:
+        var(--rojo);
 }
 
+
 .mensaje.info {
-    color: var(--azul);
+    color:
+        var(--azul);
 }
+
 
 /* ===================================== */
 /* CONFIRMACIÓN */
 /* ===================================== */
 
 .confirmacion {
-    display: flex;
+    display:
+        flex;
 
-    flex-direction: column;
+    flex-direction:
+        column;
 
-    align-items: center;
+    align-items:
+        center;
 
-    justify-content: center;
+    justify-content:
+        center;
 
-    min-height: 350px;
+    min-height:
+        350px;
 
     animation:
         aparecerConfirmacion
@@ -750,28 +1002,40 @@ input:focus {
         ease-out;
 }
 
+
 .check-confirmacion {
-    width: 105px;
+    width:
+        105px;
 
-    height: 105px;
+    height:
+        105px;
 
-    border-radius: 50%;
+    border-radius:
+        50%;
 
-    background: var(--verde);
+    background:
+        var(--verde);
 
-    color: white;
+    color:
+        white;
 
-    display: flex;
+    display:
+        flex;
 
-    align-items: center;
+    align-items:
+        center;
 
-    justify-content: center;
+    justify-content:
+        center;
 
-    font-size: 70px;
+    font-size:
+        70px;
 
-    font-weight: bold;
+    font-weight:
+        bold;
 
-    margin-bottom: 25px;
+    margin-bottom:
+        25px;
 
     box-shadow:
         0 8px 25px
@@ -783,31 +1047,558 @@ input:focus {
         ease-out;
 }
 
+
 .confirmacion h2 {
-    font-size: 30px;
+    font-size:
+        30px;
 
-    color: var(--guinda);
+    color:
+        var(--guinda);
 
-    margin-bottom: 10px;
+    margin-bottom:
+        10px;
 }
+
 
 #mensajeConfirmacion {
-    color: var(--verde);
+    color:
+        var(--verde);
 
-    font-size: 22px;
+    font-size:
+        22px;
 
-    font-weight: bold;
+    font-weight:
+        bold;
 
-    margin-bottom: 12px;
+    margin-bottom:
+        8px;
 }
+
 
 .actividad-confirmacion {
-    color: #666;
+    color:
+        #666;
 
-    font-size: 16px;
+    font-size:
+        17px;
 
-    font-weight: bold;
+    font-weight:
+        bold;
+
+    line-height:
+        1.4;
 }
 
-/*
-   Nombre del usuario en
+
+/* ===================================== */
+/* CONFIRMACIÓN ENTRADA */
+/* ===================================== */
+
+body.confirmacion-entrada {
+    background:
+        linear-gradient(
+            135deg,
+            #C8E6C9,
+            #81C784,
+            #A5D6A7
+        );
+
+    animation:
+        iluminarVerde
+        0.8s
+        ease-in-out;
+}
+
+
+body.confirmacion-entrada .contenedor {
+    border-top-color:
+        var(--verde);
+
+    box-shadow:
+        0 0 45px
+        rgba(46,125,50,0.45);
+}
+
+
+body.confirmacion-entrada
+.check-confirmacion {
+    background:
+        var(--verde);
+}
+
+
+/* ===================================== */
+/* CONFIRMACIÓN SALIDA */
+/* ===================================== */
+
+body.confirmacion-salida {
+    background:
+        linear-gradient(
+            135deg,
+            #FFCDD2,
+            #EF9A9A,
+            #FFCDD2
+        );
+
+    animation:
+        iluminarRojo
+        0.8s
+        ease-in-out;
+}
+
+
+body.confirmacion-salida .contenedor {
+    border-top-color:
+        var(--rojo);
+
+    box-shadow:
+        0 0 45px
+        rgba(198,40,40,0.40);
+}
+
+
+body.confirmacion-salida
+.check-confirmacion {
+    background:
+        var(--rojo);
+}
+
+
+/* ===================================== */
+/* CONFIRMACIÓN SALIDA SIN ENTRADA */
+/* ===================================== */
+
+body.confirmacion-alerta {
+    background:
+        linear-gradient(
+            135deg,
+            #FFE0B2,
+            #FFCC80,
+            #FFE0B2
+        );
+
+    animation:
+        iluminarNaranja
+        0.8s
+        ease-in-out;
+}
+
+
+body.confirmacion-alerta .contenedor {
+    border-top-color:
+        var(--naranja);
+
+    box-shadow:
+        0 0 45px
+        rgba(239,108,0,0.42);
+}
+
+
+body.confirmacion-alerta
+.check-confirmacion {
+    background:
+        var(--naranja);
+}
+
+
+/* ===================================== */
+/* ANIMACIONES DE ILUMINACIÓN */
+/* ===================================== */
+
+@keyframes iluminarVerde {
+
+    0% {
+        background:
+            #f5eff2;
+    }
+
+    50% {
+        background:
+            #66BB6A;
+    }
+
+    100% {
+        background:
+            linear-gradient(
+                135deg,
+                #C8E6C9,
+                #81C784,
+                #A5D6A7
+            );
+    }
+}
+
+
+@keyframes iluminarRojo {
+
+    0% {
+        background:
+            #f5eff2;
+    }
+
+    50% {
+        background:
+            #EF5350;
+    }
+
+    100% {
+        background:
+            linear-gradient(
+                135deg,
+                #FFCDD2,
+                #EF9A9A,
+                #FFCDD2
+            );
+    }
+}
+
+
+@keyframes iluminarNaranja {
+
+    0% {
+        background:
+            #f5eff2;
+    }
+
+    50% {
+        background:
+            #FF9800;
+    }
+
+    100% {
+        background:
+            linear-gradient(
+                135deg,
+                #FFE0B2,
+                #FFCC80,
+                #FFE0B2
+            );
+    }
+}
+
+
+/* ===================================== */
+/* ANIMACIONES CONFIRMACIÓN */
+/* ===================================== */
+
+@keyframes aparecerCheck {
+
+    0% {
+        transform:
+            scale(0);
+
+        opacity:
+            0;
+    }
+
+    60% {
+        transform:
+            scale(1.15);
+
+        opacity:
+            1;
+    }
+
+    100% {
+        transform:
+            scale(1);
+    }
+}
+
+
+@keyframes aparecerConfirmacion {
+
+    from {
+        opacity:
+            0;
+
+        transform:
+            translateY(15px);
+    }
+
+    to {
+        opacity:
+            1;
+
+        transform:
+            translateY(0);
+    }
+}
+
+
+/* ===================================== */
+/* TABLET */
+/* ===================================== */
+
+@media (min-width: 501px) and (max-width: 800px) {
+
+    .contenedor {
+        max-width:
+            700px;
+    }
+
+    #pantallaActividades {
+        grid-template-columns:
+            repeat(
+                auto-fit,
+                minmax(
+                    155px,
+                    1fr
+                )
+            );
+    }
+
+    #botonesSubmenu {
+        grid-template-columns:
+            repeat(
+                auto-fit,
+                minmax(
+                    140px,
+                    1fr
+                )
+            );
+    }
+}
+
+
+/* ===================================== */
+/* MÓVILES */
+/* ===================================== */
+
+@media (max-width: 500px) {
+
+    body {
+        padding:
+            10px;
+
+        align-items:
+            flex-start;
+    }
+
+
+    .contenedor {
+        margin-top:
+            10px;
+
+        padding:
+            25px 15px;
+
+        border-radius:
+            18px;
+    }
+
+
+    .encabezado h1 {
+        font-size:
+            23px;
+    }
+
+
+    .icono-encabezado {
+        font-size:
+            30px;
+    }
+
+
+    .boton {
+        font-size:
+            17px;
+
+        min-height:
+            58px;
+    }
+
+
+    .entrada,
+    .salida {
+        min-height:
+            65px;
+
+        font-size:
+            20px;
+    }
+
+
+    /*
+       En teléfonos se mantiene
+       la cuadrícula adaptable.
+       No se fuerza a 3 columnas.
+    */
+
+    #pantallaActividades {
+        grid-template-columns:
+            repeat(
+                auto-fit,
+                minmax(
+                    125px,
+                    1fr
+                )
+            );
+
+        gap:
+            9px;
+    }
+
+
+    #pantallaActividades .actividad {
+        min-height:
+            110px;
+
+        font-size:
+            15px;
+
+        padding:
+            12px 6px;
+    }
+
+
+    .actividad-icono {
+        font-size:
+            34px;
+    }
+
+
+    #botonesSubmenu {
+        grid-template-columns:
+            repeat(
+                auto-fit,
+                minmax(
+                    110px,
+                    1fr
+                )
+            );
+
+        gap:
+            9px;
+    }
+
+
+    #botonesSubmenu .boton.actividad {
+        min-height:
+            100px;
+
+        font-size:
+            15px;
+    }
+
+
+    #botonesSubmenu .actividad-icono {
+        font-size:
+            32px;
+    }
+
+
+    #reader {
+        max-width:
+            100%;
+
+        margin:
+            15px auto;
+    }
+
+
+    #btnCambiarCamara {
+        min-height:
+            52px;
+
+        font-size:
+            16px;
+    }
+
+
+    .check-confirmacion {
+        width:
+            90px;
+
+        height:
+            90px;
+
+        font-size:
+            60px;
+    }
+
+
+    .confirmacion {
+        min-height:
+            330px;
+    }
+
+
+    .confirmacion h2 {
+        font-size:
+            26px;
+    }
+
+
+    #mensajeConfirmacion {
+        font-size:
+            20px;
+    }
+
+
+    .actividad-confirmacion {
+        font-size:
+            16px;
+    }
+}
+
+
+/* ===================================== */
+/* TELÉFONOS MUY PEQUEÑOS */
+/* ===================================== */
+
+@media (max-width: 360px) {
+
+    .contenedor {
+        padding:
+            20px 10px;
+    }
+
+
+    #pantallaActividades {
+        grid-template-columns:
+            repeat(
+                auto-fit,
+                minmax(
+                    105px,
+                    1fr
+                )
+            );
+    }
+
+
+    #botonesSubmenu {
+        grid-template-columns:
+            repeat(
+                auto-fit,
+                minmax(
+                    100px,
+                    1fr
+                )
+            );
+    }
+
+
+    #pantallaActividades .actividad {
+        min-height:
+            100px;
+
+        font-size:
+            14px;
+    }
+
+
+    #botonesSubmenu .boton.actividad {
+        min-height:
+            95px;
+
+        font-size:
+            14px;
+    }
+
+
+    .actividad-icono {
+        font-size:
+            30px;
+    }
+}
