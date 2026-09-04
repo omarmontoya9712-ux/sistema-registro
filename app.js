@@ -18,6 +18,7 @@ let nombreActual = "";
 
 let lectorQR = null;
 
+// Cámara actual
 let camaraActual = 0;
 
 let camarasDisponibles = [];
@@ -62,7 +63,7 @@ const mensajeEntrada =
 
 
 // =====================================================
-// MAYÚSCULAS
+// CONVERTIR A MAYÚSCULAS
 // =====================================================
 
 folioInput.addEventListener(
@@ -88,7 +89,7 @@ nombreInput.addEventListener(
 
 
 // =====================================================
-// MOSTRAR PANTALLA
+// MOSTRAR UNA PANTALLA
 // =====================================================
 
 function mostrarPantalla(pantalla) {
@@ -96,12 +97,19 @@ function mostrarPantalla(pantalla) {
     const pantallas = [
 
         menuPrincipal,
+
         opcionesFolio,
+
         pantallaManual,
+
         pantallaQR,
+
         formularioEntrada,
+
         pantallaActividades,
+
         pantallaSubmenu,
+
         pantallaConfirmacion
 
     ];
@@ -129,25 +137,31 @@ function volverInicio() {
 
     detenerQR();
 
+
     modoActual = "";
 
     folioActual = "";
 
     nombreActual = "";
 
+
     folioInput.value = "";
 
     nombreInput.value = "";
 
+
     mensajeEntrada.textContent = "";
+
 
     document
         .getElementById("qrFolio")
         .textContent = "";
 
+
     document
         .getElementById("qrExito")
         .classList.add("oculto");
+
 
     mostrarPantalla(
         menuPrincipal
@@ -157,13 +171,13 @@ function volverInicio() {
 
 
 // =====================================================
-// CONFIRMACIÓN
+// MOSTRAR CONFIRMACIÓN
 // =====================================================
 
 function mostrarConfirmacion(
     tipo,
     actividad,
-    opcion
+    opcion = ""
 ) {
 
     const titulo =
@@ -203,32 +217,20 @@ function mostrarConfirmacion(
     }
 
 
-    if (actividad) {
+    let textoConfirmacion =
+        actividad || "";
 
-        if (opcion) {
 
-            actividadTexto.textContent =
-                actividad +
-                " - " +
-                opcion;
+    if (opcion) {
 
-        }
-
-        else {
-
-            actividadTexto.textContent =
-                actividad;
-
-        }
+        textoConfirmacion +=
+            " - " + opcion;
 
     }
 
-    else {
 
-        actividadTexto.textContent =
-            "";
-
-    }
+    actividadTexto.textContent =
+        textoConfirmacion;
 
 
     mostrarPantalla(
@@ -261,10 +263,12 @@ document
             modoActual =
                 "ENTRADA";
 
+
             document
                 .getElementById("tituloFolio")
                 .textContent =
                 "Registro de Entrada";
+
 
             mostrarPantalla(
                 opcionesFolio
@@ -287,10 +291,12 @@ document
             modoActual =
                 "SALIDA";
 
+
             document
                 .getElementById("tituloFolio")
                 .textContent =
                 "Registro de Salida";
+
 
             mostrarPantalla(
                 opcionesFolio
@@ -315,6 +321,7 @@ document
             mostrarPantalla(
                 pantallaManual
             );
+
 
             setTimeout(
                 function() {
@@ -350,7 +357,7 @@ document
 
 
 // =====================================================
-// ENTER
+// ENTER EN FOLIO
 // =====================================================
 
 folioInput.addEventListener(
@@ -372,7 +379,7 @@ folioInput.addEventListener(
 
 
 // =====================================================
-// QR
+// INICIAR QR
 // =====================================================
 
 document
@@ -387,19 +394,26 @@ document
     );
 
 
+// =====================================================
+// INICIAR CÁMARA QR
+// =====================================================
+
 async function iniciarQR() {
 
     mostrarPantalla(
         pantallaQR
     );
 
+
     document
         .getElementById("qrExito")
         .classList.add("oculto");
 
+
     document
         .getElementById("qrFolio")
         .textContent = "";
+
 
     document
         .getElementById("reader")
@@ -417,7 +431,9 @@ async function iniciarQR() {
             camarasDisponibles.length === 0
         ) {
 
-            iniciarQRConModo("user");
+            iniciarQRConModo(
+                "user"
+            );
 
             return;
 
@@ -443,8 +459,11 @@ async function iniciarQR() {
             if (
 
                 nombre.includes("front") ||
+
                 nombre.includes("frontal") ||
+
                 nombre.includes("user") ||
+
                 nombre.includes("facetime")
 
             ) {
@@ -480,7 +499,10 @@ async function iniciarQR() {
             error
         );
 
-        iniciarQRConModo("user");
+
+        iniciarQRConModo(
+            "user"
+        );
 
     }
 
@@ -488,7 +510,7 @@ async function iniciarQR() {
 
 
 // =====================================================
-// QR CON CÁMARA
+// INICIAR QR CON CAMERA ID
 // =====================================================
 
 function iniciarQRConCamara(
@@ -517,8 +539,11 @@ function iniciarQRConCamara(
             fps: 10,
 
             qrbox: {
+
                 width: 250,
+
                 height: 250
+
             }
 
         },
@@ -559,7 +584,11 @@ function iniciarQRConCamara(
 
         },
 
-        function() {}
+        function(errorMessage) {
+
+            // Error normal mientras busca el QR.
+
+        }
 
     )
 
@@ -570,6 +599,7 @@ function iniciarQRConCamara(
                 "Error iniciando cámara:",
                 error
             );
+
 
             alert(
                 "No se pudo acceder a la cámara. " +
@@ -583,7 +613,7 @@ function iniciarQRConCamara(
 
 
 // =====================================================
-// QR CON FACING MODE
+// INICIAR QR CON FACING MODE
 // =====================================================
 
 function iniciarQRConModo(
@@ -615,8 +645,11 @@ function iniciarQRConModo(
             fps: 10,
 
             qrbox: {
+
                 width: 250,
+
                 height: 250
+
             }
 
         },
@@ -657,14 +690,21 @@ function iniciarQRConModo(
 
         },
 
-        function() {}
+        function(errorMessage) {
+
+            // Error normal mientras busca el QR.
+
+        }
 
     )
 
     .catch(
         function(error) {
 
-            console.error(error);
+            console.error(
+                error
+            );
+
 
             alert(
                 "No se pudo acceder a la cámara. " +
@@ -718,9 +758,11 @@ async function cambiarCamara() {
 
 
         iniciarQRConCamara(
+
             camarasDisponibles[
                 camaraActual
             ].id
+
         );
 
     }
@@ -738,7 +780,7 @@ async function cambiarCamara() {
 
 
 // =====================================================
-// TEXTO BOTÓN CÁMARA
+// TEXTO DEL BOTÓN DE CÁMARA
 // =====================================================
 
 function actualizarTextoBotonCamara() {
@@ -750,7 +792,9 @@ function actualizarTextoBotonCamara() {
 
 
     if (!boton) {
+
         return;
+
     }
 
 
@@ -782,8 +826,11 @@ function actualizarTextoBotonCamara() {
     if (
 
         nombre.includes("front") ||
+
         nombre.includes("frontal") ||
+
         nombre.includes("user") ||
+
         nombre.includes("facetime")
 
     ) {
@@ -810,7 +857,9 @@ function actualizarTextoBotonCamara() {
 async function detenerQR() {
 
     if (!lectorQR) {
+
         return;
+
     }
 
 
@@ -852,14 +901,18 @@ async function detenerQR() {
 
 
 // =====================================================
-// BOTÓN CÁMARA
+// BOTÓN CAMBIAR CÁMARA
 // =====================================================
 
 document
     .getElementById("btnCambiarCamara")
     .addEventListener(
         "click",
-        cambiarCamara
+        function() {
+
+            cambiarCamara();
+
+        }
     );
 
 
@@ -938,11 +991,15 @@ function buscarFolio() {
     )
 
     .then(
-        response => response.json()
+        function(response) {
+
+            return response.json();
+
+        }
     )
 
     .then(
-        data => {
+        function(data) {
 
             console.log(
                 "Respuesta búsqueda:",
@@ -964,6 +1021,16 @@ function buscarFolio() {
 
                 mensajeEntrada.textContent =
                     "✓ Folio encontrado";
+
+
+                document
+                    .getElementById("campoNombre")
+                    .classList.add("oculto");
+
+
+                document
+                    .getElementById("btnNombre")
+                    .classList.add("oculto");
 
 
                 setTimeout(
@@ -1117,11 +1184,15 @@ function guardarNuevoUsuario() {
     )
 
     .then(
-        response => response.json()
+        function(response) {
+
+            return response.json();
+
+        }
     )
 
     .then(
-        data => {
+        function(data) {
 
             console.log(
                 "Registro usuario:",
@@ -1141,6 +1212,16 @@ function guardarNuevoUsuario() {
                 return;
 
             }
+
+
+            document
+                .getElementById("campoNombre")
+                .classList.add("oculto");
+
+
+            document
+                .getElementById("btnNombre")
+                .classList.add("oculto");
 
 
             mostrarPantalla(
@@ -1184,8 +1265,12 @@ document
                 "click",
                 function() {
 
+                    const actividad =
+                        boton.dataset.actividad;
+
+
                     registrarEntrada(
-                        boton.dataset.actividad,
+                        actividad,
                         ""
                     );
 
@@ -1206,14 +1291,14 @@ document
         "click",
         function() {
 
+            const opciones =
+                crearNumeros(1, 21);
+
+
             crearSubmenu(
-
                 "Prepa Abierta",
-
-                crearNumeros(1, 21),
-
-                "modulo"
-
+                opciones,
+                true
             );
 
         }
@@ -1231,7 +1316,9 @@ document
         function() {
 
             const opciones = [
+
                 "Propedéutico"
+
             ];
 
 
@@ -1249,13 +1336,9 @@ document
 
 
             crearSubmenu(
-
                 "Prepa en Línea",
-
                 opciones,
-
-                "modulo"
-
+                true
             );
 
         }
@@ -1267,19 +1350,19 @@ document
 // =====================================================
 
 document
-    .getElementById("btnBachilleratosPilares")
+    .getElementById("btnBachilleratoPilares")
     .addEventListener(
         "click",
         function() {
 
+            const opciones =
+                crearNumeros(1, 13);
+
+
             crearSubmenu(
-
                 "Bachilleratos PILARES",
-
-                crearNumeros(1, 13),
-
-                "modulo"
-
+                opciones,
+                true
             );
 
         }
@@ -1302,15 +1385,49 @@ document
 
                 [
 
-                    "Matemáticas",
-                    "Español",
-                    "Historia",
-                    "Química",
-                    "Biología"
+                    "📐 Matemáticas",
 
-                ],
+                    "📖 Español",
 
-                "opcion"
+                    "🏛️ Historia",
+
+                    "⚗️ Química",
+
+                    "🧬 Biología"
+
+                ]
+
+            );
+
+        }
+    );
+
+
+// =====================================================
+// SABERES SECTEI
+// =====================================================
+
+document
+    .getElementById("btnSaberesSectei")
+    .addEventListener(
+        "click",
+        function() {
+
+            crearSubmenu(
+
+                "Saberes SECTEI",
+
+                [
+
+                    "🔬 Ciencia",
+
+                    "💻 Tecnología",
+
+                    "🎨 Arte y Cultura",
+
+                    "🌱 Medio Ambiente"
+
+                ]
 
             );
 
@@ -1334,13 +1451,13 @@ document
 
                 [
 
-                    "Escuela de Código",
-                    "Profesora Gabi",
-                    "Profesor Pedro"
+                    "💻 Escuela de Código",
 
-                ],
+                    "👩‍🏫 Profesora Gabi",
 
-                "opcion"
+                    "👨‍🏫 Profesor Pedro"
+
+                ]
 
             );
 
@@ -1364,14 +1481,15 @@ document
 
                 [
 
-                    "Ponte Pila",
-                    "Autonomía Económica",
-                    "Cultura",
-                    "Ciberescuela"
+                    "💪 Ponte Pila",
 
-                ],
+                    "💰 Autonomía Económica",
 
-                "opcion"
+                    "🎭 Cultura",
+
+                    "💻 Ciberescuela"
+
+                ]
 
             );
 
@@ -1416,7 +1534,7 @@ function crearNumeros(
 function crearSubmenu(
     titulo,
     opciones,
-    tipo
+    esModulo = false
 ) {
 
     document
@@ -1431,17 +1549,21 @@ function crearSubmenu(
         );
 
 
-    if (tipo === "modulo") {
+    if (instruccion) {
 
-        instruccion.textContent =
-            "Elige tu módulo";
+        if (esModulo) {
 
-    }
+            instruccion.textContent =
+                "Elige tu módulo";
 
-    else {
+        }
 
-        instruccion.textContent =
-            "Elige una opción";
+        else {
+
+            instruccion.textContent =
+                "Selecciona una opción";
+
+        }
 
     }
 
@@ -1472,69 +1594,69 @@ function crearSubmenu(
                 "boton actividad boton-submenu";
 
 
-            let texto =
-                opcion;
-
-
-            let opcionGuardar =
-                opcion;
-
-
-            if (
-                tipo === "modulo" &&
-                /^\d+$/.test(opcion)
-            ) {
-
-                texto =
-                    "Módulo " +
-                    opcion;
-
-                opcionGuardar =
-                    "Módulo " +
-                    opcion;
-
-            }
-
-
-            if (tipo === "opcion") {
-
-                const iconos = {
-
-                    "Matemáticas": "➗",
-                    "Español": "📝",
-                    "Historia": "📜",
-                    "Química": "⚗️",
-                    "Biología": "🧬",
-
-                    "Escuela de Código": "👨‍💻",
-                    "Profesora Gabi": "👩‍🏫",
-                    "Profesor Pedro": "👨‍🏫",
-
-                    "Ponte Pila": "💪",
-                    "Autonomía Económica": "💰",
-                    "Cultura": "🎨",
-                    "Ciberescuela": "🖥️"
-
-                };
-
-
-                texto =
-                    (
-                        iconos[opcion] || ""
-                    ) +
-                    " " +
-                    opcion;
-
-            }
-
-
             boton.textContent =
-                texto;
+                opcion;
 
 
             boton.addEventListener(
                 "click",
                 function() {
+
+                    let opcionGuardar =
+                        opcion;
+
+
+                    let opcionVisual =
+                        opcion;
+
+
+                    // ---------------------------------
+                    // MÓDULOS
+                    // ---------------------------------
+
+                    if (esModulo) {
+
+                        const numero =
+                            opcion
+                                .replace(
+                                    /\D/g,
+                                    ""
+                                );
+
+
+                        if (numero) {
+
+                            opcionGuardar =
+                                "Módulo " +
+                                numero;
+
+                            opcionVisual =
+                                "Módulo " +
+                                numero;
+
+                        }
+
+                        else {
+
+                            opcionGuardar =
+                                opcion;
+
+                        }
+
+                    }
+
+                    else {
+
+                        // Quitar emoji solamente
+                        // para guardar en Excel
+
+                        opcionGuardar =
+                            limpiarActividad(
+                                opcion
+                            );
+
+                    }
+
 
                     registrarEntrada(
 
@@ -1587,12 +1709,18 @@ function limpiarActividad(
 
 function registrarEntrada(
     actividad,
-    opcion
+    opcion = ""
 ) {
 
     actividad =
         limpiarActividad(
             actividad
+        );
+
+
+    opcion =
+        limpiarActividad(
+            opcion
         );
 
 
@@ -1637,7 +1765,7 @@ function registrarEntrada(
                     actividad,
 
                 opcion:
-                    opcion || ""
+                    opcion
 
             })
 
@@ -1646,11 +1774,15 @@ function registrarEntrada(
     )
 
     .then(
-        response => response.json()
+        function(response) {
+
+            return response.json();
+
+        }
     )
 
     .then(
-        data => {
+        function(data) {
 
             console.log(
                 "Entrada:",
@@ -1681,13 +1813,9 @@ function registrarEntrada(
 
 
             mostrarConfirmacion(
-
                 "ENTRADA",
-
                 actividad,
-
                 opcion
-
             );
 
         }
@@ -1758,11 +1886,15 @@ function registrarSalida() {
     )
 
     .then(
-        response => response.json()
+        function(response) {
+
+            return response.json();
+
+        }
     )
 
     .then(
-        data => {
+        function(data) {
 
             console.log(
                 "Salida:",
