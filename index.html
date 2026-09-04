@@ -12,7 +12,10 @@
 
     <title>Registro PILARES</title>
 
-    <link rel="stylesheet" href="style.css">
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
 
     <script
         src="https://unpkg.com/html5-qrcode"
@@ -57,7 +60,7 @@
 
 
     <!-- ===================================== -->
-    <!-- INICIO -->
+    <!-- MENÚ PRINCIPAL -->
     <!-- ===================================== -->
 
     <section
@@ -100,8 +103,9 @@
         class="pantalla oculto">
 
         <h2 id="tituloFolio">
-            Folio
+            Registro
         </h2>
+
 
         <p class="subtitulo">
             Selecciona cómo deseas ingresar el folio
@@ -189,7 +193,7 @@
 
 
     <!-- ===================================== -->
-    <!-- ESCANEAR QR -->
+    <!-- ESCÁNER QR -->
     <!-- ===================================== -->
 
     <section
@@ -211,7 +215,7 @@
 
         <button
             id="btnCambiarCamara"
-            class="boton"
+            class="boton boton-camara"
             type="button">
 
             🔄 CAMBIAR CÁMARA
@@ -247,7 +251,7 @@
 
 
     <!-- ===================================== -->
-    <!-- NUEVO USUARIO -->
+    <!-- FORMULARIO NUEVO USUARIO -->
     <!-- ===================================== -->
 
     <section
@@ -317,11 +321,14 @@
         </h2>
 
 
+        <!-- ================================= -->
         <!-- ALFABETIZACIÓN -->
+        <!-- ================================= -->
 
         <button
             class="boton actividad"
             data-actividad="Alfabetización"
+            data-opcion=""
             type="button">
 
             <span class="actividad-icono">
@@ -335,11 +342,14 @@
         </button>
 
 
+        <!-- ================================= -->
         <!-- PRIMARIA INEA -->
+        <!-- ================================= -->
 
         <button
             class="boton actividad"
             data-actividad="Primaria INEA"
+            data-opcion=""
             type="button">
 
             <span class="actividad-icono">
@@ -353,11 +363,14 @@
         </button>
 
 
+        <!-- ================================= -->
         <!-- SECUNDARIA INEA -->
+        <!-- ================================= -->
 
         <button
             class="boton actividad"
             data-actividad="Secundaria INEA"
+            data-opcion=""
             type="button">
 
             <span class="actividad-icono">
@@ -371,11 +384,14 @@
         </button>
 
 
+        <!-- ================================= -->
         <!-- PREPA ABIERTA -->
+        <!-- ================================= -->
 
         <button
             id="btnPrepaAbierta"
             class="boton actividad"
+            data-actividad="Prepa Abierta"
             type="button">
 
             <span class="actividad-icono">
@@ -389,11 +405,14 @@
         </button>
 
 
+        <!-- ================================= -->
         <!-- PREPA EN LÍNEA -->
+        <!-- ================================= -->
 
         <button
             id="btnPrepaLinea"
             class="boton actividad"
+            data-actividad="Prepa en Línea"
             type="button">
 
             <span class="actividad-icono">
@@ -407,11 +426,14 @@
         </button>
 
 
+        <!-- ================================= -->
         <!-- BACHILLERATOS PILARES -->
+        <!-- ================================= -->
 
         <button
             id="btnBachilleratos"
             class="boton actividad"
+            data-actividad="Bachilleratos PILARES"
             type="button">
 
             <span class="actividad-icono">
@@ -425,11 +447,14 @@
         </button>
 
 
+        <!-- ================================= -->
         <!-- SABERES SECTEI -->
+        <!-- ================================= -->
 
         <button
             class="boton actividad"
             data-actividad="Saberes SECTEI"
+            data-opcion=""
             type="button">
 
             <span class="actividad-icono">
@@ -443,11 +468,14 @@
         </button>
 
 
+        <!-- ================================= -->
         <!-- ASESORÍAS ACADÉMICAS -->
+        <!-- ================================= -->
 
         <button
             id="btnAsesoria"
             class="boton actividad"
+            data-actividad="Asesorías académicas"
             type="button">
 
             <span class="actividad-icono">
@@ -461,11 +489,14 @@
         </button>
 
 
+        <!-- ================================= -->
         <!-- COMPUTACIÓN -->
+        <!-- ================================= -->
 
         <button
             id="btnComputacion"
             class="boton actividad"
+            data-actividad="Computación"
             type="button">
 
             <span class="actividad-icono">
@@ -479,11 +510,14 @@
         </button>
 
 
+        <!-- ================================= -->
         <!-- USO DE COMPUTADORA -->
+        <!-- ================================= -->
 
         <button
             class="boton actividad"
             data-actividad="Uso de computadora"
+            data-opcion=""
             type="button">
 
             <span class="actividad-icono">
@@ -497,11 +531,14 @@
         </button>
 
 
+        <!-- ================================= -->
         <!-- SERVICIO SOCIAL -->
+        <!-- ================================= -->
 
         <button
             class="boton actividad"
             data-actividad="Servicio social"
+            data-opcion=""
             type="button">
 
             <span class="actividad-icono">
@@ -515,11 +552,14 @@
         </button>
 
 
+        <!-- ================================= -->
         <!-- BENEFICIARIOS -->
+        <!-- ================================= -->
 
         <button
             id="btnBeneficiarios"
             class="boton actividad"
+            data-actividad="Beneficiarios"
             type="button">
 
             <span class="actividad-icono">
@@ -533,7 +573,9 @@
         </button>
 
 
+        <!-- ================================= -->
         <!-- CANCELAR -->
+        <!-- ================================= -->
 
         <button
             id="btnCancelarActividad"
@@ -582,7 +624,7 @@
 
 
     <!-- ===================================== -->
-    <!-- CONFIRMACIÓN FINAL -->
+    <!-- CONFIRMACIÓN -->
     <!-- ===================================== -->
 
     <section
